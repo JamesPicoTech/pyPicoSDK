@@ -44,15 +44,11 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../common/">PicoScope Common Functions</a>
-                  </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">PicoScope 6000 (A) Specific Functions</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#initializing-class">Initializing class</a>
+    <li class="toctree-l2"><a class="reference internal" href="#initializing-ps6000a">Initializing ps6000a</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a">ps6000a</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.close_unit">close_unit</a>
     </li>
@@ -81,6 +77,8 @@
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../ps5000a/">PicoScope 5000 (A) Specific Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../constants/">pyPicoSDK Constants</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Development</span></p>
@@ -115,15 +113,10 @@
             <div class="section" itemprop="articleBody">
               
                 <h1 id="ps6000a-reference">ps6000a Reference</h1>
-<h2 id="initializing-class">Initializing class</h2>
+<h2 id="initializing-ps6000a">Initializing ps6000a</h2>
 <pre><code>from picosdk import picosdk
 
 scope = picosdk.ps6000a()
-scope.open_unit()
-
-# Do stuff here
-
-scope.close_unit()
 </code></pre>
 <h2 id="reference">Reference</h2>
 
@@ -132,7 +125,7 @@ scope.close_unit()
 
 
 
-<a id="picosdk.picosdk.ps6000a"></a>
+
     <div class="doc doc-contents first">
             <p class="doc doc-class-bases">
               Bases: <code><span title="picosdk.picosdk.PicoScopeBase">PicoScopeBase</span></code></p>
@@ -143,6 +136,119 @@ scope.close_unit()
 
 
 
+
+
+
+
+
+
+<p><span class="doc-section-title">Methods:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="close_unit() (picosdk.picosdk.ps6000a.close_unit)" href="#picosdk.picosdk.ps6000a.close_unit">close_unit</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Closes the PicoScope device and releases the hardware handle.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_timebase(timebase, samples, segment=0) (picosdk.picosdk.ps6000a.get_timebase)" href="#picosdk.picosdk.ps6000a.get_timebase">get_timebase</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>This function calculates the sampling rate and maximum number of </p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_unit_info(unit_info) (picosdk.picosdk.ps6000a.get_unit_info)" href="#picosdk.picosdk.ps6000a.get_unit_info">get_unit_info</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Get specified information from unit. Use UNIT_INFO.XXXX or integer.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_unit_serial() (picosdk.picosdk.ps6000a.get_unit_serial)" href="#picosdk.picosdk.ps6000a.get_unit_serial">get_unit_serial</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Get and return batch and serial of unit.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_values(samples, start_index=0, segment=0, ratio=0, ratio_mode=RATIO_MODE.RAW) (picosdk.picosdk.ps6000a.get_values)" href="#picosdk.picosdk.ps6000a.get_values">get_values</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Retrieves a block of captured samples from the device once it's ready.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="is_ready() (picosdk.picosdk.ps6000a.is_ready)" href="#picosdk.picosdk.ps6000a.is_ready">is_ready</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Blocks execution until the PicoScope device is ready.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="open_unit(serial_number=None, resolution=0) (picosdk.picosdk.ps6000a.open_unit)" href="#picosdk.picosdk.ps6000a.open_unit">open_unit</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Open PicoScope unit.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="run_block_capture(timebase, samples, pre_trig_percent=50, segment=0) (picosdk.picosdk.ps6000a.run_block_capture)" href="#picosdk.picosdk.ps6000a.run_block_capture">run_block_capture</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Runs a block capture using the specified timebase and number of samples.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="run_simple_block(timebase, samples) (picosdk.picosdk.ps6000a.run_simple_block)" href="#picosdk.picosdk.ps6000a.run_simple_block">run_simple_block</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Performs a simple block capture once channels and trigger is setup</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_channel(channel, range, enabled=True, coupling=COUPLING.DC, offset=0.0, bandwidth=BANDWIDTH_CH.FULL) (picosdk.picosdk.ps6000a.set_channel)" href="#picosdk.picosdk.ps6000a.set_channel">set_channel</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Enable/disable a channel and specify certain variables i.e. range, coupling, offset, etc.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_data_buffer(channel, samples, segment=0, datatype=DATA_TYPE.INT16_T, ratio_mode=RATIO_MODE.RAW, action=ACTION.CLEAR_ALL | ACTION.ADD) (picosdk.picosdk.ps6000a.set_data_buffer)" href="#picosdk.picosdk.ps6000a.set_data_buffer">set_data_buffer</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Tells the driver where to store the data that will be populated when get_values() is called.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_simple_trigger(channel, threshold_mv, enable=True, direction=TRIGGER_DIR.RISING, delay=0, auto_trigger_ms=3000) (picosdk.picosdk.ps6000a.set_simple_trigger)" href="#picosdk.picosdk.ps6000a.set_simple_trigger">set_simple_trigger</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Sets up a simple trigger from a specified channel and threshold in mV</p>
+                </div>
+              </td>
+            </tr>
+      </tbody>
+    </table>
 
 
 
@@ -170,8 +276,32 @@ scope.close_unit()
 
     <div class="doc doc-contents ">
 
-        <p>Close the PicoScope unit</p>
+        <p>Closes the PicoScope device and releases the hardware handle.</p>
+<p>This calls the PicoSDK <code>CloseUnit</code> function to properly disconnect from the device.</p>
 
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="int">int</span></code>
+              –
+              <div class="doc-md-description">
+                <p>None</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
     </div>
 
@@ -245,8 +375,8 @@ samples for a given timebase under the specified conditions.</p>
       <td class="field-body">
         <ul class="first simple">
             <li>
-                  <code><span title="dict">dict</span></code>
-              –
+<b><code>dict</code></b>(                  <code>None</code>
+)              –
               <div class="doc-md-description">
                 <p>Returns interval (ns) and max samples as a dictionary.</p>
               </div>
@@ -287,10 +417,10 @@ samples for a given timebase under the specified conditions.</p>
         <ul class="first simple">
             <li>
               <b><code>unit_info</code></b>
-                  (<code><span title="picosdk.picosdk.UNIT_INFO">UNIT_INFO</span></code>)
+                  (<code><a class="autorefs autorefs-internal" title="UNIT_INFO (picosdk.picosdk.UNIT_INFO)" href="../constants/#picosdk.picosdk.UNIT_INFO">UNIT_INFO</a></code>)
               –
               <div class="doc-md-description">
-                <p>Specify information from PicoScope unit i.e. UNIT_INFO.PICO_BATCH_AND_SERIAL</p>
+                <p>Specify information from PicoScope unit i.e. UNIT_INFO.PICO_BATCH_AND_SERIAL.</p>
               </div>
             </li>
         </ul>
@@ -310,8 +440,8 @@ samples for a given timebase under the specified conditions.</p>
       <td class="field-body">
         <ul class="first simple">
             <li>
-                  <code><span title="str">str</span></code>
-              –
+<b><code>str</code></b>(                  <code><span title="str">str</span></code>
+)              –
               <div class="doc-md-description">
                 <p>Returns data from device.</p>
               </div>
@@ -351,8 +481,8 @@ samples for a given timebase under the specified conditions.</p>
       <td class="field-body">
         <ul class="first simple">
             <li>
-                  <code><span title="str">str</span></code>
-              –
+<b><code>str</code></b>(                  <code><span title="str">str</span></code>
+)              –
               <div class="doc-md-description">
                 <p>Returns serial, e.g., "JR628/0017".</p>
               </div>
@@ -378,8 +508,97 @@ samples for a given timebase under the specified conditions.</p>
 
     <div class="doc doc-contents ">
 
-        <p>When ready, get values from device</p>
+        <p>Retrieves a block of captured samples from the device once it's ready.</p>
+<p>This function should be called after confirming the device is ready using <code>is_ready()</code>.
+It invokes the underlying PicoSDK <code>GetValues</code> function to read the data into memory.</p>
 
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Number of samples to retrieve.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>start_index</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Starting index in the buffer. Defaults to 0.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>segment</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Memory segment index to retrieve data from. Defaults to 0.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>ratio</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Downsampling ratio. Defaults to 0 (no downsampling).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>ratio_mode</code></b>
+                  (<code><span title="picosdk.picosdk.RATIO_MODE">RATIO_MODE</span></code>, default:
+                      <code><span title="picosdk.picosdk.RATIO_MODE.RAW">RAW</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Ratio mode for downsampling. Defaults to RATIO_MODE.RAW.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>int</code></b>(                  <code><span title="int">int</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Actual number of samples retrieved.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
     </div>
 
@@ -396,8 +615,33 @@ samples for a given timebase under the specified conditions.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Loops until PicoScope device is ready</p>
+        <p>Blocks execution until the PicoScope device is ready.</p>
+<p>Continuously calls the PicoSDK <code>IsReady</code> function in a loop, checking if
+the device is prepared to proceed with data acquisition.</p>
 
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code>None</code>
+              –
+              <div class="doc-md-description">
+                <p>None</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
     </div>
 
@@ -414,7 +658,7 @@ samples for a given timebase under the specified conditions.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Open PicoScope unit</p>
+        <p>Open PicoScope unit.</p>
 
 
 <table class="field-list">
@@ -434,17 +678,17 @@ samples for a given timebase under the specified conditions.</p>
 )
               –
               <div class="doc-md-description">
-                <p>Serial number of device</p>
+                <p>Serial number of device.</p>
               </div>
             </li>
             <li>
               <b><code>resolution</code></b>
-                  (<code><span title="picosdk.picosdk.RESOLUTION">RESOLUTION</span></code>, default:
+                  (<code><a class="autorefs autorefs-internal" title="RESOLUTION (picosdk.picosdk.RESOLUTION)" href="../constants/#picosdk.picosdk.RESOLUTION">RESOLUTION</a></code>, default:
                       <code>0</code>
 )
               –
               <div class="doc-md-description">
-                <p>Resolution of device</p>
+                <p>Resolution of device.</p>
               </div>
             </li>
         </ul>
@@ -468,8 +712,85 @@ samples for a given timebase under the specified conditions.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Run block with specified timebase and samples</p>
+        <p>Runs a block capture using the specified timebase and number of samples.</p>
+<p>This sets up the PicoScope to begin collecting a block of data, divided into
+pre-trigger and post-trigger samples. It uses the PicoSDK <code>RunBlock</code> function.</p>
 
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>timebase</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Timebase value determining sample interval (refer to PicoSDK guide).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Total number of samples to capture.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>pre_trig_percent</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>50</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Percentage of samples to capture before the trigger. Defaults to 50.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>segment</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Memory segment index to use. Defaults to 0.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>int</code></b>(                  <code><span title="int">int</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Estimated time (in milliseconds) the device will be busy capturing data.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
     </div>
 
@@ -504,7 +825,7 @@ samples for a given timebase under the specified conditions.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Enable/disable a channel and specify certain variables i.e. range, coupling, offset, etc</p>
+        <p>Enable/disable a channel and specify certain variables i.e. range, coupling, offset, etc.</p>
 
 
 <table class="field-list">
@@ -522,7 +843,7 @@ samples for a given timebase under the specified conditions.</p>
                   (<code><span title="picosdk.picosdk.CHANNEL">CHANNEL</span></code>)
               –
               <div class="doc-md-description">
-                <p>Channel to setup</p>
+                <p>Channel to setup.</p>
               </div>
             </li>
             <li>
@@ -530,7 +851,7 @@ samples for a given timebase under the specified conditions.</p>
                   (<code><span title="picosdk.picosdk.RANGE">RANGE</span></code>)
               –
               <div class="doc-md-description">
-                <p>Voltage range of channel</p>
+                <p>Voltage range of channel.</p>
               </div>
             </li>
             <li>
@@ -540,7 +861,7 @@ samples for a given timebase under the specified conditions.</p>
 )
               –
               <div class="doc-md-description">
-                <p>Enable or disable channel</p>
+                <p>Enable or disable channel.</p>
               </div>
             </li>
             <li>
@@ -550,7 +871,7 @@ samples for a given timebase under the specified conditions.</p>
 )
               –
               <div class="doc-md-description">
-                <p>AC/DC/DC 50 Ohm coupling of selected channel</p>
+                <p>AC/DC/DC 50 Ohm coupling of selected channel.</p>
               </div>
             </li>
             <li>
@@ -560,7 +881,7 @@ samples for a given timebase under the specified conditions.</p>
 )
               –
               <div class="doc-md-description">
-                <p>Analog offset in volts (V) of selected channel</p>
+                <p>Analog offset in volts (V) of selected channel.</p>
               </div>
             </li>
             <li>
@@ -570,7 +891,7 @@ samples for a given timebase under the specified conditions.</p>
 )
               –
               <div class="doc-md-description">
-                <p>Bandwidth of channel (selected models)</p>
+                <p>Bandwidth of channel (selected models).</p>
               </div>
             </li>
         </ul>
@@ -613,7 +934,7 @@ This function works on a single buffer. For aggregation mode, call set_data_buff
                   (<code><span title="picosdk.picosdk.CHANNEL">CHANNEL</span></code>)
               –
               <div class="doc-md-description">
-                <p>Channel you want to use with the buffer</p>
+                <p>Channel you want to use with the buffer.</p>
               </div>
             </li>
             <li>
@@ -621,7 +942,7 @@ This function works on a single buffer. For aggregation mode, call set_data_buff
                   (<code><span title="int">int</span></code>)
               –
               <div class="doc-md-description">
-                <p>Number of samples/length of the buffer</p>
+                <p>Number of samples/length of the buffer.</p>
               </div>
             </li>
             <li>
@@ -631,7 +952,7 @@ This function works on a single buffer. For aggregation mode, call set_data_buff
 )
               –
               <div class="doc-md-description">
-                <p>location of the buffer</p>
+                <p>Location of the buffer.</p>
               </div>
             </li>
             <li>
@@ -641,7 +962,7 @@ This function works on a single buffer. For aggregation mode, call set_data_buff
 )
               –
               <div class="doc-md-description">
-                <p>C datatype of the data</p>
+                <p>C datatype of the data.</p>
               </div>
             </li>
             <li>
@@ -651,7 +972,7 @@ This function works on a single buffer. For aggregation mode, call set_data_buff
 )
               –
               <div class="doc-md-description">
-                <p>Down-sampling mode</p>
+                <p>Down-sampling mode.</p>
               </div>
             </li>
             <li>
@@ -661,7 +982,7 @@ This function works on a single buffer. For aggregation mode, call set_data_buff
 )
               –
               <div class="doc-md-description">
-                <p>Method to use when creating a buffer</p>
+                <p>Method to use when creating a buffer.</p>
               </div>
             </li>
         </ul>
@@ -684,7 +1005,7 @@ This function works on a single buffer. For aggregation mode, call set_data_buff
                   <code><span title="ctypes.Array">Array</span></code>
               –
               <div class="doc-md-description">
-                <p>Array that will be populated when get_values() is called</p>
+                <p>ctypes.Array: Array that will be populated when get_values() is called.</p>
               </div>
             </li>
         </ul>
@@ -726,7 +1047,7 @@ This function works on a single buffer. For aggregation mode, call set_data_buff
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../common/" class="btn btn-neutral float-left" title="PicoScope Common Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../introduction/" class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../ps5000a/" class="btn btn-neutral float-right" title="PicoScope 5000 (A) Specific Functions">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -750,7 +1071,7 @@ This function works on a single buffer. For aggregation mode, call set_data_buff
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../common/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../introduction/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../ps5000a/" style="color: #fcfcfc">Next &raquo;</a></span>
