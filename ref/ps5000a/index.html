@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>PicoScope 5000 (A) Specific Functions - My Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "PicoScope 5000 (A) Specific Functions";
+        var mkdocs_page_input_path = "ref\\ps5000a.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> My Docs
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../common/">PicoScope Common Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ps6000a/">PicoScope 6000 (A) Specific Functions</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">PicoScope 5000 (A) Specific Functions</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#initializing-ps5000a">Initializing ps5000a</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps5000a">ps5000a</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps5000a.adc_to_mv">adc_to_mv</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps5000a.buffer_adc_to_mv">buffer_adc_to_mv</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps5000a.buffer_adc_to_mv_multiple_channels">buffer_adc_to_mv_multiple_channels</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps5000a.buffer_ctype_to_list_for_multiple_channels">buffer_ctype_to_list_for_multiple_channels</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps5000a.buffer_ctypes_to_list">buffer_ctypes_to_list</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps5000a.close_unit">close_unit</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps5000a.get_unit_info">get_unit_info</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps5000a.get_unit_serial">get_unit_serial</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps5000a.get_values">get_values</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps5000a.is_ready">is_ready</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps5000a.mv_to_adc">mv_to_adc</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps5000a.run_block_capture">run_block_capture</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps5000a.run_simple_block">run_simple_block</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps5000a.set_simple_trigger">set_simple_trigger</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Development</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/current/">Current</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/roadmap/">Roadmap</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Reference</li>
+      <li class="breadcrumb-item active">PicoScope 5000 (A) Specific Functions</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ps5000a-reference">ps5000a Reference</h1>
+<h2 id="initializing-ps5000a">Initializing ps5000a</h2>
+<pre><code>from picosdk import picosdk
+
+scope = picosdk.ps5000a()
+</code></pre>
+<h2 id="reference">Reference</h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<a id="picosdk.picosdk.ps5000a"></a>
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="picosdk.picosdk.PicoScopeBase">PicoScopeBase</span></code></p>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps5000a.adc_to_mv" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">adc_to_mv</span><span class="p">(</span><span class="n">adc</span><span class="p">,</span> <span class="n">channel_range</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Converts ADC value to mV - based on maximum ADC value</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps5000a.buffer_adc_to_mv" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">buffer_adc_to_mv</span><span class="p">(</span><span class="n">buffer</span><span class="p">,</span> <span class="n">channel</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Converts an ADC buffer list to mV list</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps5000a.buffer_adc_to_mv_multiple_channels" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">buffer_adc_to_mv_multiple_channels</span><span class="p">(</span><span class="n">channels_buffer</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Converts dict of multiple channels adc values to millivolts (mV)</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps5000a.buffer_ctype_to_list_for_multiple_channels" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">buffer_ctype_to_list_for_multiple_channels</span><span class="p">(</span><span class="n">channels_buffer</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Takes a ctypes channel dictionary buffer and converts into a integer array.
+i.e. {0: <ctypes_array>, 1: <ctypes_array>} -&gt; {0: [1, 0], 1: [5, 7]}</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps5000a.buffer_ctypes_to_list" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">buffer_ctypes_to_list</span><span class="p">(</span><span class="n">ctypes_list</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Converts a ctype dataset into a python list of samples</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps5000a.close_unit" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">close_unit</span><span class="p">()</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Close the PicoScope unit</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps5000a.get_unit_info" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_unit_info</span><span class="p">(</span><span class="n">unit_info</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get specified information from unit. Use UNIT_INFO.XXXX or integer.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>unit_info</code></b>
+                  (<code><span title="picosdk.picosdk.UNIT_INFO">UNIT_INFO</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Specify information from PicoScope unit i.e. UNIT_INFO.PICO_BATCH_AND_SERIAL</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="str">str</span></code>
+              –
+              <div class="doc-md-description">
+                <p>Returns data from device.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps5000a.get_unit_serial" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_unit_serial</span><span class="p">()</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get and return batch and serial of unit.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="str">str</span></code>
+              –
+              <div class="doc-md-description">
+                <p>Returns serial, e.g., "JR628/0017".</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps5000a.get_values" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_values</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">start_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">segment</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ratio_mode</span><span class="o">=</span><span class="n">RATIO_MODE</span><span class="o">.</span><span class="n">RAW</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>When ready, get values from device</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps5000a.is_ready" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">is_ready</span><span class="p">()</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Loops until PicoScope device is ready</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps5000a.mv_to_adc" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">mv_to_adc</span><span class="p">(</span><span class="n">mv</span><span class="p">,</span> <span class="n">channel_range</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Converts a millivolt (mV) value to an ADC value based on the device's
+maximum ADC range.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>mv</code></b>
+                  (<code><span title="float">float</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Voltage in millivolts to be converted.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>channel_range</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Range of channel in millivolts i.e. 500 mV</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="int">int</span></code>
+              –
+              <div class="doc-md-description">
+                <p>ADC value corresponding to the input millivolt value.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps5000a.run_block_capture" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">run_block_capture</span><span class="p">(</span><span class="n">timebase</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">pre_trig_percent</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">segment</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Run block with specified timebase and samples</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps5000a.run_simple_block" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">run_simple_block</span><span class="p">(</span><span class="n">timebase</span><span class="p">,</span> <span class="n">samples</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Performs a simple block capture once channels and trigger is setup</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps5000a.set_simple_trigger" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">set_simple_trigger</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">threshold_mv</span><span class="p">,</span> <span class="n">enable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">TRIGGER_DIR</span><span class="o">.</span><span class="n">RISING</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">auto_trigger_ms</span><span class="o">=</span><span class="mi">3000</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Sets up a simple trigger from a specified channel and threshold in mV</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ps6000a/" class="btn btn-neutral float-left" title="PicoScope 6000 (A) Specific Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../dev/current/" class="btn btn-neutral float-right" title="Current">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../ps6000a/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../dev/current/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

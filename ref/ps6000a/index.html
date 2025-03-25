@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>PicoScope 6000 (A) Specific Functions - My Docs</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "PicoScope 6000 (A) Specific Functions";
+        var mkdocs_page_input_path = "ref\\ps6000a.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> My Docs
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../common/">PicoScope Common Functions</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">PicoScope 6000 (A) Specific Functions</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#initializing-class">Initializing class</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a">ps6000a</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.close_unit">close_unit</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.get_timebase">get_timebase</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.get_unit_info">get_unit_info</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.get_unit_serial">get_unit_serial</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.get_values">get_values</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.is_ready">is_ready</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.open_unit">open_unit</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.run_block_capture">run_block_capture</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.run_simple_block">run_simple_block</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.set_channel">set_channel</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.set_data_buffer">set_data_buffer</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.set_simple_trigger">set_simple_trigger</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ps5000a/">PicoScope 5000 (A) Specific Functions</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Development</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/current/">Current</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/roadmap/">Roadmap</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Reference</li>
+      <li class="breadcrumb-item active">PicoScope 6000 (A) Specific Functions</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ps6000a-reference">ps6000a Reference</h1>
+<h2 id="initializing-class">Initializing class</h2>
+<pre><code>from picosdk import picosdk
+
+scope = picosdk.ps6000a()
+scope.open_unit()
+
+# Do stuff here
+
+scope.close_unit()
+</code></pre>
+<h2 id="reference">Reference</h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<a id="picosdk.picosdk.ps6000a"></a>
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="picosdk.picosdk.PicoScopeBase">PicoScopeBase</span></code></p>
+
+
+        <p>PicoScope 6000 (A) API specific functions</p>
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps6000a.close_unit" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">close_unit</span><span class="p">()</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Close the PicoScope unit</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps6000a.get_timebase" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_timebase</span><span class="p">(</span><span class="n">timebase</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">segment</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>This function calculates the sampling rate and maximum number of 
+samples for a given timebase under the specified conditions.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>timebase</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Selected timebase multiplier (refer to programmer's guide).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Number of samples.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>segment</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The index of the memory segment to use. Defaults to 0.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="dict">dict</span></code>
+              –
+              <div class="doc-md-description">
+                <p>Returns interval (ns) and max samples as a dictionary.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps6000a.get_unit_info" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_unit_info</span><span class="p">(</span><span class="n">unit_info</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get specified information from unit. Use UNIT_INFO.XXXX or integer.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>unit_info</code></b>
+                  (<code><span title="picosdk.picosdk.UNIT_INFO">UNIT_INFO</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Specify information from PicoScope unit i.e. UNIT_INFO.PICO_BATCH_AND_SERIAL</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="str">str</span></code>
+              –
+              <div class="doc-md-description">
+                <p>Returns data from device.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps6000a.get_unit_serial" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_unit_serial</span><span class="p">()</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get and return batch and serial of unit.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="str">str</span></code>
+              –
+              <div class="doc-md-description">
+                <p>Returns serial, e.g., "JR628/0017".</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps6000a.get_values" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">get_values</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">start_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">segment</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ratio_mode</span><span class="o">=</span><span class="n">RATIO_MODE</span><span class="o">.</span><span class="n">RAW</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>When ready, get values from device</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps6000a.is_ready" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">is_ready</span><span class="p">()</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Loops until PicoScope device is ready</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps6000a.open_unit" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">open_unit</span><span class="p">(</span><span class="n">serial_number</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Open PicoScope unit</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>serial_number</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Serial number of device</p>
+              </div>
+            </li>
+            <li>
+              <b><code>resolution</code></b>
+                  (<code><span title="picosdk.picosdk.RESOLUTION">RESOLUTION</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Resolution of device</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps6000a.run_block_capture" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">run_block_capture</span><span class="p">(</span><span class="n">timebase</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">pre_trig_percent</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">segment</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Run block with specified timebase and samples</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps6000a.run_simple_block" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">run_simple_block</span><span class="p">(</span><span class="n">timebase</span><span class="p">,</span> <span class="n">samples</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Performs a simple block capture once channels and trigger is setup</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps6000a.set_channel" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">set_channel</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="nb">range</span><span class="p">,</span> <span class="n">enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">coupling</span><span class="o">=</span><span class="n">COUPLING</span><span class="o">.</span><span class="n">DC</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">bandwidth</span><span class="o">=</span><span class="n">BANDWIDTH_CH</span><span class="o">.</span><span class="n">FULL</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Enable/disable a channel and specify certain variables i.e. range, coupling, offset, etc</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>channel</code></b>
+                  (<code><span title="picosdk.picosdk.CHANNEL">CHANNEL</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Channel to setup</p>
+              </div>
+            </li>
+            <li>
+              <b><code>range</code></b>
+                  (<code><span title="picosdk.picosdk.RANGE">RANGE</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Voltage range of channel</p>
+              </div>
+            </li>
+            <li>
+              <b><code>enabled</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>True</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Enable or disable channel</p>
+              </div>
+            </li>
+            <li>
+              <b><code>coupling</code></b>
+                  (<code><span title="picosdk.picosdk.COUPLING">COUPLING</span></code>, default:
+                      <code><span title="picosdk.picosdk.COUPLING.DC">DC</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>AC/DC/DC 50 Ohm coupling of selected channel</p>
+              </div>
+            </li>
+            <li>
+              <b><code>offset</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0.0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Analog offset in volts (V) of selected channel</p>
+              </div>
+            </li>
+            <li>
+              <b><code>bandwidth</code></b>
+                  (<code><span title="picosdk.picosdk.BANDWIDTH_CH">BANDWIDTH_CH</span></code>, default:
+                      <code><span title="picosdk.picosdk.BANDWIDTH_CH.FULL">FULL</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Bandwidth of channel (selected models)</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps6000a.set_data_buffer" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">set_data_buffer</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">segment</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">DATA_TYPE</span><span class="o">.</span><span class="n">INT16_T</span><span class="p">,</span> <span class="n">ratio_mode</span><span class="o">=</span><span class="n">RATIO_MODE</span><span class="o">.</span><span class="n">RAW</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">ACTION</span><span class="o">.</span><span class="n">CLEAR_ALL</span> <span class="o">|</span> <span class="n">ACTION</span><span class="o">.</span><span class="n">ADD</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Tells the driver where to store the data that will be populated when get_values() is called.
+This function works on a single buffer. For aggregation mode, call set_data_buffers instead.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>channel</code></b>
+                  (<code><span title="picosdk.picosdk.CHANNEL">CHANNEL</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Channel you want to use with the buffer</p>
+              </div>
+            </li>
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Number of samples/length of the buffer</p>
+              </div>
+            </li>
+            <li>
+              <b><code>segment</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>location of the buffer</p>
+              </div>
+            </li>
+            <li>
+              <b><code>datatype</code></b>
+                  (<code><span title="DATATYPE">DATATYPE</span></code>, default:
+                      <code><span title="picosdk.picosdk.DATA_TYPE.INT16_T">INT16_T</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>C datatype of the data</p>
+              </div>
+            </li>
+            <li>
+              <b><code>ratio_mode</code></b>
+                  (<code><span title="picosdk.picosdk.RATIO_MODE">RATIO_MODE</span></code>, default:
+                      <code><span title="picosdk.picosdk.RATIO_MODE.RAW">RAW</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Down-sampling mode</p>
+              </div>
+            </li>
+            <li>
+              <b><code>action</code></b>
+                  (<code><span title="picosdk.picosdk.ACTION">ACTION</span></code>, default:
+                      <code><span title="picosdk.picosdk.ACTION.CLEAR_ALL">CLEAR_ALL</span> | <span title="picosdk.picosdk.ACTION.ADD">ADD</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Method to use when creating a buffer</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="ctypes.Array">Array</span></code>
+              –
+              <div class="doc-md-description">
+                <p>Array that will be populated when get_values() is called</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps6000a.set_simple_trigger" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">set_simple_trigger</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">threshold_mv</span><span class="p">,</span> <span class="n">enable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">TRIGGER_DIR</span><span class="o">.</span><span class="n">RISING</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">auto_trigger_ms</span><span class="o">=</span><span class="mi">3000</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Sets up a simple trigger from a specified channel and threshold in mV</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../common/" class="btn btn-neutral float-left" title="PicoScope Common Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ps5000a/" class="btn btn-neutral float-right" title="PicoScope 5000 (A) Specific Functions">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../common/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../ps5000a/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
