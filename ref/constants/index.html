@@ -5,15 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>pyPicoSDK Constants - My Docs</title>
+    <title>General Constants - My Docs</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/mkdocstrings.css" rel="stylesheet" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "pyPicoSDK Constants";
+        var mkdocs_page_name = "General Constants";
         var mkdocs_page_input_path = "ref\\constants.md";
         var mkdocs_page_url = null;
       </script>
@@ -48,16 +49,26 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../ps5000a/">PicoScope 5000 (A) Specific Functions</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">pyPicoSDK Constants</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">General Constants</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.constants.CHANNEL"><code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;CHANNEL</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.constants.RESOLUTION"><code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;RESOLUTION</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.constants.TRIGGER_DIR"><code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;TRIGGER_DIR</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.constants.UNIT_INFO"><code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;UNIT_INFO</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.constants.WAVEFORM"><code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;WAVEFORM</a>
+    </li>
     </ul>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Development</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../dev/current/">Current</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/current/">Current Support</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../dev/roadmap/">Roadmap</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/roadmap/">Upcoming Roadmap</a>
                   </li>
               </ul>
       </div>
@@ -75,7 +86,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Reference</li>
-      <li class="breadcrumb-item active">pyPicoSDK Constants</li>
+      <li class="breadcrumb-item active">General Constants</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -88,10 +99,72 @@
 
 
 
-<a id="picosdk.picosdk"></a>
+<h2 id="picosdk.constants" class="doc doc-heading">
+            <code>picosdk.constants</code>
+
+
+</h2>
+
     <div class="doc doc-contents first">
 
 
+
+
+
+
+
+
+<p><span class="doc-section-title">Classes:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="CHANNEL (picosdk.constants.CHANNEL)" href="#picosdk.constants.CHANNEL">CHANNEL</a></code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Constants for each channel of the PicoScope.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="RESOLUTION (picosdk.constants.RESOLUTION)" href="#picosdk.constants.RESOLUTION">RESOLUTION</a></code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Resolution constants for PicoScope devices.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="TRIGGER_DIR (picosdk.constants.TRIGGER_DIR)" href="#picosdk.constants.TRIGGER_DIR">TRIGGER_DIR</a></code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Trigger direction constants for configuring PicoScope triggers.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="UNIT_INFO (picosdk.constants.UNIT_INFO)" href="#picosdk.constants.UNIT_INFO">UNIT_INFO</a></code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Unit information identifiers for querying PicoScope device details.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="WAVEFORM (picosdk.constants.WAVEFORM)" href="#picosdk.constants.WAVEFORM">WAVEFORM</a></code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Waveform type constants for PicoScope signal generator configuration.</p>
+              </div>
+            </td>
+          </tr>
+      </tbody>
+    </table>
 
 
 
@@ -112,17 +185,17 @@
 
 
 
-<h2 id="picosdk.picosdk.RESOLUTION" class="doc doc-heading">
-            <code>RESOLUTION</code>
+<h3 id="picosdk.constants.CHANNEL" class="doc doc-heading">
+            <code>CHANNEL</code>
 
 
-</h2>
+</h3>
 
 
     <div class="doc doc-contents ">
 
 
-        <p>Resolution constants for PicoScope 5000A and 6000A series devices.</p>
+        <p>Constants for each channel of the PicoScope.</p>
 
 
 <table class="field-list">
@@ -136,59 +209,59 @@
       <td class="field-body">
         <ul class="first simple">
             <li>
-              <b><code>RES_5000A_8BIT</code></b>
+              <b><code>A</code></b>
               –
               <div class="doc-md-description">
-                <p>8-bit resolution for 5000A series.</p>
+                <p>Channel A</p>
               </div>
             </li>
             <li>
-              <b><code>RES_5000A_12BIT</code></b>
+              <b><code>B</code></b>
               –
               <div class="doc-md-description">
-                <p>12-bit resolution for 5000A series.</p>
+                <p>Channel B</p>
               </div>
             </li>
             <li>
-              <b><code>RES_5000A_14BIT</code></b>
+              <b><code>C</code></b>
               –
               <div class="doc-md-description">
-                <p>14-bit resolution for 5000A series.</p>
+                <p>Channel C</p>
               </div>
             </li>
             <li>
-              <b><code>RES_5000A_15BIT</code></b>
+              <b><code>D</code></b>
               –
               <div class="doc-md-description">
-                <p>15-bit resolution for 5000A series.</p>
+                <p>Channel D</p>
               </div>
             </li>
             <li>
-              <b><code>RES_5000A_16BIT</code></b>
+              <b><code>E</code></b>
               –
               <div class="doc-md-description">
-                <p>16-bit resolution for 5000A series.</p>
+                <p>Channel E</p>
               </div>
             </li>
             <li>
-              <b><code>RES_6000A_8BIT</code></b>
+              <b><code>F</code></b>
               –
               <div class="doc-md-description">
-                <p>8-bit resolution for 6000A series.</p>
+                <p>Channel F</p>
               </div>
             </li>
             <li>
-              <b><code>RES_6000A_10BIT</code></b>
+              <b><code>G</code></b>
               –
               <div class="doc-md-description">
-                <p>10-bit resolution for 6000A series.</p>
+                <p>Channel G</p>
               </div>
             </li>
             <li>
-              <b><code>RES_6000A_12BIT</code></b>
+              <b><code>H</code></b>
               –
               <div class="doc-md-description">
-                <p>12-bit resolution for 6000A series.</p>
+                <p>Channel H</p>
               </div>
             </li>
         </ul>
@@ -197,9 +270,8 @@
   </tbody>
 </table>
 
-<p><span class="doc-section-title">Examples:</span></p>
-    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">scope</span><span class="o">.</span><span class="n">open_unit</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="n">RESOLUTION</span><span class="o">.</span><span class="n">RES_5000A_16BIT</span><span class="p">)</span>
-</code></pre></div>
+
+
 
 
 
@@ -232,11 +304,122 @@
 
 
 
-<h2 id="picosdk.picosdk.TRIGGER_DIR" class="doc doc-heading">
+<h3 id="picosdk.constants.RESOLUTION" class="doc doc-heading">
+            <code>RESOLUTION</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Resolution constants for PicoScope devices.</p>
+<p><strong>WARNING: Not all devices support all resolutions.</strong></p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>_8BIT</code></b>
+              –
+              <div class="doc-md-description">
+                <p>8-bit resolution.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>_10BIT</code></b>
+              –
+              <div class="doc-md-description">
+                <p>10-bit resolution.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>_12BIT</code></b>
+              –
+              <div class="doc-md-description">
+                <p>12-bit resolution.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>_14BIT</code></b>
+              –
+              <div class="doc-md-description">
+                <p>14-bit resolution.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>_15BIT</code></b>
+              –
+              <div class="doc-md-description">
+                <p>15-bit resolution.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>_16BIT</code></b>
+              –
+              <div class="doc-md-description">
+                <p>16-bit resolution.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">scope</span><span class="o">.</span><span class="n">open_unit</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="n">RESOLUTION</span><span class="o">.</span><span class="n">_16BIT</span><span class="p">)</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="picosdk.constants.TRIGGER_DIR" class="doc doc-heading">
             <code>TRIGGER_DIR</code>
 
 
-</h2>
+</h3>
 
 
     <div class="doc doc-contents ">
@@ -304,6 +487,10 @@
 
 
 
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -326,11 +513,11 @@
 
 
 
-<h2 id="picosdk.picosdk.UNIT_INFO" class="doc doc-heading">
+<h3 id="picosdk.constants.UNIT_INFO" class="doc doc-heading">
             <code>UNIT_INFO</code>
 
 
-</h2>
+</h3>
 
 
     <div class="doc doc-contents ">
@@ -446,6 +633,10 @@
 
 
 
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -468,11 +659,11 @@
 
 
 
-<h2 id="picosdk.picosdk.WAVEFORM" class="doc doc-heading">
+<h3 id="picosdk.constants.WAVEFORM" class="doc doc-heading">
             <code>WAVEFORM</code>
 
 
-</h2>
+</h3>
 
 
     <div class="doc doc-contents ">
@@ -596,6 +787,10 @@
 
 
 
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -627,7 +822,7 @@
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../ps5000a/" class="btn btn-neutral float-left" title="PicoScope 5000 (A) Specific Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../../dev/current/" class="btn btn-neutral float-right" title="Current">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../dev/current/" class="btn btn-neutral float-right" title="Current Support">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>

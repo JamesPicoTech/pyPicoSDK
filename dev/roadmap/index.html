@@ -5,15 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../../img/favicon.ico" />
-    <title>Roadmap - My Docs</title>
+    <title>Upcoming Roadmap - My Docs</title>
     <link rel="stylesheet" href="../../css/theme.css" />
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/mkdocstrings.css" rel="stylesheet" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Roadmap";
+        var mkdocs_page_name = "Upcoming Roadmap";
         var mkdocs_page_input_path = "dev\\roadmap.md";
         var mkdocs_page_url = null;
       </script>
@@ -48,14 +49,14 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../../ref/ps5000a/">PicoScope 5000 (A) Specific Functions</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../ref/constants/">pyPicoSDK Constants</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../ref/constants/">General Constants</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Development</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../current/">Current</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../current/">Current Support</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Roadmap</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Upcoming Roadmap</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#wip">WIP</a>
     </li>
@@ -79,7 +80,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
           <li class="breadcrumb-item">Development</li>
-      <li class="breadcrumb-item active">Roadmap</li>
+      <li class="breadcrumb-item active">Upcoming Roadmap</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -92,19 +93,32 @@
 <h2 id="wip">WIP</h2>
 <ul>
 <li>6000 (A) API Signal Generator</li>
-<li>mkdocs markdown documentation</li>
-<li>Complete docStrings for picoSDK</li>
+<li>Documentation<ul>
+<li>Complete docStrings for pypicoSDK<ul>
+<li>Adding constants docstrings</li>
+</ul>
+</li>
+<li>Extend ref introduction</li>
+</ul>
+</li>
+<li>Upload &amp; test pypi (pip)<ul>
+<li><code>setup.py</code> created, needs refining</li>
+<li>Current in <a href="https://test.pypi.org/project/pypicosdk/">test pypi</a></li>
+</ul>
+</li>
 </ul>
 <h2 id="to-do">To-Do</h2>
 <ul>
-<li>Build setuptools file</li>
-<li>Upload &amp; test pypi (pip)</li>
+<li>6000 (A) streaming support</li>
+<li>Add <code>run_simple_block_capture()</code> for 5000 (A)</li>
+<li>Add support for 3000 (A) drivers</li>
+<li>Test &amp; add support for macOS &amp; linux</li>
 </ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../current/" class="btn btn-neutral float-left" title="Current"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../current/" class="btn btn-neutral float-left" title="Current Support"><span class="icon icon-circle-arrow-left"></span> Previous</a>
     </div>
 
   <hr/>

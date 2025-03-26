@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/mkdocstrings.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -66,20 +67,18 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps5000a.run_block_capture">run_block_capture</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps5000a.run_simple_block">run_simple_block</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps5000a.set_simple_trigger">set_simple_trigger</a>
     </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../constants/">pyPicoSDK Constants</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../constants/">General Constants</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Development</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../dev/current/">Current</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/current/">Current Support</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../dev/roadmap/">Roadmap</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/roadmap/">Upcoming Roadmap</a>
                   </li>
               </ul>
       </div>
@@ -111,6 +110,10 @@
 <pre><code>from picosdk import picosdk
 
 scope = picosdk.ps5000a()
+
+scope.open_unit()
+# Do something
+scope.close_unit()
 </code></pre>
 <h2 id="reference">Reference</h2>
 
@@ -212,7 +215,7 @@ scope = picosdk.ps5000a()
         <ul class="first simple">
             <li>
               <b><code>unit_info</code></b>
-                  (<code><a class="autorefs autorefs-internal" title="UNIT_INFO (picosdk.picosdk.UNIT_INFO)" href="../constants/#picosdk.picosdk.UNIT_INFO">UNIT_INFO</a></code>)
+                  (<code><a class="autorefs autorefs-internal" title="UNIT_INFO (picosdk.constants.UNIT_INFO)" href="../constants/#picosdk.constants.UNIT_INFO">UNIT_INFO</a></code>)
               –
               <div class="doc-md-description">
                 <p>Specify information from PicoScope unit i.e. UNIT_INFO.PICO_BATCH_AND_SERIAL.</p>
@@ -333,7 +336,7 @@ It invokes the underlying PicoSDK <code>GetValues</code> function to read the da
 )
               –
               <div class="doc-md-description">
-                <p>Starting index in the buffer. Defaults to 0.</p>
+                <p>Starting index in the buffer.</p>
               </div>
             </li>
             <li>
@@ -343,7 +346,7 @@ It invokes the underlying PicoSDK <code>GetValues</code> function to read the da
 )
               –
               <div class="doc-md-description">
-                <p>Memory segment index to retrieve data from. Defaults to 0.</p>
+                <p>Memory segment index to retrieve data from.</p>
               </div>
             </li>
             <li>
@@ -353,17 +356,17 @@ It invokes the underlying PicoSDK <code>GetValues</code> function to read the da
 )
               –
               <div class="doc-md-description">
-                <p>Downsampling ratio. Defaults to 0 (no downsampling).</p>
+                <p>Downsampling ratio.</p>
               </div>
             </li>
             <li>
               <b><code>ratio_mode</code></b>
-                  (<code><span title="picosdk.picosdk.RATIO_MODE">RATIO_MODE</span></code>, default:
-                      <code><span title="picosdk.picosdk.RATIO_MODE.RAW">RAW</span></code>
+                  (<code><span title="picosdk.constants.RATIO_MODE">RATIO_MODE</span></code>, default:
+                      <code><span title="picosdk.constants.RATIO_MODE.RAW">RAW</span></code>
 )
               –
               <div class="doc-md-description">
-                <p>Ratio mode for downsampling. Defaults to RATIO_MODE.RAW.</p>
+                <p>Ratio mode for downsampling. </p>
               </div>
             </li>
         </ul>
@@ -491,7 +494,7 @@ pre-trigger and post-trigger samples. It uses the PicoSDK <code>RunBlock</code> 
 )
               –
               <div class="doc-md-description">
-                <p>Percentage of samples to capture before the trigger. Defaults to 50.</p>
+                <p>Percentage of samples to capture before the trigger. </p>
               </div>
             </li>
             <li>
@@ -501,7 +504,7 @@ pre-trigger and post-trigger samples. It uses the PicoSDK <code>RunBlock</code> 
 )
               –
               <div class="doc-md-description">
-                <p>Memory segment index to use. Defaults to 0.</p>
+                <p>Memory segment index to use.</p>
               </div>
             </li>
         </ul>
@@ -540,24 +543,6 @@ pre-trigger and post-trigger samples. It uses the PicoSDK <code>RunBlock</code> 
 <div class="doc doc-object doc-function">
 
 
-<h2 id="picosdk.picosdk.ps5000a.run_simple_block" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">run_simple_block</span><span class="p">(</span><span class="n">timebase</span><span class="p">,</span> <span class="n">samples</span><span class="p">)</span></code>
-
-</h2>
-
-
-    <div class="doc doc-contents ">
-
-        <p>Performs a simple block capture once channels and trigger is setup</p>
-
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-function">
-
-
 <h2 id="picosdk.picosdk.ps5000a.set_simple_trigger" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">set_simple_trigger</span><span class="p">(</span><span class="n">channel</span><span class="p">,</span> <span class="n">threshold_mv</span><span class="p">,</span> <span class="n">enable</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">TRIGGER_DIR</span><span class="o">.</span><span class="n">RISING</span><span class="p">,</span> <span class="n">delay</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">auto_trigger_ms</span><span class="o">=</span><span class="mi">3000</span><span class="p">)</span></code>
 
@@ -585,7 +570,7 @@ pre-trigger and post-trigger samples. It uses the PicoSDK <code>RunBlock</code> 
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../ps6000a/" class="btn btn-neutral float-left" title="PicoScope 6000 (A) Specific Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../constants/" class="btn btn-neutral float-right" title="pyPicoSDK Constants">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../constants/" class="btn btn-neutral float-right" title="General Constants">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>

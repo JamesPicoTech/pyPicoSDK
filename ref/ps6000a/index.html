@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/mkdocstrings.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -66,11 +67,13 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.run_block_capture">run_block_capture</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.run_simple_block">run_simple_block</a>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.run_simple_block_capture">run_simple_block_capture</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.set_channel">set_channel</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.set_data_buffer">set_data_buffer</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.set_data_buffer_for_enabled_channels">set_data_buffer_for_enabled_channels</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#picosdk.picosdk.ps6000a.set_simple_trigger">set_simple_trigger</a>
     </li>
@@ -78,14 +81,14 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../ps5000a/">PicoScope 5000 (A) Specific Functions</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../constants/">pyPicoSDK Constants</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../constants/">General Constants</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Development</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../dev/current/">Current</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/current/">Current Support</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../dev/roadmap/">Roadmap</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/roadmap/">Upcoming Roadmap</a>
                   </li>
               </ul>
       </div>
@@ -117,6 +120,10 @@
 <pre><code>from picosdk import picosdk
 
 scope = picosdk.ps6000a()
+
+scope.open_unit()
+# Do something
+scope.close_unit()
 </code></pre>
 <h2 id="reference">Reference</h2>
 
@@ -216,10 +223,10 @@ scope = picosdk.ps6000a()
               </td>
             </tr>
             <tr class="doc-section-item">
-              <td><code><a class="autorefs autorefs-internal" title="run_simple_block(timebase, samples) (picosdk.picosdk.ps6000a.run_simple_block)" href="#picosdk.picosdk.ps6000a.run_simple_block">run_simple_block</a></code></td>
+              <td><code><a class="autorefs autorefs-internal" title="run_simple_block_capture(timebase, samples, segment=0, start_index=0, datatype=DATA_TYPE.INT16_T, ratio=0, ratio_mode=RATIO_MODE.RAW, action=ACTION.CLEAR_ALL | ACTION.ADD, pre_trig_percent=50) (picosdk.picosdk.ps6000a.run_simple_block_capture)" href="#picosdk.picosdk.ps6000a.run_simple_block_capture">run_simple_block_capture</a></code></td>
               <td>
                 <div class="doc-md-description">
-                  <p>Performs a simple block capture once channels and trigger is setup</p>
+                  <p>Performs a complete single block capture using current channel and trigger configuration.</p>
                 </div>
               </td>
             </tr>
@@ -236,6 +243,14 @@ scope = picosdk.ps6000a()
               <td>
                 <div class="doc-md-description">
                   <p>Tells the driver where to store the data that will be populated when get_values() is called.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_data_buffer_for_enabled_channels(samples, segment=0, datatype=DATA_TYPE.INT16_T, ratio_mode=RATIO_MODE.RAW, action=ACTION.CLEAR_ALL | ACTION.ADD) (picosdk.picosdk.ps6000a.set_data_buffer_for_enabled_channels)" href="#picosdk.picosdk.ps6000a.set_data_buffer_for_enabled_channels">set_data_buffer_for_enabled_channels</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Sets data buffers for enabled channels set by picosdk.set_channel()</p>
                 </div>
               </td>
             </tr>
@@ -355,7 +370,7 @@ samples for a given timebase under the specified conditions.</p>
 )
               –
               <div class="doc-md-description">
-                <p>The index of the memory segment to use. Defaults to 0.</p>
+                <p>The index of the memory segment to use.</p>
               </div>
             </li>
         </ul>
@@ -417,7 +432,7 @@ samples for a given timebase under the specified conditions.</p>
         <ul class="first simple">
             <li>
               <b><code>unit_info</code></b>
-                  (<code><a class="autorefs autorefs-internal" title="UNIT_INFO (picosdk.picosdk.UNIT_INFO)" href="../constants/#picosdk.picosdk.UNIT_INFO">UNIT_INFO</a></code>)
+                  (<code><a class="autorefs autorefs-internal" title="UNIT_INFO (picosdk.constants.UNIT_INFO)" href="../constants/#picosdk.constants.UNIT_INFO">UNIT_INFO</a></code>)
               –
               <div class="doc-md-description">
                 <p>Specify information from PicoScope unit i.e. UNIT_INFO.PICO_BATCH_AND_SERIAL.</p>
@@ -538,7 +553,7 @@ It invokes the underlying PicoSDK <code>GetValues</code> function to read the da
 )
               –
               <div class="doc-md-description">
-                <p>Starting index in the buffer. Defaults to 0.</p>
+                <p>Starting index in the buffer.</p>
               </div>
             </li>
             <li>
@@ -548,7 +563,7 @@ It invokes the underlying PicoSDK <code>GetValues</code> function to read the da
 )
               –
               <div class="doc-md-description">
-                <p>Memory segment index to retrieve data from. Defaults to 0.</p>
+                <p>Memory segment index to retrieve data from.</p>
               </div>
             </li>
             <li>
@@ -558,17 +573,17 @@ It invokes the underlying PicoSDK <code>GetValues</code> function to read the da
 )
               –
               <div class="doc-md-description">
-                <p>Downsampling ratio. Defaults to 0 (no downsampling).</p>
+                <p>Downsampling ratio.</p>
               </div>
             </li>
             <li>
               <b><code>ratio_mode</code></b>
-                  (<code><span title="picosdk.picosdk.RATIO_MODE">RATIO_MODE</span></code>, default:
-                      <code><span title="picosdk.picosdk.RATIO_MODE.RAW">RAW</span></code>
+                  (<code><span title="picosdk.constants.RATIO_MODE">RATIO_MODE</span></code>, default:
+                      <code><span title="picosdk.constants.RATIO_MODE.RAW">RAW</span></code>
 )
               –
               <div class="doc-md-description">
-                <p>Ratio mode for downsampling. Defaults to RATIO_MODE.RAW.</p>
+                <p>Ratio mode for downsampling. </p>
               </div>
             </li>
         </ul>
@@ -683,7 +698,7 @@ the device is prepared to proceed with data acquisition.</p>
             </li>
             <li>
               <b><code>resolution</code></b>
-                  (<code><a class="autorefs autorefs-internal" title="RESOLUTION (picosdk.picosdk.RESOLUTION)" href="../constants/#picosdk.picosdk.RESOLUTION">RESOLUTION</a></code>, default:
+                  (<code><a class="autorefs autorefs-internal" title="RESOLUTION (picosdk.constants.RESOLUTION)" href="../constants/#picosdk.constants.RESOLUTION">RESOLUTION</a></code>, default:
                       <code>0</code>
 )
               –
@@ -750,7 +765,7 @@ pre-trigger and post-trigger samples. It uses the PicoSDK <code>RunBlock</code> 
 )
               –
               <div class="doc-md-description">
-                <p>Percentage of samples to capture before the trigger. Defaults to 50.</p>
+                <p>Percentage of samples to capture before the trigger. </p>
               </div>
             </li>
             <li>
@@ -760,7 +775,7 @@ pre-trigger and post-trigger samples. It uses the PicoSDK <code>RunBlock</code> 
 )
               –
               <div class="doc-md-description">
-                <p>Memory segment index to use. Defaults to 0.</p>
+                <p>Memory segment index to use.</p>
               </div>
             </li>
         </ul>
@@ -799,15 +814,150 @@ pre-trigger and post-trigger samples. It uses the PicoSDK <code>RunBlock</code> 
 <div class="doc doc-object doc-function">
 
 
-<h2 id="picosdk.picosdk.ps6000a.run_simple_block" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">run_simple_block</span><span class="p">(</span><span class="n">timebase</span><span class="p">,</span> <span class="n">samples</span><span class="p">)</span></code>
+<h2 id="picosdk.picosdk.ps6000a.run_simple_block_capture" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">run_simple_block_capture</span><span class="p">(</span><span class="n">timebase</span><span class="p">,</span> <span class="n">samples</span><span class="p">,</span> <span class="n">segment</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">start_index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">DATA_TYPE</span><span class="o">.</span><span class="n">INT16_T</span><span class="p">,</span> <span class="n">ratio</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ratio_mode</span><span class="o">=</span><span class="n">RATIO_MODE</span><span class="o">.</span><span class="n">RAW</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">ACTION</span><span class="o">.</span><span class="n">CLEAR_ALL</span> <span class="o">|</span> <span class="n">ACTION</span><span class="o">.</span><span class="n">ADD</span><span class="p">,</span> <span class="n">pre_trig_percent</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span></code>
 
 </h2>
 
 
     <div class="doc doc-contents ">
 
-        <p>Performs a simple block capture once channels and trigger is setup</p>
+        <p>Performs a complete single block capture using current channel and trigger configuration.</p>
+<p>This function sets up data buffers for all enabled channels, starts a block capture,
+and retrieves the values once the device is ready. It is a simplified interface 
+for common block capture use cases.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>timebase</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Timebase value determining the sample interval (refer to PicoSDK guide).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Total number of samples to capture.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>segment</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Memory segment index to use.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>start_index</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Starting index in the buffer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>datatype</code></b>
+                  (<code><span title="picosdk.constants.DATA_TYPE">DATA_TYPE</span></code>, default:
+                      <code><span title="picosdk.constants.DATA_TYPE.INT16_T">INT16_T</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Data type to use for the capture buffer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>ratio</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Downsampling ratio.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>ratio_mode</code></b>
+                  (<code><span title="picosdk.constants.RATIO_MODE">RATIO_MODE</span></code>, default:
+                      <code><span title="picosdk.constants.RATIO_MODE.RAW">RAW</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Downsampling mode.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>action</code></b>
+                  (<code><span title="picosdk.constants.ACTION">ACTION</span></code>, default:
+                      <code><span title="picosdk.constants.ACTION.CLEAR_ALL">CLEAR_ALL</span> | <span title="picosdk.constants.ACTION.ADD">ADD</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Action to take on the data buffer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>pre_trig_percent</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>50</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Percentage of samples to capture before the trigger.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>dict</code></b>(                  <code><span title="dict">dict</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>A dictionary mapping each enabled channel to its corresponding data buffer.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="n">scope</span><span class="o">.</span><span class="n">set_channel</span><span class="p">(</span><span class="n">CHANNEL</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">RANGE</span><span class="o">.</span><span class="n">V1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scope</span><span class="o">.</span><span class="n">set_simple_trigger</span><span class="p">(</span><span class="n">CHANNEL</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">threshold_mv</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">buffers</span> <span class="o">=</span> <span class="n">scope</span><span class="o">.</span><span class="n">run_simple_block_capture</span><span class="p">(</span><span class="n">timebase</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</code></pre></div>
 
 
     </div>
@@ -840,7 +990,7 @@ pre-trigger and post-trigger samples. It uses the PicoSDK <code>RunBlock</code> 
         <ul class="first simple">
             <li>
               <b><code>channel</code></b>
-                  (<code><span title="picosdk.picosdk.CHANNEL">CHANNEL</span></code>)
+                  (<code><a class="autorefs autorefs-internal" title="CHANNEL (picosdk.constants.CHANNEL)" href="../constants/#picosdk.constants.CHANNEL">CHANNEL</a></code>)
               –
               <div class="doc-md-description">
                 <p>Channel to setup.</p>
@@ -848,7 +998,7 @@ pre-trigger and post-trigger samples. It uses the PicoSDK <code>RunBlock</code> 
             </li>
             <li>
               <b><code>range</code></b>
-                  (<code><span title="picosdk.picosdk.RANGE">RANGE</span></code>)
+                  (<code><span title="picosdk.constants.RANGE">RANGE</span></code>)
               –
               <div class="doc-md-description">
                 <p>Voltage range of channel.</p>
@@ -866,8 +1016,8 @@ pre-trigger and post-trigger samples. It uses the PicoSDK <code>RunBlock</code> 
             </li>
             <li>
               <b><code>coupling</code></b>
-                  (<code><span title="picosdk.picosdk.COUPLING">COUPLING</span></code>, default:
-                      <code><span title="picosdk.picosdk.COUPLING.DC">DC</span></code>
+                  (<code><span title="picosdk.constants.COUPLING">COUPLING</span></code>, default:
+                      <code><span title="picosdk.constants.COUPLING.DC">DC</span></code>
 )
               –
               <div class="doc-md-description">
@@ -886,8 +1036,8 @@ pre-trigger and post-trigger samples. It uses the PicoSDK <code>RunBlock</code> 
             </li>
             <li>
               <b><code>bandwidth</code></b>
-                  (<code><span title="picosdk.picosdk.BANDWIDTH_CH">BANDWIDTH_CH</span></code>, default:
-                      <code><span title="picosdk.picosdk.BANDWIDTH_CH.FULL">FULL</span></code>
+                  (<code><span title="picosdk.constants.BANDWIDTH_CH">BANDWIDTH_CH</span></code>, default:
+                      <code><span title="picosdk.constants.BANDWIDTH_CH.FULL">FULL</span></code>
 )
               –
               <div class="doc-md-description">
@@ -931,7 +1081,7 @@ This function works on a single buffer. For aggregation mode, call set_data_buff
         <ul class="first simple">
             <li>
               <b><code>channel</code></b>
-                  (<code><span title="picosdk.picosdk.CHANNEL">CHANNEL</span></code>)
+                  (<code><a class="autorefs autorefs-internal" title="CHANNEL (picosdk.constants.CHANNEL)" href="../constants/#picosdk.constants.CHANNEL">CHANNEL</a></code>)
               –
               <div class="doc-md-description">
                 <p>Channel you want to use with the buffer.</p>
@@ -958,7 +1108,7 @@ This function works on a single buffer. For aggregation mode, call set_data_buff
             <li>
               <b><code>datatype</code></b>
                   (<code><span title="DATATYPE">DATATYPE</span></code>, default:
-                      <code><span title="picosdk.picosdk.DATA_TYPE.INT16_T">INT16_T</span></code>
+                      <code><span title="picosdk.constants.DATA_TYPE.INT16_T">INT16_T</span></code>
 )
               –
               <div class="doc-md-description">
@@ -967,8 +1117,8 @@ This function works on a single buffer. For aggregation mode, call set_data_buff
             </li>
             <li>
               <b><code>ratio_mode</code></b>
-                  (<code><span title="picosdk.picosdk.RATIO_MODE">RATIO_MODE</span></code>, default:
-                      <code><span title="picosdk.picosdk.RATIO_MODE.RAW">RAW</span></code>
+                  (<code><span title="picosdk.constants.RATIO_MODE">RATIO_MODE</span></code>, default:
+                      <code><span title="picosdk.constants.RATIO_MODE.RAW">RAW</span></code>
 )
               –
               <div class="doc-md-description">
@@ -977,8 +1127,8 @@ This function works on a single buffer. For aggregation mode, call set_data_buff
             </li>
             <li>
               <b><code>action</code></b>
-                  (<code><span title="picosdk.picosdk.ACTION">ACTION</span></code>, default:
-                      <code><span title="picosdk.picosdk.ACTION.CLEAR_ALL">CLEAR_ALL</span> | <span title="picosdk.picosdk.ACTION.ADD">ADD</span></code>
+                  (<code><span title="picosdk.constants.ACTION">ACTION</span></code>, default:
+                      <code><span title="picosdk.constants.ACTION.CLEAR_ALL">CLEAR_ALL</span> | <span title="picosdk.constants.ACTION.ADD">ADD</span></code>
 )
               –
               <div class="doc-md-description">
@@ -1006,6 +1156,111 @@ This function works on a single buffer. For aggregation mode, call set_data_buff
               –
               <div class="doc-md-description">
                 <p>ctypes.Array: Array that will be populated when get_values() is called.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="picosdk.picosdk.ps6000a.set_data_buffer_for_enabled_channels" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">set_data_buffer_for_enabled_channels</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">segment</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="n">DATA_TYPE</span><span class="o">.</span><span class="n">INT16_T</span><span class="p">,</span> <span class="n">ratio_mode</span><span class="o">=</span><span class="n">RATIO_MODE</span><span class="o">.</span><span class="n">RAW</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="n">ACTION</span><span class="o">.</span><span class="n">CLEAR_ALL</span> <span class="o">|</span> <span class="n">ACTION</span><span class="o">.</span><span class="n">ADD</span><span class="p">)</span></code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Sets data buffers for enabled channels set by picosdk.set_channel()</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The sample buffer or size to allocate.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>segment</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The memory segment index.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>datatype</code></b>
+                  (<code><span title="picosdk.constants.DATA_TYPE">DATA_TYPE</span></code>, default:
+                      <code><span title="picosdk.constants.DATA_TYPE.INT16_T">INT16_T</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The data type used for the buffer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>ratio_mode</code></b>
+                  (<code><span title="picosdk.constants.RATIO_MODE">RATIO_MODE</span></code>, default:
+                      <code><span title="picosdk.constants.RATIO_MODE.RAW">RAW</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The ratio mode (e.g., RAW, AVERAGE).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>action</code></b>
+                  (<code><span title="picosdk.constants.ACTION">ACTION</span></code>, default:
+                      <code><span title="picosdk.constants.ACTION.CLEAR_ALL">CLEAR_ALL</span> | <span title="picosdk.constants.ACTION.ADD">ADD</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The action to perform (e.g., CLEAR_ALL | ADD).</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>dict</code></b>(                  <code><span title="dict">dict</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>A dictionary mapping each channel to its associated data buffer.</p>
               </div>
             </li>
         </ul>

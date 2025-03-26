@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/mkdocstrings.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -44,20 +45,28 @@
               <ul class="current">
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Introduction</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#c-picosdk-ctypes">C PicoSDK (ctypes)</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#faqs">FAQ's</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#does-my-picoscope-use-ps6000a-or-ps6000">Does my PicoScope use ps6000a() or ps6000()?</a>
+    </li>
+        </ul>
+    </li>
     </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../ps6000a/">PicoScope 6000 (A) Specific Functions</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../ps5000a/">PicoScope 5000 (A) Specific Functions</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../constants/">pyPicoSDK Constants</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../constants/">General Constants</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Development</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../../dev/current/">Current</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/current/">Current Support</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../../dev/roadmap/">Roadmap</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/roadmap/">Upcoming Roadmap</a>
                   </li>
               </ul>
       </div>
@@ -87,6 +96,22 @@
                 <h1 id="introduction">Introduction</h1>
 <p>Each picoSDK class is built from a common class (PicoScopeBase) and a specific sub-class (ps####a).
 This allows each PicoScope to have shared, common functions i.e opening the unit, and specific functions i.e. changing power source on 5000 series PicoScopes.</p>
+<p>:ADD DIAGRAM TO SHOW WORKINGS:</p>
+<h2 id="c-picosdk-ctypes">C PicoSDK (ctypes)</h2>
+<p>This wrapper is built over the C DLL drivers from Pico Technology. 
+Therefore most basic python functions (such as <code>run_block()</code>) have a counterpart in the C library (e.g. <code>ps6000aRunBlockMode()</code>). 
+These python functions parse the variables through the DLL's using the <code>ctypes</code> package to talk directly to the unit. 
+For reference on these DLL's and their C implementation, go to <a href="https://www.picotech.com/downloads/documentation">https://www.picotech.com/downloads/documentation</a> and look for your PicoScope Programmer's Guide.</p>
+<p>:RUN BLOCK DIAGRAM EXAMPLE:</p>
+<h2 id="faqs">FAQ's</h2>
+<h3 id="does-my-picoscope-use-ps6000a-or-ps6000">Does my PicoScope use ps6000a() or ps6000()?</h3>
+<p>The PicoScope (A) drivers are the latest generation of drivers from Pico Technology. If you have a PicoScope with a letter designation higher than the following, you will need to use the (A) class and drivers:</p>
+<ul>
+<li>PicoScope 3000<strong>D</strong></li>
+<li>PicoScope 5000<strong>D</strong></li>
+<li>PicoScope 6000<strong>E</strong></li>
+</ul>
+<p><a href="/dev/current/">Click here to see the current support for these wrappers.</a></p>
               
             </div>
           </div><footer>
