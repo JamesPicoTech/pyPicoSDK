@@ -51,7 +51,21 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">General Constants</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.constants.ACTION"><code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;ACTION</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.constants.BANDWIDTH_CH"><code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;BANDWIDTH_CH</a>
+    </li>
     <li class="toctree-l2"><a class="reference internal" href="#picosdk.constants.CHANNEL"><code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;CHANNEL</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.constants.COUPLING"><code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;COUPLING</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.constants.DATA_TYPE"><code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;DATA_TYPE</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.constants.POWER_SOURCE"><code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;POWER_SOURCE</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.constants.RANGE"><code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;RANGE</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#picosdk.constants.RATIO_MODE"><code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;RATIO_MODE</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#picosdk.constants.RESOLUTION"><code class="doc-symbol doc-symbol-toc doc-symbol-class"></code>&nbsp;RESOLUTION</a>
     </li>
@@ -124,10 +138,66 @@
       </thead>
       <tbody>
           <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="ACTION (picosdk.constants.ACTION)" href="#picosdk.constants.ACTION">ACTION</a></code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Action codes used to manage and clear data buffers.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="BANDWIDTH_CH (picosdk.constants.BANDWIDTH_CH)" href="#picosdk.constants.BANDWIDTH_CH">BANDWIDTH_CH</a></code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Class for different bandwidth configurations.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
             <td><code><a class="autorefs autorefs-internal" title="CHANNEL (picosdk.constants.CHANNEL)" href="#picosdk.constants.CHANNEL">CHANNEL</a></code></td>
             <td>
               <div class="doc-md-description">
                 <p>Constants for each channel of the PicoScope.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="COUPLING (picosdk.constants.COUPLING)" href="#picosdk.constants.COUPLING">COUPLING</a></code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Enum class representing different types of coupling used in signal processing.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="DATA_TYPE (picosdk.constants.DATA_TYPE)" href="#picosdk.constants.DATA_TYPE">DATA_TYPE</a></code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Class for different data types.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="POWER_SOURCE (picosdk.constants.POWER_SOURCE)" href="#picosdk.constants.POWER_SOURCE">POWER_SOURCE</a></code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Defines different power source connection statuses.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="RANGE (picosdk.constants.RANGE)" href="#picosdk.constants.RANGE">RANGE</a></code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Enum class representing different voltage ranges used in signal processing.</p>
+              </div>
+            </td>
+          </tr>
+          <tr class="doc-section-item">
+            <td><code><a class="autorefs autorefs-internal" title="RATIO_MODE (picosdk.constants.RATIO_MODE)" href="#picosdk.constants.RATIO_MODE">RATIO_MODE</a></code></td>
+            <td>
+              <div class="doc-md-description">
+                <p>Defines various ratio modes for signal processing.</p>
               </div>
             </td>
           </tr>
@@ -180,6 +250,190 @@
 
 
 
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="picosdk.constants.ACTION" class="doc doc-heading">
+            <code>ACTION</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Action codes used to manage and clear data buffers.</p>
+<p>These action codes are used with functions like <code>setDataBuffer</code> to specify
+the type of operation to perform on data buffers.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>CLEAR_ALL</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Clears all data buffers.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>ADD</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Adds data to the buffer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>CLEAR_THIS_DATA_BUFFER</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Clears the current data buffer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>CLEAR_WAVEFORM_DATA_BUFFERS</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Clears all waveform data buffers.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>CLEAR_WAVEFORM_READ_DATA_BUFFERS</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Clears the waveform read data buffers.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="picosdk.constants.BANDWIDTH_CH" class="doc doc-heading">
+            <code>BANDWIDTH_CH</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Class for different bandwidth configurations.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>FULL</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Full bandwidth configuration.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>BW_20MHZ</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Bandwidth of 20 MHz.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>BW_200MHZ</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Bandwidth of 200 MHz.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
 
 <div class="doc doc-object doc-class">
 
@@ -262,6 +516,546 @@
               –
               <div class="doc-md-description">
                 <p>Channel H</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="picosdk.constants.COUPLING" class="doc doc-heading">
+            <code>COUPLING</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Enum class representing different types of coupling used in signal processing.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>AC</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Represents AC coupling.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>DC</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Represents DC coupling.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>DC_50OHM</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Represents 50 Ohm DC coupling.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="picosdk.constants.DATA_TYPE" class="doc doc-heading">
+            <code>DATA_TYPE</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Class for different data types.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>INT8_T</code></b>
+              –
+              <div class="doc-md-description">
+                <p>8-bit signed integer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>INT16_T</code></b>
+              –
+              <div class="doc-md-description">
+                <p>16-bit signed integer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>INT32_T</code></b>
+              –
+              <div class="doc-md-description">
+                <p>32-bit signed integer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>UINT32_T</code></b>
+              –
+              <div class="doc-md-description">
+                <p>32-bit unsigned integer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>INT64_T</code></b>
+              –
+              <div class="doc-md-description">
+                <p>64-bit signed integer.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="picosdk.constants.POWER_SOURCE" class="doc doc-heading">
+            <code>POWER_SOURCE</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Defines different power source connection statuses.</p>
+<p>These values represent the connection status of a power supply or USB device.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>SUPPLY_CONNECTED</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Power supply is connected.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>SUPPLY_NOT_CONNECTED</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Power supply is not connected.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>USB3_0_DEVICE_NON_USB3_0_PORT</code></b>
+              –
+              <div class="doc-md-description">
+                <p>USB 3.0 device is connected to a non-USB 3.0 port.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="picosdk.constants.RANGE" class="doc doc-heading">
+            <code>RANGE</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Enum class representing different voltage ranges used in signal processing.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>mV10</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Voltage range of ±10 mV.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>mV20</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Voltage range of ±20 mV.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>mV50</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Voltage range of ±50 mV.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>mV100</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Voltage range of ±100 mV.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>mV200</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Voltage range of ±200 mV.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>mV500</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Voltage range of ±500 mV.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>V1</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Voltage range of ±1 V.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>V2</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Voltage range of ±2 V.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>V5</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Voltage range of ±5 V.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>V10</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Voltage range of ±10 V.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>V20</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Voltage range of ±20 V.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>V50</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Voltage range of ±50 V.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h3 id="picosdk.constants.RATIO_MODE" class="doc doc-heading">
+            <code>RATIO_MODE</code>
+
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+
+        <p>Defines various ratio modes for signal processing.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Attributes:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>AGGREGATE</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Aggregate mode for data processing.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>DECIMATE</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Decimation mode for reducing data resolution.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>AVERAGE</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Averaging mode for smoothing data.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>DISTRIBUTION</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Mode for calculating distribution statistics.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>SUM</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Mode for summing data.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>TRIGGER_DATA_FOR_TIME_CALCULATION</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Mode for calculating trigger data for time-based calculations.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>SEGMENT_HEADER</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Mode for segment header data processing.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>TRIGGER</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Trigger mode for event-based data.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>RAW</code></b>
+              –
+              <div class="doc-md-description">
+                <p>Raw data mode, without any processing.</p>
               </div>
             </li>
         </ul>
