@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>PicoScope 5000 (A) Specific Functions - pyPicoSDK</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "PicoScope 5000 (A) Specific Functions";
+        var mkdocs_page_input_path = "ref/ps5000a.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> pyPicoSDK
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ps6000a/">PicoScope 6000 (A) Specific Functions</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">PicoScope 5000 (A) Specific Functions</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#initializing-ps5000a">Initializing ps5000a</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps5000a">ps5000a</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps5000a.close_unit">close_unit</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps5000a.get_nearest_sampling_interval">get_nearest_sampling_interval</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps5000a.get_time_axis">get_time_axis</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps5000a.get_unit_info">get_unit_info</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps5000a.get_unit_serial">get_unit_serial</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps5000a.get_values">get_values</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps5000a.is_ready">is_ready</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps5000a.run_block_capture">run_block_capture</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps5000a.set_simple_trigger">set_simple_trigger</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../constants/">General Constants</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Development</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/changelog/">Changelog</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/current/">Current Support</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/roadmap/">Upcoming Roadmap</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">pyPicoSDK</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Reference</li>
+      <li class="breadcrumb-item active">PicoScope 5000 (A) Specific Functions</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ps5000a-reference">ps5000a Reference</h1>
+<h2 id="initializing-ps5000a">Initializing ps5000a</h2>
+<pre><code>import pypicosdk as psdk
+
+scope = psdk.ps5000a()
+
+scope.open_unit()
+# Do something
+scope.close_unit()
+</code></pre>
+<h2 id="reference">Reference</h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<a id="pypicosdk.pypicosdk.ps5000a"></a>
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pypicosdk.pypicosdk.PicoScopeBase">PicoScopeBase</span></code></p>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps5000a.close_unit" class="doc doc-heading">
+            <code class="highlight language-python">close_unit()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Closes the PicoScope device and releases the hardware handle.</p>
+<p>This calls the PicoSDK <code>CloseUnit</code> function to properly disconnect from the device.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="int">int</span></code>
+              –
+              <div class="doc-md-description">
+                <p>None</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps5000a.get_nearest_sampling_interval" class="doc doc-heading">
+            <code class="highlight language-python">get_nearest_sampling_interval(sample_rate)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>This function returns the nearest possible sample interval to the requested 
+sample interval. It does not change the configuration of the oscilloscope.</p>
+<p>Channels need to be setup first before calculating as more channels may 
+increase sample interval.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>sample_rate</code></b>
+                  (<code><span title="float">float</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Time value in seconds (s) you would like to obtain.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>dict</code></b>(                  <code><span title="dict">dict</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Dictionary of suggested timebase and actual sample interval.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps5000a.get_time_axis" class="doc doc-heading">
+            <code class="highlight language-python">get_time_axis(timebase, samples)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return an array of time values based on the timebase and number
+of samples</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>timebase</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>PicoScope timebase </p>
+              </div>
+            </li>
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Number of samples captured</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>list</code></b>(                  <code><span title="list">list</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>List of time values in nano-seconds</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps5000a.get_unit_info" class="doc doc-heading">
+            <code class="highlight language-python">get_unit_info(unit_info)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get specified information from unit. Use UNIT_INFO.XXXX or integer.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>unit_info</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="UNIT_INFO (pypicosdk.constants.UNIT_INFO)" href="../constants/#pypicosdk.constants.UNIT_INFO">UNIT_INFO</a></code>)
+              –
+              <div class="doc-md-description">
+                <p>Specify information from PicoScope unit i.e. UNIT_INFO.PICO_BATCH_AND_SERIAL.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>str</code></b>(                  <code><span title="str">str</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Returns data from device.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps5000a.get_unit_serial" class="doc doc-heading">
+            <code class="highlight language-python">get_unit_serial()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get and return batch and serial of unit.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>str</code></b>(                  <code><span title="str">str</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Returns serial, e.g., "JR628/0017".</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps5000a.get_values" class="doc doc-heading">
+            <code class="highlight language-python">get_values(samples, start_index=0, segment=0, ratio=0, ratio_mode=RATIO_MODE.RAW)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Retrieves a block of captured samples from the device once it's ready.</p>
+<p>This function should be called after confirming the device is ready using <code>is_ready()</code>.
+It invokes the underlying PicoSDK <code>GetValues</code> function to read the data into memory.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Number of samples to retrieve.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>start_index</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Starting index in the buffer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>segment</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Memory segment index to retrieve data from.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>ratio</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Downsampling ratio.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>ratio_mode</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="RATIO_MODE (pypicosdk.constants.RATIO_MODE)" href="../constants/#pypicosdk.constants.RATIO_MODE">RATIO_MODE</a></code>, default:
+                      <code><span title="pypicosdk.constants.RATIO_MODE.RAW">RAW</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Ratio mode for downsampling. </p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>int</code></b>(                  <code><span title="int">int</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Actual number of samples retrieved.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps5000a.is_ready" class="doc doc-heading">
+            <code class="highlight language-python">is_ready()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Blocks execution until the PicoScope device is ready.</p>
+<p>Continuously calls the PicoSDK <code>IsReady</code> function in a loop, checking if
+the device is prepared to proceed with data acquisition.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code>None</code>
+              –
+              <div class="doc-md-description">
+                <p>None</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps5000a.run_block_capture" class="doc doc-heading">
+            <code class="highlight language-python">run_block_capture(timebase, samples, pre_trig_percent=50, segment=0)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Runs a block capture using the specified timebase and number of samples.</p>
+<p>This sets up the PicoScope to begin collecting a block of data, divided into
+pre-trigger and post-trigger samples. It uses the PicoSDK <code>RunBlock</code> function.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>timebase</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Timebase value determining sample interval (refer to PicoSDK guide).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Total number of samples to capture.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>pre_trig_percent</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>50</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Percentage of samples to capture before the trigger. </p>
+              </div>
+            </li>
+            <li>
+              <b><code>segment</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Memory segment index to use.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>int</code></b>(                  <code><span title="int">int</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Estimated time (in milliseconds) the device will be busy capturing data.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps5000a.set_simple_trigger" class="doc doc-heading">
+            <code class="highlight language-python">set_simple_trigger(channel, threshold_mv, enable=True, direction=TRIGGER_DIR.RISING, delay=0, auto_trigger_ms=3000)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Sets up a simple trigger from a specified channel and threshold in mV</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>channel</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The input channel to apply the trigger to.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>threshold_mv</code></b>
+                  (<code><span title="float">float</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Trigger threshold level in millivolts.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>enable</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>True</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Enables or disables the trigger. </p>
+              </div>
+            </li>
+            <li>
+              <b><code>direction</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="TRIGGER_DIR (pypicosdk.constants.TRIGGER_DIR)" href="../constants/#pypicosdk.constants.TRIGGER_DIR">TRIGGER_DIR</a></code>, default:
+                      <code><span title="pypicosdk.constants.TRIGGER_DIR.RISING">RISING</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Trigger direction (e.g., TRIGGER_DIR.RISING, TRIGGER_DIR.FALLING). </p>
+              </div>
+            </li>
+            <li>
+              <b><code>delay</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Delay in samples after the trigger condition is met before starting capture. </p>
+              </div>
+            </li>
+            <li>
+              <b><code>auto_trigger_ms</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>3000</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Timeout in milliseconds after which data capture proceeds even if no trigger occurs.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../ps6000a/" class="btn btn-neutral float-left" title="PicoScope 6000 (A) Specific Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../constants/" class="btn btn-neutral float-right" title="General Constants">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../ps6000a/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../constants/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
