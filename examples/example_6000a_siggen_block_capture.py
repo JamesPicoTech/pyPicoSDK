@@ -4,18 +4,18 @@ from matplotlib import pyplot as plt
 # Setup variables
 timebase = 2
 samples = 50_000
-channel_a = psdk.CHANNEL.A
-range = psdk.RANGE.V1
+channel_a = "channel_a"
+range = "1v"
 
 # SigGen variables
 frequency = 100_000
 pk2pk = 0.8
-wave_type = psdk.WAVEFORM.SINE
+wave_type = "sine"
 
 # Initialise PicoScope 6000
 scope = psdk.ps6000a()
 scope.open_unit()
-
+scope.get_unit_info("usb_version")
 # Setup siggen
 scope.set_siggen(frequency, pk2pk, wave_type)
 
