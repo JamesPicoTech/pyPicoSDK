@@ -2,6 +2,8 @@ import ctypes
 import os
 import warnings
 import platform
+import numpy as np
+import numpy.ctypeslib as npct
 
 from .error_list import ERROR_STRING
 from .constants import *
@@ -486,9 +488,20 @@ class PicoScopeBase:
         return [self.adc_to_mv(sample, self.range[channel]) for sample in buffer]
     
     def channels_buffer_adc_to_mv(self, channels_buffer: dict) -> dict:
-        "Converts dict of multiple channels adc values to millivolts (mV)"
-        for channel in channels_buffer:
-            channels_buffer[channel] = self.buffer_adc_to_mv(channels_buffer[channel], channel)
+        """
+        Converts ADC values from multiple channels to millivolts (mV).
+        
+        Args:
+            channels_buffer (dict): A dictionary where keys are channel identifiers 
+                                    and values are NumPy arrays of raw ADC values.
+                                    
+        Returns:
+            dict: A dictionary with the same keys, where each value is a NumPy array 
+                of the corresponding values converted to millivolts.
+        """
+        for channel, adc_values in channels_buffer.items():
+            channel_range_mv = RANGE_LIST[self.range[channel]]
+            channels_buffer[channel] = (adc_values.astype(np.float32) * channel_range_mv) / self.max_adc_value
         return channels_buffer
     
     def buffer_ctypes_to_list(self, ctypes_list):
@@ -592,12 +605,12 @@ class PicoScopeBase:
             ratio_mode
         )
         return buffer
-    
+
     def _set_data_buffer_ps6000a(self, channel, samples, segment=0, 
-                                 datatype=DATA_TYPE.INT16_T, ratio_mode=RATIO_MODE.RAW, 
-                                 action=ACTION.CLEAR_ALL | ACTION.ADD) -> ctypes.Array:
+                                datatype=DATA_TYPE.INT16_T, ratio_mode=RATIO_MODE.RAW, 
+                                action=ACTION.CLEAR_ALL | ACTION.ADD) -> np.ndarray:
         """
-        Allocates and assigns a data buffer for a specified channel on the 6000A series.
+        Allocates and assigns a NumPy data buffer for a specified channel on the 6000A series.
 
         Args:
             channel (int): The channel to associate the buffer with (e.g., CHANNEL.A).
@@ -608,32 +621,41 @@ class PicoScopeBase:
             action (ACTION, optional): Action to apply to the data buffer (e.g., CLEAR_ALL | ADD).
 
         Returns:
-            ctypes.Array: A ctypes array that will be populated with data during capture.
+            np.ndarray: A NumPy array that will be populated with data during capture.
 
         Raises:
             PicoSDKException: If an unsupported data type is provided.
         """
-        if datatype == DATA_TYPE.INT8_T:     buffer = (ctypes.c_int8 * samples)
-        elif datatype == DATA_TYPE.INT16_T:  buffer = (ctypes.c_int16 * samples)
-        elif datatype == DATA_TYPE.INT32_T:  buffer = (ctypes.c_int32 * samples)
-        elif datatype == DATA_TYPE.INT64_T:  buffer = (ctypes.c_int64 * samples)
-        elif datatype == DATA_TYPE.UINT32_T: buffer = (ctypes.c_uint32 * samples)
-        else: raise PicoSDKException("Invalid datatype selected for buffer")
+        # Map custom datatype enums to numpy dtypes
+        dtype_map = {
+            DATA_TYPE.INT8_T: np.int8,
+            DATA_TYPE.INT16_T: np.int16,
+            DATA_TYPE.INT32_T: np.int32,
+            DATA_TYPE.INT64_T: np.int64,
+            DATA_TYPE.UINT32_T: np.uint32
+        }
 
-        buffer = buffer()
-        
+        if datatype not in dtype_map:
+            raise PicoSDKException("Invalid datatype selected for buffer")
+
+        np_dtype = dtype_map[datatype]
+        np_buffer = np.zeros(samples, dtype=np_dtype)
+
+        # Convert NumPy array to ctypes-compatible pointer
+        c_buffer = npct.as_ctypes(np_buffer)
+
         self._call_attr_function(
             'SetDataBuffer',
             self.handle,
             channel,
-            ctypes.byref(buffer),
+            ctypes.byref(c_buffer),
             samples,
             datatype,
             segment,
             ratio_mode,
             action
         )
-        return buffer
+        return np_buffer
     
     # Run functions
     def run_block_capture(self, timebase, samples, pre_trig_percent=50, segment=0) -> int:
