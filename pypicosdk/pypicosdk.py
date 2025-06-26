@@ -122,7 +122,7 @@ class PicoScopeBase:
         error_code = ERROR_STRING[status]
         if status != 0:
             if status in [POWER_SOURCE.SUPPLY_NOT_CONNECTED]:
-                warnings.warn('Power supply not connected.', 
+                warnings.warn('Power supply not connected.',
                               PowerSupplyWarning)
                 return
             self.close_unit()
@@ -285,7 +285,7 @@ class PicoScopeBase:
     
     def get_timebase(timebase, samples):
         # Override for PicoScopeBase
-        raise NotImplemented("Method not yet available for this oscilloscope")
+        raise NotImplementedError("Method not yet available for this oscilloscope")
     
     def _get_timebase(self, timebase: int, samples: int, segment:int=0) -> dict:
         """
@@ -584,7 +584,7 @@ class PicoScopeBase:
         )
     
     def set_data_buffer_for_enabled_channels():
-        raise NotImplemented("Method not yet available for this oscilloscope")
+        raise NotImplementedError("Method not yet available for this oscilloscope")
     
     def _set_data_buffer_ps5000a(self, channel, samples, segment=0, ratio_mode=0):
         """Set data buffer (5000D)"""
@@ -601,9 +601,15 @@ class PicoScopeBase:
         )
         return buffer
     
-    def _set_data_buffer_ps6000a(self, channel, samples, segment=0, 
-                                 datatype=DATA_TYPE.INT16_T, ratio_mode=RATIO_MODE.RAW, 
-                                 action=ACTION.CLEAR_ALL | ACTION.ADD) -> ctypes.Array:
+    def _set_data_buffer_ps6000a(
+        self,
+        channel,
+        samples,
+        segment=0,
+        datatype=DATA_TYPE.INT16_T,
+        ratio_mode=RATIO_MODE.RAW,
+        action=ACTION.CLEAR_ALL | ACTION.ADD,
+    ) -> ctypes.Array | None:
         """
         Allocates and assigns a data buffer for a specified channel on the 6000A series.
 
@@ -616,30 +622,41 @@ class PicoScopeBase:
             action (ACTION, optional): Action to apply to the data buffer (e.g., CLEAR_ALL | ADD).
 
         Returns:
-            ctypes.Array: A ctypes array that will be populated with data during capture.
+            ctypes.Array | None: The allocated buffer or ``None`` when clearing existing buffers.
 
         Raises:
             PicoSDKException: If an unsupported data type is provided.
         """
-        if datatype == DATA_TYPE.INT8_T:     buffer = (ctypes.c_int8 * samples)
-        elif datatype == DATA_TYPE.INT16_T:  buffer = (ctypes.c_int16 * samples)
-        elif datatype == DATA_TYPE.INT32_T:  buffer = (ctypes.c_int32 * samples)
-        elif datatype == DATA_TYPE.INT64_T:  buffer = (ctypes.c_int64 * samples)
-        elif datatype == DATA_TYPE.UINT32_T: buffer = (ctypes.c_uint32 * samples)
-        else: raise PicoSDKException("Invalid datatype selected for buffer")
+        if samples == 0:
+            buffer = None
+            buf_ptr = None
+        else:
+            if datatype == DATA_TYPE.INT8_T:
+                ctype = ctypes.c_int8
+            elif datatype == DATA_TYPE.INT16_T:
+                ctype = ctypes.c_int16
+            elif datatype == DATA_TYPE.INT32_T:
+                ctype = ctypes.c_int32
+            elif datatype == DATA_TYPE.INT64_T:
+                ctype = ctypes.c_int64
+            elif datatype == DATA_TYPE.UINT32_T:
+                ctype = ctypes.c_uint32
+            else:
+                raise PicoSDKException("Invalid datatype selected for buffer")
 
-        buffer = buffer()
-        
+            buffer = (ctype * samples)()
+            buf_ptr = ctypes.byref(buffer)
+
         self._call_attr_function(
-            'SetDataBuffer',
+            "SetDataBuffer",
             self.handle,
             channel,
-            ctypes.byref(buffer),
+            buf_ptr,
             samples,
             datatype,
             segment,
             ratio_mode,
-            action
+            action,
         )
         return buffer
     
@@ -753,7 +770,7 @@ class PicoScopeBase:
         
     
     def run_simple_block_capture(self) -> dict:
-        raise NotImplementedError("This method is not yet implimented in this PicoScope")
+        raise NotImplementedError("This method is not yet implemented in this PicoScope")
     
     # Siggen Functions
     def _siggen_apply(self, enabled=1, sweep_enabled=0, trigger_enabled=0, 
@@ -934,7 +951,7 @@ class ps6000a(PicoScopeBase):
         auto_trigger_us = auto_trigger_ms * 1000
         return super().set_simple_trigger(channel, threshold_mv, enable, direction, delay, auto_trigger_us)
     
-    def set_data_buffer(self, channel:CHANNEL, samples:int, segment:int=0, datatype:DATA_TYPE=DATA_TYPE.INT16_T, 
+    def set_data_buffer(self, channel:CHANNEL, samples:int, segment:int=0, datatype:DATA_TYPE=DATA_TYPE.INT16_T,
                         ratio_mode:RATIO_MODE=RATIO_MODE.RAW, action:ACTION=ACTION.CLEAR_ALL | ACTION.ADD) -> ctypes.Array:
         """
         Tells the driver where to store the data that will be populated when get_values() is called.
@@ -1082,10 +1099,10 @@ class ps5000a(PicoScopeBase):
         Args:
             channel (int): The input channel to apply the trigger to.
             threshold_mv (float): Trigger threshold level in millivolts.
-            enable (bool, optional): Enables or disables the trigger. 
-            direction (TRIGGER_DIR, optional): Trigger direction (e.g., TRIGGER_DIR.RISING, TRIGGER_DIR.FALLING). 
-            delay (int, optional): Delay in samples after the trigger condition is met before starting capture. 
-            auto_trigger_ms (int, optional): Timeout in milliseconds after which data capture proceeds even if no trigger occurs. 
+            enable (bool, optional): Enables or disables the trigger.
+            direction (TRIGGER_DIR, optional): Trigger direction (e.g., TRIGGER_DIR.RISING, TRIGGER_DIR.FALLING).
+            delay (int, optional): Delay in samples after the trigger condition is met before starting capture.
+            auto_trigger_ms (int, optional): Timeout in milliseconds after which data capture proceeds even if no trigger occurs.
         """
         return super().set_simple_trigger(channel, threshold_mv, enable, direction, delay, auto_trigger_ms)
     
