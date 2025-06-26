@@ -456,6 +456,81 @@ class PicoScopeBase:
             ctypes.byref(time),
             PICO_TIME_UNIT[time_unit.name],
             segment_index
+    def set_no_of_captures(self, n_captures: int) -> None:
+        """Configure the number of captures for rapid block mode."""
+
+        self._call_attr_function(
+            "SetNoOfCaptures",
+            self.handle,
+            ctypes.c_uint64(n_captures),
+        )
+
+    def get_no_of_captures(self) -> int:
+        """Return the number of captures configured for rapid block."""
+
+        n_captures = ctypes.c_uint64()
+        self._call_attr_function(
+            "GetNoOfCaptures",
+            self.handle,
+            ctypes.byref(n_captures),
+        )
+        return n_captures.value
+
+    def get_values_bulk(
+        self,
+        start_index: int,
+        no_of_samples: int,
+        from_segment_index: int,
+        to_segment_index: int,
+        down_sample_ratio: int,
+        down_sample_ratio_mode: int,
+        overflow: ctypes.c_int16,
+    ) -> int:
+        """Retrieve data from multiple memory segments."""
+
+        self.is_ready()
+        c_samples = ctypes.c_uint64(no_of_samples)
+        self._call_attr_function(
+            "GetValuesBulk",
+            self.handle,
+            ctypes.c_uint64(start_index),
+            ctypes.byref(c_samples),
+            ctypes.c_uint64(from_segment_index),
+            ctypes.c_uint64(to_segment_index),
+            ctypes.c_uint64(down_sample_ratio),
+            down_sample_ratio_mode,
+            ctypes.byref(overflow),
+        )
+        self.over_range = overflow.value
+        self.is_over_range()
+        return c_samples.value
+
+    def get_values_bulk_async(
+        self,
+        start_index: int,
+        no_of_samples: int,
+        from_segment_index: int,
+        to_segment_index: int,
+        down_sample_ratio: int,
+        down_sample_ratio_mode: int,
+        lp_data_ready,
+        p_parameter,
+    ) -> None:
+        """Begin asynchronous retrieval of values from multiple segments."""
+
+        self._call_attr_function(
+            "GetValuesBulkAsync",
+            self.handle,
+            ctypes.c_uint64(start_index),
+            ctypes.c_uint64(no_of_samples),
+            ctypes.c_uint64(from_segment_index),
+            ctypes.c_uint64(to_segment_index),
+            ctypes.c_uint64(down_sample_ratio),
+            down_sample_ratio_mode,
+            lp_data_ready,
+            p_parameter,
+        )
+
         )
         return time.value
 
@@ -887,6 +962,85 @@ class ps6000a(PicoScopeBase):
         """
         super()._open_unit(serial_number, resolution)
         self.min_adc_value, self.max_adc_value =super()._get_adc_limits()
+
+    def memory_segments(self, n_segments: int) -> int:
+        """Configure the number of memory segments.
+
+        This wraps the ``ps6000aMemorySegments`` API call.
+
+        Args:
+            n_segments: Desired number of memory segments.
+
+        Returns:
+            int: Number of samples available in each segment.
+        """
+
+        max_samples = ctypes.c_uint64()
+        self._call_attr_function(
+            "MemorySegments",
+            self.handle,
+            ctypes.c_uint64(n_segments),
+            ctypes.byref(max_samples),
+        )
+        return max_samples.value
+
+    def memory_segments_by_samples(self, n_samples: int) -> int:
+        """Set the samples per memory segment.
+
+        This wraps ``ps6000aMemorySegmentsBySamples`` which divides the
+        capture memory so that each segment holds ``n_samples`` samples.
+
+        Args:
+            n_samples: Number of samples per segment.
+
+        Returns:
+            int: Number of segments the memory was divided into.
+        """
+
+        max_segments = ctypes.c_uint64()
+        self._call_attr_function(
+            "MemorySegmentsBySamples",
+            self.handle,
+            ctypes.c_uint64(n_samples),
+            ctypes.byref(max_segments),
+        )
+        return max_segments.value
+
+    def query_max_segments_by_samples(
+        self,
+        n_samples: int,
+        n_channel_enabled: int,
+    ) -> int:
+        """Return the maximum number of segments for a given sample count.
+
+        Wraps ``ps6000aQueryMaxSegmentsBySamples`` to query how many memory
+        segments can be configured when each segment stores ``n_samples``
+        samples.
+
+        Args:
+            n_samples: Number of samples per segment.
+            n_channel_enabled: Number of enabled channels.
+
+        Returns:
+            int: Maximum number of segments available.
+
+        Raises:
+            PicoSDKException: If the device has not been opened.
+        """
+
+        if self.resolution is None:
+            raise PicoSDKException("Device has not been initialized, use open_unit()")
+
+        max_segments = ctypes.c_uint64()
+        self._call_attr_function(
+            "QueryMaxSegmentsBySamples",
+            self.handle,
+            ctypes.c_uint64(n_samples),
+            ctypes.c_uint32(n_channel_enabled),
+            ctypes.byref(max_segments),
+            self.resolution,
+        )
+        return max_segments.value
     
     def get_timebase(self, timebase:int, samples:int, segment:int=0) -> None:
         """
@@ -1057,6 +1211,98 @@ class ps6000a(PicoScopeBase):
         time_axis = self.get_time_axis(timebase, actual_samples)
 
         return channels_buffer, time_axis
+
+    def run_simple_rapid_block_capture(
+        self,
+        timebase: int,
+        samples: int,
+        n_captures: int,
+        start_index: int = 0,
+        datatype: DATA_TYPE = DATA_TYPE.INT16_T,
+        ratio: int = 0,
+        ratio_mode: RATIO_MODE = RATIO_MODE.RAW,
+        pre_trig_percent: int = 50,
+    ) -> tuple[dict, list]:
+        """Perform a basic rapid block capture.
+
+        If ``ratio_mode`` is ``RATIO_MODE.TRIGGER`` an additional set of data
+        buffers is used internally to retrieve the trigger samples. The returned
+        waveform data always uses ``RATIO_MODE.RAW``. ``ratio`` is forced to
+        ``1`` for the trigger-data retrieval call when required.
+        """
+
+        self.memory_segments(n_captures)
+        self.set_no_of_captures(n_captures)
+
+        super()._set_data_buffer_ps6000a(0, 0, 0, 0, 0, ACTION.CLEAR_ALL)
+
+
+        if ratio_mode == RATIO_MODE.TRIGGER:
+            trigger_ratio = ratio or 1
+            main_ratio_mode = RATIO_MODE.RAW
+            main_ratio = 0
+        else:
+            trigger_ratio = None
+            main_ratio_mode = ratio_mode
+            main_ratio = ratio
+
+        channels_buffer: dict = {ch: [] for ch in self.range}
+        trigger_buffer: dict | None = {ch: [] for ch in self.range} if trigger_ratio else None
+        for segment in range(n_captures):
+            for ch in self.range:
+                buf = super()._set_data_buffer_ps6000a(
+                    ch,
+                    samples,
+                    segment,
+                    datatype,
+                    main_ratio_mode,
+                    action=ACTION.ADD,
+                )
+                channels_buffer[ch].append(buf)
+                if trigger_buffer is not None:
+                    tbuf = super()._set_data_buffer_ps6000a(
+                        ch,
+                        samples,
+                        segment,
+                        datatype,
+                        RATIO_MODE.TRIGGER,
+                        action=ACTION.ADD,
+                    )
+                    trigger_buffer[ch].append(tbuf)
+
+        self.run_block_capture(timebase, samples, pre_trig_percent, 0)
+
+        overflow = ctypes.c_int16()
+        actual_samples = self.get_values_bulk(
+            start_index,
+            samples,
+            0,
+            n_captures - 1,
+            main_ratio,
+            main_ratio_mode,
+            overflow,
+        )
+
+        if trigger_buffer is not None:
+            self.get_values_bulk(
+                0,
+                samples,
+                0,
+                n_captures - 1,
+                trigger_ratio,
+                RATIO_MODE.TRIGGER,
+                overflow,
+            )
+
+        for ch in channels_buffer:
+            for i in range(n_captures):
+                data_list = self.buffer_ctypes_to_list(channels_buffer[ch][i])
+                channels_buffer[ch][i] = self.buffer_adc_to_mv(data_list, ch)
+
+        time_axis = self.get_time_axis(timebase, actual_samples)
+
+        return channels_buffer, time_axis
+
     
 class ps5000a(PicoScopeBase):
     def __init__(self, *args, **kwargs):
