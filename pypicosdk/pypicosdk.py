@@ -80,6 +80,7 @@ class PicoScopeBase:
         # Setup class variables
         self.handle = ctypes.c_short()
         self.range = {}
+        self.probe_scale = {}
         self.resolution = None
         self.max_adc_value = None
         self.min_adc_value = None
@@ -461,7 +462,7 @@ class PicoScopeBase:
 
     
     # Data conversion ADC/mV & ctypes/int 
-    def mv_to_adc(self, mv:float, channel_range:int) -> int:
+    def mv_to_adc(self, mv: float, channel_range: int, channel: typing.Optional[CHANNEL] = None) -> int:
         """
         Converts a millivolt (mV) value to an ADC value based on the device's
         maximum ADC range.
@@ -469,21 +470,25 @@ class PicoScopeBase:
         Args:
                 mv (float): Voltage in millivolts to be converted.
                 channel_range (int): Range of channel in millivolts i.e. 500 mV.
+                channel (CHANNEL, optional): Channel associated with ``mv``. The
+                    probe scaling for the channel will be applied if provided.
 
         Returns:
                 int: ADC value corresponding to the input millivolt value.
         """
+        scale = self.probe_scale.get(channel, 1)
         channel_range_mv = RANGE_LIST[channel_range]
-        return int((mv / channel_range_mv) * self.max_adc_value)
-    
-    def adc_to_mv(self, adc: int, channel_range: int):
-        "Converts ADC value to mV - based on maximum ADC value"
+        return int(((mv / scale) / channel_range_mv) * self.max_adc_value)
+
+    def adc_to_mv(self, adc: int, channel_range: int, channel: typing.Optional[CHANNEL] = None):
+        """Converts ADC value to mV using the stored probe scaling."""
+        scale = self.probe_scale.get(channel, 1)
         channel_range_mv = float(RANGE_LIST[channel_range])
-        return (float(adc) / float(self.max_adc_value)) * channel_range_mv
+        return ((float(adc) / float(self.max_adc_value)) * channel_range_mv) * scale
     
     def buffer_adc_to_mv(self, buffer: list, channel: str) -> list:
         """Converts an ADC buffer list to mV list"""
-        return [self.adc_to_mv(sample, self.range[channel]) for sample in buffer]
+        return [self.adc_to_mv(sample, self.range[channel], channel) for sample in buffer]
     
     def channels_buffer_adc_to_mv(self, channels_buffer: dict) -> dict:
         "Converts dict of multiple channels adc values to millivolts (mV)"
@@ -552,18 +557,21 @@ class PicoScopeBase:
         return self._error_handler(status)
     
     def set_simple_trigger(self, channel, threshold_mv, enable=True, direction=TRIGGER_DIR.RISING, delay=0, auto_trigger=0):
-        """
-        Sets up a simple trigger from a specified channel and threshold in mV
+        """Configure a simple edge trigger.
 
         Args:
             channel (int): The input channel to apply the trigger to.
             threshold_mv (float): Trigger threshold level in millivolts.
-            enable (bool, optional): Enables or disables the trigger. 
-            direction (TRIGGER_DIR, optional): Trigger direction (e.g., TRIGGER_DIR.RISING, TRIGGER_DIR.FALLING). 
-            delay (int, optional): Delay in samples after the trigger condition is met before starting capture. 
-            auto_trigger (int, optional): Timeout after which data capture proceeds even if no trigger occurs. 
+            enable (bool, optional): Enables or disables the trigger.
+            direction (TRIGGER_DIR, optional): Trigger direction (e.g., ``TRIGGER_DIR.RISING``).
+            delay (int, optional): Delay in samples after the trigger condition is met before starting capture.
+            auto_trigger (int, optional): Timeout in **microseconds** after which data capture proceeds even if no
+                trigger occurs.
         """
-        threshold_adc = self.mv_to_adc(threshold_mv, self.range[channel])
+        if channel in self.range:
+            threshold_adc = self.mv_to_adc(threshold_mv, self.range[channel], channel)
+        else:
+            threshold_adc = int(threshold_mv)
         self._call_attr_function(
             'SetSimpleTrigger',
             self.handle,
@@ -879,8 +887,16 @@ class ps6000a(PicoScopeBase):
 
         return super()._get_timebase(timebase, samples, segment)
     
-    def set_channel(self, channel:CHANNEL, range:RANGE, enabled=True, coupling:COUPLING=COUPLING.DC, 
-                    offset:float=0.0, bandwidth=BANDWIDTH_CH.FULL) -> None:
+    def set_channel(
+        self,
+        channel: CHANNEL,
+        range: RANGE,
+        enabled: bool = True,
+        coupling: COUPLING = COUPLING.DC,
+        offset: float = 0.0,
+        bandwidth: BANDWIDTH_CH = BANDWIDTH_CH.FULL,
+        probe_scale: float = 1.0,
+    ) -> None:
         """
         Enable/disable a channel and specify certain variables i.e. range, coupling, offset, etc.
         
@@ -894,7 +910,10 @@ class ps6000a(PicoScopeBase):
                 coupling (COUPLING, optional): AC/DC/DC 50 Ohm coupling of selected channel.
                 offset (int, optional): Analog offset in volts (V) of selected channel.
                 bandwidth (BANDWIDTH_CH, optional): Bandwidth of channel (selected models).
+                probe_scale (float, optional): Probe attenuation factor such as 1 or 10.
         """
+        self.probe_scale[channel] = probe_scale
+
         if enabled:
             super()._set_channel_on(channel, range, coupling, offset, bandwidth)
         else:
@@ -1031,7 +1050,26 @@ class ps5000a(PicoScopeBase):
         self.max_adc_value = super()._get_maximum_adc_value()
         return status
 
-    def set_channel(self, channel, range, enabled=True, coupling=COUPLING.DC, offset=0):
+    def set_channel(
+        self,
+        channel,
+        range,
+        enabled=True,
+        coupling=COUPLING.DC,
+        offset=0,
+        probe_scale: float = 1.0,
+    ):
+        """Configure an analog channel.
+
+        Args:
+            channel: Channel to configure.
+            range: Input range for the channel.
+            enabled: Enable or disable the channel.
+            coupling: Input coupling type.
+            offset: Analog offset in volts.
+            probe_scale: Probe attenuation factor such as 1 or 10.
+        """
+        self.probe_scale[channel] = probe_scale
         return super()._set_channel(channel, range, enabled, coupling, offset)
     
     def get_timebase(self, timebase, samples, segment=0):
