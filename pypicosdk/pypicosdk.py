@@ -126,6 +126,11 @@ class PicoScopeBase:
                 warnings.warn('Power supply not connected.',
                               PowerSupplyWarning)
                 return
+            # Certain status codes indicate that the driver is busy or waiting
+            # for more data rather than an actual failure. These should not
+            # raise an exception as callers may poll until data is ready.
+            if status == 407:  # PICO_WAITING_FOR_DATA_BUFFERS
+                return
             self.close_unit()
             raise PicoSDKException(error_code)
         return
