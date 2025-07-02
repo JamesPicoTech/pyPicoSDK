@@ -1365,6 +1365,42 @@ class ps6000a(PicoScopeBase):
         else:
             super()._set_channel_off(channel)
 
+    def set_digital_port_on(
+        self,
+        port: DIGITAL_PORT,
+        logic_threshold_level: list[int],
+        hysteresis: DIGITAL_PORT_HYSTERESIS,
+    ) -> None:
+        """Enable a digital port using ``ps6000aSetDigitalPortOn``.
+
+        Args:
+            port: Digital port to enable.
+            logic_threshold_level: Threshold level for each pin in millivolts.
+            hysteresis: Hysteresis level applied to all pins.
+        """
+
+        level_array = (ctypes.c_int16 * len(logic_threshold_level))(
+            *logic_threshold_level
+        )
+
+        self._call_attr_function(
+            "SetDigitalPortOn",
+            self.handle,
+            port,
+            level_array,
+            len(logic_threshold_level),
+            hysteresis,
+        )
+
+    def set_digital_port_off(self, port: DIGITAL_PORT) -> None:
+        """Disable a digital port using ``ps6000aSetDigitalPortOff``."""
+
+        self._call_attr_function(
+            "SetDigitalPortOff",
+            self.handle,
+            port,
+        )
+
     def set_aux_io_mode(self, mode: AUXIO_MODE) -> None:
 
         """Configure the AUX IO connector using ``ps6000aSetAuxIoMode``.

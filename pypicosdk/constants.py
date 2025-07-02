@@ -300,7 +300,22 @@ class PICO_TIME_UNIT(IntEnum):
     NS = 2
     US = 3
     MS = 4
-    S = 5class AUXIO_MODE(IntEnum):
+    S = 5
+
+class DIGITAL_PORT(IntEnum):
+    """Digital port identifiers for the 6000A series."""
+    PORT0 = 128
+    PORT1 = 129
+
+class DIGITAL_PORT_HYSTERESIS(IntEnum):
+    """Hysteresis options for digital ports."""
+    VERY_HIGH_400MV = 0
+    HIGH_200MV = 1
+    NORMAL_100MV = 2
+    LOW_50MV = 3
+
+
+class AUXIO_MODE(IntEnum):
     """Operating modes for the AUX IO connector."""
 
     #: High impedance input for triggering the scope or signal generator.
