@@ -2,6 +2,7 @@ import ctypes
 import os
 import warnings
 import platform
+import time
 import typing
 
 from .error_list import ERROR_STRING
@@ -478,6 +479,93 @@ class PicoScopeBase:
         pico_unit = PICO_TIME_UNIT(returned_unit.value)
         time_s = time.value / TIME_UNIT[pico_unit.name]
         return int(time_s * TIME_UNIT[time_unit.name])
+
+
+    def get_trigger_info(
+        self,
+        first_segment_index: int = 0,
+        segment_count: int = 1,
+    ) -> typing.Union[PICO_TRIGGER_INFO, list[PICO_TRIGGER_INFO]]:
+        """Retrieve trigger timing information for one or more segments.
+
+        This method wraps the ``ps6000aGetTriggerInfo`` API call and returns
+        one or more :class:`~pypicosdk.constants.PICO_TRIGGER_INFO` structures.
+        Each structure exposes attributes such as ``status_``, ``triggerTime_``
+        and ``timeUnits_`` (refer to :mod:`pypicosdk.constants` for the full
+        list of fields).  The ``status_`` field is a
+        :class:`~pypicosdk.constants.PICO_STATUS` bit field that may include
+        flags like ``PICO_DEVICE_TIME_STAMP_RESET`` or
+        ``PICO_TRIGGER_TIME_NOT_REQUESTED``. ``timeUnits_`` values are defined
+        by :class:`~pypicosdk.constants.PICO_TIME_UNIT`.
+
+        Args:
+            first_segment_index: Index of the first memory segment to query.
+            segment_count: Number of consecutive segments starting at
+                ``first_segment_index``.
+
+        Returns:
+            If ``segment_count`` is ``1``, a single ``PICO_TRIGGER_INFO``
+            instance is returned. Otherwise a list of ``PICO_TRIGGER_INFO``
+            objects is provided.
+
+        Raises:
+            PicoSDKException: If the function call fails or preconditions are
+                not met.
+        """
+
+        info_array = (PICO_TRIGGER_INFO * segment_count)()
+
+        self._call_attr_function(
+            "GetTriggerInfo",
+            self.handle,
+            ctypes.byref(info_array[0]),
+            ctypes.c_uint64(first_segment_index),
+            ctypes.c_uint64(segment_count),
+        )
+
+        if segment_count == 1:
+            return info_array[0]
+        return list(info_array)
+
+    def get_values_trigger_time_offset_bulk(
+        self,
+        from_segment_index: int,
+        to_segment_index: int,
+    ) -> list[tuple[int, PICO_TIME_UNIT]]:
+        """Retrieve trigger time offsets for a range of segments.
+
+        This method calls ``ps6000aGetValuesTriggerTimeOffsetBulk`` and
+        returns the trigger time offset and associated time unit for each
+        requested segment.
+
+        Args:
+            from_segment_index: Index of the first memory segment to query.
+            to_segment_index: Index of the last memory segment. If this value
+                is less than ``from_segment_index`` the driver wraps around.
+
+        Returns:
+            list[tuple[int, PICO_TIME_UNIT]]: ``[(offset, unit), ...]`` for each
+            segment beginning with ``from_segment_index``.
+        """
+
+        count = to_segment_index - from_segment_index + 1
+        times = (ctypes.c_int64 * count)()
+        units = (ctypes.c_int32 * count)()
+
+        self._call_attr_function(
+            "GetValuesTriggerTimeOffsetBulk",
+            self.handle,
+            ctypes.byref(times),
+            ctypes.byref(units),
+            ctypes.c_uint64(from_segment_index),
+            ctypes.c_uint64(to_segment_index),
+        )
+
+        results = []
+        for i in range(count):
+            results.append((times[i], PICO_TIME_UNIT(units[i])))
+        return results
+
     def set_no_of_captures(self, n_captures: int) -> None:
         """Configure the number of captures for rapid block mode."""
 
