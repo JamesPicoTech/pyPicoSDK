@@ -641,6 +641,41 @@ class PicoScopeBase:
             p_parameter,
         )
 
+    def get_values_overlapped(
+        self,
+        start_index: int,
+        no_of_samples: int,
+        down_sample_ratio: int,
+        down_sample_ratio_mode: int,
+        from_segment_index: int,
+        to_segment_index: int,
+        overflow: ctypes.c_int16,
+    ) -> int:
+        """Retrieve overlapped data from multiple segments."""
+
+        self.is_ready()
+        c_samples = ctypes.c_uint64(no_of_samples)
+        self._call_attr_function(
+            "GetValuesOverlapped",
+            self.handle,
+            ctypes.c_uint64(start_index),
+            ctypes.byref(c_samples),
+            ctypes.c_uint64(down_sample_ratio),
+            down_sample_ratio_mode,
+            ctypes.c_uint64(from_segment_index),
+            ctypes.c_uint64(to_segment_index),
+            ctypes.byref(overflow),
+        )
+        self.over_range = overflow.value
+        self.is_over_range()
+        return c_samples.value
+
+    def stop_using_get_values_overlapped(self) -> None:
+        """Terminate overlapped capture mode."""
+
+        self._call_attr_function(
+            "StopUsingGetValuesOverlapped",
+            self.handle,
         )
 
 
