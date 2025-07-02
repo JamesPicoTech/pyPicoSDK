@@ -642,7 +642,6 @@ class PicoScopeBase:
         )
 
         )
-        return time.value
 
 
     
