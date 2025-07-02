@@ -801,6 +801,95 @@ class PicoScopeBase:
             delay,
             auto_trigger
         )
+
+    def set_trigger_channel_conditions(
+        self,
+        source: int,
+        state: int,
+        action: int = ACTION.CLEAR_ALL | ACTION.ADD,
+    ) -> None:
+        """Configure a trigger condition using ``SetTriggerChannelConditions``.
+
+        Args:
+            source: Input source for the condition as a :class:`CHANNEL` value.
+            state: Desired trigger state from :class:`PICO_TRIGGER_STATE`.
+            action: How to apply the condition relative to any existing
+                configuration. Defaults to ``ACTION.CLEAR_ALL | ACTION.ADD``.
+        """
+
+        cond = PICO_CONDITION(source, state)
+
+        self._call_attr_function(
+            "SetTriggerChannelConditions",
+            self.handle,
+            ctypes.byref(cond),
+            ctypes.c_int16(1),
+            action,
+        )
+
+    def set_trigger_channel_properties(
+        self,
+        threshold_upper: int,
+        hysteresis_upper: int,
+        threshold_lower: int,
+        hysteresis_lower: int,
+        channel: int,
+        aux_output_enable: int = 0,
+        auto_trigger_us: int = 0,
+    ) -> None:
+        """Configure trigger thresholds using ``SetTriggerChannelProperties``.
+
+        Args:
+            threshold_upper: ADC value for the upper trigger level.
+            hysteresis_upper: Hysteresis for ``threshold_upper`` in ADC counts.
+            threshold_lower: ADC value for the lower trigger level.
+            hysteresis_lower: Hysteresis for ``threshold_lower`` in ADC counts.
+            channel: Channel these settings apply to.
+            aux_output_enable: Optional auxiliary output flag.
+            auto_trigger_us: Auto-trigger timeout in microseconds. ``0`` waits
+                indefinitely.
+        """
+
+        prop = PICO_TRIGGER_CHANNEL_PROPERTIES(
+            threshold_upper,
+            hysteresis_upper,
+            threshold_lower,
+            hysteresis_lower,
+            channel,
+        )
+
+        self._call_attr_function(
+            "SetTriggerChannelProperties",
+            self.handle,
+            ctypes.byref(prop),
+            ctypes.c_int16(1),
+            ctypes.c_int16(aux_output_enable),
+            ctypes.c_uint32(auto_trigger_us),
+        )
+
+    def set_trigger_channel_directions(
+        self,
+        channel: int,
+        direction: int,
+        threshold_mode: int,
+    ) -> None:
+        """Configure trigger directions using ``SetTriggerChannelDirections``.
+
+        Args:
+            channel: Channel to apply the direction to.
+            direction: Desired trigger direction from
+                :class:`PICO_THRESHOLD_DIRECTION`.
+            threshold_mode: Threshold mode from :class:`PICO_THRESHOLD_MODE`.
+        """
+
+        dir_struct = PICO_DIRECTION(channel, direction, threshold_mode)
+
+        self._call_attr_function(
+            "SetTriggerChannelDirections",
+            self.handle,
+            ctypes.byref(dir_struct),
+            ctypes.c_int16(1),
+        )
     
     def set_data_buffer_for_enabled_channels():
         raise NotImplementedError("Method not yet available for this oscilloscope")
@@ -1276,6 +1365,20 @@ class ps6000a(PicoScopeBase):
         else:
             super()._set_channel_off(channel)
 
+    def set_aux_io_mode(self, mode: AUXIO_MODE) -> None:
+
+        """Configure the AUX IO connector using ``ps6000aSetAuxIoMode``.
+
+        Args:
+            mode: Requested AUXIO mode from :class:`~pypicosdk.constants.AUXIO_MODE`.
+        """
+
+        self._call_attr_function(
+            "SetAuxIoMode",
+            self.handle,
+            mode,
+        )
+
     def set_simple_trigger(self, channel, threshold_mv, enable=True, direction=TRIGGER_DIR.RISING, delay=0, auto_trigger_ms=5_000):
         """
         Sets up a simple trigger from a specified channel and threshold in mV
@@ -1290,6 +1393,71 @@ class ps6000a(PicoScopeBase):
         """
         auto_trigger_us = auto_trigger_ms * 1000
         return super().set_simple_trigger(channel, threshold_mv, enable, direction, delay, auto_trigger_us)
+
+    def set_trigger_channel_conditions(
+        self,
+        source: int,
+        state: int,
+        action: int = ACTION.CLEAR_ALL | ACTION.ADD,
+    ) -> None:
+        """Configure a trigger condition using ``ps6000aSetTriggerChannelConditions``.
+
+        This method mirrors :meth:`PicoScopeBase.set_trigger_channel_conditions` while
+        documenting the underlying API call specific to the 6000A series.
+
+        Args:
+            source: Input source for the condition as a :class:`CHANNEL` value.
+            state: Desired trigger state from :class:`PICO_TRIGGER_STATE`.
+            action: How to combine the condition with any existing configuration.
+                Defaults to ``ACTION.CLEAR_ALL | ACTION.ADD``.
+        """
+
+        super().set_trigger_channel_conditions(source, state, action)
+
+    def set_trigger_channel_properties(
+        self,
+        threshold_upper: int,
+        hysteresis_upper: int,
+        threshold_lower: int,
+        hysteresis_lower: int,
+        channel: int,
+        aux_output_enable: int = 0,
+        auto_trigger_us: int = 0,
+    ) -> None:
+        """Configure channel thresholds using ``ps6000aSetTriggerChannelProperties``.
+
+        This method mirrors :meth:`PicoScopeBase.set_trigger_channel_properties` while
+        documenting the underlying 6000A API call.
+
+        Args:
+            threshold_upper: ADC value for the upper trigger level.
+            hysteresis_upper: Hysteresis for ``threshold_upper`` in ADC counts.
+            threshold_lower: ADC value for the lower trigger level.
+            hysteresis_lower: Hysteresis for ``threshold_lower`` in ADC counts.
+            channel: Channel these settings apply to.
+            aux_output_enable: Optional auxiliary output flag.
+            auto_trigger_us: Auto-trigger timeout in microseconds.
+        """
+
+        super().set_trigger_channel_properties(
+            threshold_upper,
+            hysteresis_upper,
+            threshold_lower,
+            hysteresis_lower,
+            channel,
+            aux_output_enable,
+            auto_trigger_us,
+        )
+
+    def set_trigger_channel_directions(
+        self,
+        channel: int,
+        direction: int,
+        threshold_mode: int,
+    ) -> None:
+        """Configure channel directions using ``ps6000aSetTriggerChannelDirections``."""
+
+        super().set_trigger_channel_directions(channel, direction, threshold_mode)
     
     def set_data_buffer(self, channel:CHANNEL, samples:int, segment:int=0, datatype:DATA_TYPE=DATA_TYPE.INT16_T,
                         ratio_mode:RATIO_MODE=RATIO_MODE.RAW, action:ACTION=ACTION.CLEAR_ALL | ACTION.ADD) -> ctypes.Array:
@@ -1470,6 +1638,8 @@ class ps6000a(PicoScopeBase):
                     RATIO_MODE.TRIGGER,
                     action=ACTION.ADD,
                 )
+                trigger_buffer[ch] = tbuf
+
 
         # Start block capture
         self.run_block_capture(timebase, samples, pre_trig_percent, segment)

@@ -1,4 +1,5 @@
 from enum import IntEnum
+import ctypes
 
 class UNIT_INFO:
     """
@@ -256,7 +257,10 @@ class RATIO_MODE:
     AVERAGE = 4
     DISTRIBUTION = 8
     SUM = 16
-    TRIGGER_DATA_FOR_TIME_CALCUATION = 0x10000000
+    TRIGGER_DATA_FOR_TIME_CALCULATION = 0x10000000
+    TRIGGER_DATA_FOR_TIME_CALCUATION = (
+        TRIGGER_DATA_FOR_TIME_CALCULATION
+    )  # Deprecated alias
     SEGMENT_HEADER = 0x20000000
     TRIGGER = 0x40000000
     RAW = 0x80000000
@@ -296,4 +300,160 @@ class PICO_TIME_UNIT(IntEnum):
     NS = 2
     US = 3
     MS = 4
-    S = 5
+    S = 5class AUXIO_MODE(IntEnum):
+    """Operating modes for the AUX IO connector."""
+
+    #: High impedance input for triggering the scope or signal generator.
+    INPUT = 0
+
+    #: Constant logic high output.
+    HIGH_OUT = 1
+
+    #: Constant logic low output.
+    LOW_OUT = 2
+
+    #: Logic high pulse during the post-trigger acquisition time.
+    TRIGGER_OUT = 3
+
+
+class PICO_TRIGGER_STATE(IntEnum):
+    """Trigger state values used in :class:`PICO_CONDITION`."""
+
+    #: Channel is ignored when evaluating trigger conditions.
+    DONT_CARE = 0
+
+    #: Condition must be true for the channel.
+    TRUE = 1
+
+    #: Condition must be false for the channel.
+    FALSE = 2
+
+
+class PICO_TRIGGER_INFO(ctypes.Structure):
+    """Structure describing trigger timing information.
+
+    All fields of this ``ctypes`` structure include a trailing underscore in
+    their names. When you receive a :class:`PICO_TRIGGER_INFO` instance from
+    :meth:`~pypicosdk.pypicosdk.PicoScopeBase.get_trigger_info` or other
+    functions, access the attributes using these exact names, for example
+    ``info.triggerTime_``.
+
+    Attributes:
+        status_:   :class:`PICO_STATUS` value describing the trigger state. This
+            may be a bitwise OR of multiple status flags such as
+            ``PICO_DEVICE_TIME_STAMP_RESET`` or
+            ``PICO_TRIGGER_TIME_NOT_REQUESTED``.
+        segmentIndex_:  Memory segment index from which the information was
+            captured.
+        triggerIndex_:  Sample index at which the trigger occurred.
+        triggerTime_:   Time of the trigger event calculated with sub-sample
+            resolution.
+        timeUnits_:     Units for ``triggerTime_`` as a
+            :class:`PICO_TIME_UNIT` value.
+        missedTriggers_: Number of trigger events that occurred between this
+            capture and the previous one.
+        timeStampCounter_:  Timestamp in samples from the first capture.
+    """
+
+    #: Match the packed layout of the corresponding C structure.
+    _pack_ = 1
+
+    _fields_ = [
+        ("status_", ctypes.c_int32),
+        ("segmentIndex_", ctypes.c_uint64),
+        ("triggerIndex_", ctypes.c_uint64),
+        ("triggerTime_", ctypes.c_double),
+        ("timeUnits_", ctypes.c_int32),
+        ("missedTriggers_", ctypes.c_uint64),
+        ("timeStampCounter_", ctypes.c_uint64),
+    ]
+
+
+class PICO_TRIGGER_CHANNEL_PROPERTIES(ctypes.Structure):
+    """Trigger threshold configuration for a single channel.
+
+    The fields of this structure mirror the ``PICO_TRIGGER_CHANNEL_PROPERTIES``
+    definition in the PicoSDK headers.  Each attribute name ends with an
+    underscore so that the names match the underlying C struct when accessed
+    from Python.
+
+    Attributes:
+        thresholdUpper_: ADC counts for the upper trigger threshold.
+        thresholdUpperHysteresis_: Hysteresis applied to ``thresholdUpper_`` in
+            ADC counts.
+        thresholdLower_: ADC counts for the lower trigger threshold.
+        thresholdLowerHysteresis_: Hysteresis applied to ``thresholdLower_`` in
+            ADC counts.
+        channel_: Input channel that these properties apply to as a
+            :class:`CHANNEL` value.
+    """
+
+    _pack_ = 1
+
+    _fields_ = [
+        ("thresholdUpper_", ctypes.c_int16),
+        ("thresholdUpperHysteresis_", ctypes.c_uint16),
+        ("thresholdLower_", ctypes.c_int16),
+        ("thresholdLowerHysteresis_", ctypes.c_uint16),
+        ("channel_", ctypes.c_int32),
+    ]
+
+
+class PICO_CONDITION(ctypes.Structure):
+    """Trigger condition structure used by ``SetTriggerChannelConditions``.
+
+    Each instance defines the state that a particular input source must meet
+    for the overall trigger to occur.
+    """
+
+    #: Ensure this structure matches the 1-byte packed layout used in the
+    #: PicoSDK headers.
+    _pack_ = 1
+
+    _fields_ = [
+        ("source_", ctypes.c_int32),
+        ("condition_", ctypes.c_int32),
+    ]
+
+
+class PICO_THRESHOLD_DIRECTION(IntEnum):
+    """Enumerates trigger threshold directions used with :class:`PICO_DIRECTION`."""
+
+    PICO_ABOVE = 0
+    PICO_BELOW = 1
+    PICO_RISING = 2
+    PICO_FALLING = 3
+    PICO_RISING_OR_FALLING = 4
+    PICO_ABOVE_LOWER = 5
+    PICO_BELOW_LOWER = 6
+    PICO_RISING_LOWER = 7
+    PICO_FALLING_LOWER = 8
+    PICO_INSIDE = PICO_ABOVE
+    PICO_OUTSIDE = PICO_BELOW
+    PICO_ENTER = PICO_RISING
+    PICO_EXIT = PICO_FALLING
+    PICO_ENTER_OR_EXIT = PICO_RISING_OR_FALLING
+    PICO_POSITIVE_RUNT = 9
+    PICO_NEGATIVE_RUNT = 10
+    PICO_NONE = PICO_RISING
+
+
+class PICO_THRESHOLD_MODE(IntEnum):
+    """Threshold operation mode values used in :class:`PICO_DIRECTION`."""
+
+    PICO_LEVEL = 0
+    PICO_WINDOW = 1
+
+
+class PICO_DIRECTION(ctypes.Structure):
+    """Structure used by ``SetTriggerChannelDirections`` to specify trigger directions."""
+
+    _pack_ = 1
+
+    _fields_ = [
+        ("channel_", ctypes.c_int32),
+        ("direction_", ctypes.c_int32),
+        ("thresholdMode_", ctypes.c_int32),
+    ]
+
+
