@@ -46,7 +46,7 @@ plt.figure(figsize=(10, 4))
 plt.plot(time_axis, channels_buffer[psdk.CHANNEL.A])
 plt.title('Time Series of Channel A')
 plt.xlabel('Time (ns)')
-plt.ylabel('Voltage (V)')
+plt.ylabel('Voltage (mV)')
 plt.tight_layout()
 plt.show()
 
