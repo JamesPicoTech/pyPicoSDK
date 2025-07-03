@@ -6,7 +6,6 @@ import time
 import typing
 
 from .error_list import ERROR_STRING
-from . import constants as _constants
 from .constants import *
 from .version import VERSION
 
@@ -132,11 +131,6 @@ class PicoScopeBase:
             # for more data rather than an actual failure. These should not
             # raise an exception as callers may poll until data is ready.
             if status == 407:  # PICO_WAITING_FOR_DATA_BUFFERS
-                return
-            # Streaming related status codes indicate no new data is ready.
-            # These should not be treated as fatal errors and simply signal
-            # the caller to try again later.
-            if status in [28672, 28673, 28674]:
                 return
             self.close_unit()
             raise PicoSDKException(error_code)
@@ -1106,87 +1100,6 @@ class PicoScopeBase:
         self.over_range = over_range.value
         self.is_over_range()
         return total_samples.value
-
-    def run_streaming(
-        self,
-        sample_interval: float,
-        sample_interval_time_units: PICO_TIME_UNIT,
-        max_pre_trigger_samples: int,
-        max_post_trigger_samples: int,
-        auto_stop: int = 1,
-        down_sample_ratio: int = 1,
-        down_sample_ratio_mode: int = RATIO_MODE.RAW,
-    ) -> float:
-        """
-        Start streaming acquisition using ``RunStreaming``.
-
-        Args:
-            sample_interval (float): Requested time between samples.
-            sample_interval_time_units (PICO_TIME_UNIT): Time units for
-                ``sample_interval``. See :mod:`pypicosdk.constants`.
-            max_pre_trigger_samples (int): Maximum number of pre-trigger
-                samples to collect.
-            max_post_trigger_samples (int): Maximum number of post-trigger
-                samples to collect.
-            auto_stop (int, optional): ``1`` to automatically stop once
-                ``max_post_trigger_samples`` have been captured.
-            down_sample_ratio (int, optional): Down-sampling ratio to apply.
-            down_sample_ratio_mode (RATIO_MODE, optional): Down-sampling mode
-                (for example, ``RATIO_MODE.RAW`` or ``RATIO_MODE.AVERAGE``).
-
-        Returns:
-            float: The actual sampling interval in the units specified by
-            ``sample_interval_time_units``.
-        """
-
-        c_sample_interval = ctypes.c_double(sample_interval)
-        self._call_attr_function(
-            "RunStreaming",
-            self.handle,
-            ctypes.byref(c_sample_interval),
-            sample_interval_time_units,
-            ctypes.c_uint64(max_pre_trigger_samples),
-            ctypes.c_uint64(max_post_trigger_samples),
-            ctypes.c_int16(auto_stop),
-            ctypes.c_uint64(down_sample_ratio),
-            down_sample_ratio_mode,
-        )
-        return c_sample_interval.value
-
-    def get_streaming_latest_values(
-        self,
-        streaming_data_info,
-        trigger_info: PICO_STREAMING_DATA_TRIGGER_INFO,
-    ) -> None:
-        """Retrieve latest streaming values into provided buffers."""
-
-        self._call_attr_function(
-            "GetStreamingLatestValues",
-            self.handle,
-            streaming_data_info,
-            ctypes.c_uint64(len(streaming_data_info)),
-            ctypes.byref(trigger_info),
-        )
-
-    def no_of_streaming_values(self) -> int:
-        """Return the number of samples currently available for streaming.
-
-        Wraps the PicoSDK ``NoOfStreamingValues`` function to query how many
-        values are ready to be retrieved from the driver's internal buffer.  See
-        :mod:`pypicosdk.constants` for related streaming constants.
-
-        Returns:
-            int: Number of samples that can be read using
-            :py:meth:`get_streaming_latest_values`.
-        """
-
-        values = ctypes.c_uint64()
-        self._call_attr_function(
-            "NoOfStreamingValues",
-            self.handle,
-            ctypes.byref(values),
-        )
-        return values.value
     
     def is_over_range(self) -> list:
         """
@@ -1872,78 +1785,6 @@ class ps6000a(PicoScopeBase):
 
         return channels_buffer, time_axis
 
-    def run_simple_streaming_capture(
-        self,
-        sample_interval: float,
-        sample_interval_time_units: PICO_TIME_UNIT,
-        samples: int,
-        auto_stop: bool = True,
-        datatype: DATA_TYPE = DATA_TYPE.INT16_T,
-        ratio_mode: int = RATIO_MODE.RAW,
-    ) -> tuple[dict, list]:
-        """Perform a simple streaming capture and return buffers and time axis.
-
-        Args:
-            sample_interval (float): Desired sample interval.
-            sample_interval_time_units (PICO_TIME_UNIT): Units for ``sample_interval``.
-            samples (int): Number of samples to capture.
-            auto_stop (bool, optional): Stop automatically once ``samples`` have been collected.
-            datatype (DATA_TYPE, optional): Data type used for the capture buffer.
-            ratio_mode (RATIO_MODE, optional): Downsampling mode.
-
-        Returns:
-            tuple[dict, list]: Dictionary of channel buffers (in mV) and the time axis in seconds.
-        """
-        channels_buffer = self.set_data_buffer_for_enabled_channels(samples, 0, datatype, ratio_mode)
-
-        actual_interval = self.run_streaming(
-            sample_interval,
-            sample_interval_time_units,
-            0,
-            samples,
-            int(auto_stop),
-            1,
-            ratio_mode,
-        )
-
-        collected = 0
-        trigger_info = PICO_STREAMING_DATA_TRIGGER_INFO()
-
-        while collected < samples:
-            to_read = samples - collected
-            data_array = (PICO_STREAMING_DATA_INFO * len(channels_buffer))()
-            for idx, ch in enumerate(channels_buffer):
-                data_array[idx].channel_ = ch
-                data_array[idx].mode_ = ratio_mode
-                data_array[idx].type_ = datatype
-                data_array[idx].noOfSamples_ = to_read
-                data_array[idx].bufferIndex_ = collected
-                data_array[idx].startIndex_ = collected
-                data_array[idx].overflow_ = 0
-
-            self.get_streaming_latest_values(data_array, trigger_info)
-            collected += data_array[0].noOfSamples_
-
-            if collected == 0:
-                time.sleep(0.01)
-
-            if auto_stop and trigger_info.autoStop_:
-                break
-
-        channels_buffer = self.channels_buffer_adc_to_mv(channels_buffer)
-
-        seconds_per_sample = {
-            PICO_TIME_UNIT.FS: 1e-15,
-            PICO_TIME_UNIT.PS: 1e-12,
-            PICO_TIME_UNIT.NS: 1e-9,
-            PICO_TIME_UNIT.US: 1e-6,
-            PICO_TIME_UNIT.MS: 1e-3,
-            PICO_TIME_UNIT.S: 1,
-        }[sample_interval_time_units] * actual_interval
-
-        time_axis = [n * seconds_per_sample for n in range(collected)]
-
-        return channels_buffer, time_axis
     
 class ps5000a(PicoScopeBase):
     def __init__(self, *args, **kwargs):
@@ -1991,8 +1832,7 @@ class ps5000a(PicoScopeBase):
             delay (int, optional): Delay in samples after the trigger condition is met before starting capture.
             auto_trigger_ms (int, optional): Timeout in milliseconds after which data capture proceeds even if no trigger occurs.
         """
-        auto_trigger_us = auto_trigger_ms * 1000
-        return super().set_simple_trigger(channel, threshold_mv, enable, direction, delay, auto_trigger_us)
+        return super().set_simple_trigger(channel, threshold_mv, enable, direction, delay, auto_trigger_ms)
     
     def set_data_buffer(self, channel, samples, segment=0, ratio_mode=0):
         return super()._set_data_buffer_ps5000a(channel, samples, segment, ratio_mode)
@@ -2005,17 +1845,3 @@ class ps5000a(PicoScopeBase):
     
     def change_power_source(self, state):
         return super()._change_power_source(state)
-
-
-# Build an explicit list of public names for ``from pypicosdk import *``.
-# This improves support in static analyzers like Pylance.
-__all__ = list(_constants.__all__) + [
-    'PicoSDKNotFoundException',
-    'PicoSDKException',
-    'OverrangeWarning',
-    'PowerSupplyWarning',
-    'get_all_enumerated_units',
-    'PicoScopeBase',
-    'ps6000a',
-    'ps5000a',
-]

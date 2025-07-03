@@ -21,22 +21,25 @@ import pypicosdk as psdk
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Pico examples use inline argument values for clarity
-
 # Scope setup
 scope = psdk.ps6000a()
 scope.open_unit(resolution=psdk.RESOLUTION._12BIT)
 
-# Set channels (inline arguments)
+# Set channels
+channel = psdk.CHANNEL.A
+
 scope.set_channel(channel=psdk.CHANNEL.A, coupling=psdk.COUPLING.DC, range=psdk.RANGE.mV500)
-scope.set_simple_trigger(channel=psdk.CHANNEL.A, threshold_mv=200, direction=psdk.TRIGGER_DIR.RISING, auto_trigger_ms=0)
+scope.set_channel(channel=psdk.CHANNEL.B, enabled=0, range=psdk.RANGE.mV500)
+scope.set_channel(channel=psdk.CHANNEL.C, enabled=0, range=psdk.RANGE.mV500)
+scope.set_channel(channel=psdk.CHANNEL.D, enabled=0, range=psdk.RANGE.mV500)
+scope.set_simple_trigger(channel=channel, threshold_mv=200, direction=psdk.TRIGGER_DIR.RISING, auto_trigger_ms=0)
 
 # Setup SigGen
 scope.set_siggen(frequency=1000, pk2pk=0.9, wave_type=psdk.WAVEFORM.SINE)
 
 # Acquisition parameters 
 nSamples = 1000
-nCaptures = 1000
+nCaptures = 100
 
 pk2pk_values = []
 waveforms = []  # Store each waveform
@@ -45,12 +48,12 @@ waveforms = []  # Store each waveform
 for _ in range(nCaptures):
     # Simple block capture
     channel_buffer, time_axis = scope.run_simple_block_capture(
-        timebase=scope.interval_to_timebase(20E-9),
+        timebase=scope.sample_rate_to_timebase(1.25, psdk.SAMPLE_RATE.MSPS),
         samples=nSamples
     )
 
     # Add channel data to list
-    waveform = channel_buffer[psdk.CHANNEL.A]
+    waveform = channel_buffer[channel]
     waveforms.append(waveform)
 
     # Calculate pk2pk values, add to list

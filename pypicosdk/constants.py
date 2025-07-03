@@ -344,44 +344,6 @@ class PICO_TRIGGER_STATE(IntEnum):
     FALSE = 2
 
 
-class PICO_STREAMING_DATA_INFO(ctypes.Structure):
-    """Structure describing streaming data buffer information."""
-
-    #: Structures in ``PicoDeviceStructs.h`` are packed to 1 byte. Mirror this
-    #: packing here so the memory layout matches the C definition.
-    _pack_ = 1
-
-    _fields_ = [
-        ("channel_", ctypes.c_int32),
-        ("mode_", ctypes.c_int32),
-        ("type_", ctypes.c_int32),
-        ("noOfSamples_", ctypes.c_int32),
-        ("bufferIndex_", ctypes.c_uint64),
-        ("startIndex_", ctypes.c_int32),
-        ("overflow_", ctypes.c_int16),
-    ]
-
-
-class PICO_STREAMING_DATA_TRIGGER_INFO(ctypes.Structure):
-    """Structure describing trigger information for streaming.
-
-    All field names in this structure are defined with a trailing
-    underscore. These exact names must be used when accessing the
-    attributes returned by functions such as
-    :meth:`~pypicosdk.pypicosdk.PicoScopeBase.get_streaming_latest_values`.
-    """
-
-    #: Mirror the 1-byte packing of the C ``PICO_STREAMING_DATA_TRIGGER_INFO``
-    #: structure.
-    _pack_ = 1
-
-    _fields_ = [
-        ("triggerAt_", ctypes.c_uint64),
-        ("triggered_", ctypes.c_int16),
-        ("autoStop_", ctypes.c_int16),
-    ]
-
-
 class PICO_TRIGGER_INFO(ctypes.Structure):
     """Structure describing trigger timing information.
 
@@ -510,38 +472,3 @@ class PICO_DIRECTION(ctypes.Structure):
     ]
 
 
-# Public names exported by :mod:`pypicosdk.constants` for ``import *`` support.
-# This explicit list helps static analyzers like Pylance discover available
-# attributes when the parent package re-exports ``pypicosdk.constants`` using
-# ``from .constants import *``.
-__all__ = [
-    'UNIT_INFO',
-    'RESOLUTION',
-    'TRIGGER_DIR',
-    'WAVEFORM',
-    'CHANNEL',
-    'CHANNEL_NAMES',
-    'COUPLING',
-    'RANGE',
-    'RANGE_LIST',
-    'BANDWIDTH_CH',
-    'DATA_TYPE',
-    'ACTION',
-    'RATIO_MODE',
-    'POWER_SOURCE',
-    'SAMPLE_RATE',
-    'TIME_UNIT',
-    'PICO_TIME_UNIT',
-    'DIGITAL_PORT',
-    'DIGITAL_PORT_HYSTERESIS',
-    'AUXIO_MODE',
-    'PICO_TRIGGER_STATE',
-    'PICO_STREAMING_DATA_INFO',
-    'PICO_STREAMING_DATA_TRIGGER_INFO',
-    'PICO_TRIGGER_INFO',
-    'PICO_TRIGGER_CHANNEL_PROPERTIES',
-    'PICO_CONDITION',
-    'PICO_THRESHOLD_DIRECTION',
-    'PICO_THRESHOLD_MODE',
-    'PICO_DIRECTION',
-]

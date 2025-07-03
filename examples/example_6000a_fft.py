@@ -18,15 +18,16 @@
 
 import pypicosdk as psdk
 from matplotlib import pyplot as plt
-
-# Pico examples use inline argument values for clarity
 import numpy as np
 from scipy.fft import rfft, rfftfreq
 from scipy.signal import windows
 
-# Capture configuration
-SAMPLES = 5_000_000
-THRESHOLD = 0
+# Setup variables
+timebase = 3
+samples = 5_000_000
+channel_a = psdk.CHANNEL.A
+range = psdk.RANGE.V1
+threshold = 0
 
 # SigGen variables
 frequency = 10_000_000
@@ -40,35 +41,30 @@ scope.open_unit()
 # Setup siggen
 scope.set_siggen(frequency, pk2pk, wave_type)
 
-# Setup channels and trigger (inline arguments)
-scope.set_channel(channel=psdk.CHANNEL.A, range=psdk.RANGE.V1)
-scope.set_simple_trigger(channel=psdk.CHANNEL.A, threshold_mv=THRESHOLD)
-
-# Preferred: convert sample rate to timebase
-TIMEBASE = scope.sample_rate_to_timebase(50, psdk.SAMPLE_RATE.MSPS)
-# TIMEBASE = 3  # direct driver timebase
-# TIMEBASE = scope.interval_to_timebase(20E-9)
+# Setup channels and trigger
+scope.set_channel(channel=channel_a, range=range)
+scope.set_simple_trigger(channel=channel_a, threshold_mv=threshold)
 
 # Run the block capture
-channel_buffer, time_axis = scope.run_simple_block_capture(TIMEBASE, SAMPLES)
+channel_buffer, time_axis = scope.run_simple_block_capture(timebase, samples)
 
 # Finish with PicoScope
 scope.close_unit()
 
 # Take out data (converting ns time axis to s)
-v = np.array(channel_buffer[psdk.CHANNEL.A])
+v = np.array(channel_buffer[channel_a])
 t = np.array(time_axis) * 1E-9
 
 # Get sample rate
 dt = t[1] - t[0]
 
 # Create a window and apply to data
-window = windows.hann(SAMPLES)
+window = windows.hann(samples)
 v_windowed = v * window
 
 # Create fft from data
 positive_amplitudes = np.abs(rfft(v_windowed))
-positive_freqs = rfftfreq(SAMPLES, dt)
+positive_freqs = rfftfreq(samples, dt)
 
 # # Convert mV to dB
 positive_dbs = np.abs(20 * np.log10(positive_amplitudes / 1e3))

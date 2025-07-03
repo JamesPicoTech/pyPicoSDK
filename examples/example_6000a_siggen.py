@@ -1,13 +1,14 @@
 import pypicosdk as psdk
 
-# Pico examples use inline argument values for clarity
-
 scope = psdk.ps6000a()
+
+frequency_hz = 1000
+voltage_pk2pk = 2
+wave_type = psdk.WAVEFORM.SINE
 
 scope.open_unit()
 
-# Setup signal generator (inline arguments)
-scope.set_siggen(frequency=1000, pk2pk=2, wave_type=psdk.WAVEFORM.SINE)
+scope.set_siggen(frequency_hz, voltage_pk2pk, wave_type)
 input("Return to continue... ")
 
 scope.close_unit()

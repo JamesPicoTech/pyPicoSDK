@@ -9,7 +9,7 @@
 2. In your `main.py` add `import pypicosdk` or `import pypicosdk as psdk`
 
 ### Via GitHub (Inc examples)
-1. Install github repository to folder `git clone https://github.com/StuLawPico/pyPicoSDK_Playground.git`
+1. Install github repository to folder `git clone https://github.com/JamesPicoTech/pyPicoSDK.git`
 2. In the root directory (where setup.py is) run `pip install .`
 3. In your `main.py` add `import pypicosdk` or `import pypicosdk as psdk`
 
@@ -27,44 +27,14 @@ scope.close_unit()
 The output should be similar to:
 `JR001/001`
 
-Once tested, try an [example script from github](https://github.com/StuLawPico/pyPicoSDK_Playground) to get started.
-
-### Example style
-Examples use inline arguments so that each API call shows the exact values used.
-For instance:
-
-```python
-scope.set_channel(channel=psdk.CHANNEL.A, range=psdk.RANGE.V1)
-```
-
-You can store these values in variables if you prefer:
-
-```python
-RANGE = psdk.RANGE.V1
-scope.set_channel(channel=psdk.CHANNEL.A, range=RANGE)
-```
-
-Most examples select a timebase via ``sample_rate_to_timebase`` and include
-commented alternatives for direct timebase or interval conversion:
-
-```python
-TIMEBASE = scope.sample_rate_to_timebase(50, psdk.SAMPLE_RATE.MSPS)
-# TIMEBASE = 2  # direct driver timebase
-# TIMEBASE = scope.interval_to_timebase(20E-9)
-```
-
-### Struct field names
-Many functions return data using ``ctypes`` structures. The attributes of
-these structures include a trailing underscore in their names. Use the
-exact names shown in the API when accessing these values; for example
-``info.triggerTime_``.
+Once tested, try an [example script from github](https://github.com/JamesPicoTech/pyPicoSDK) to get started.
 
 ## Useful links and references
-- [Documentation & Reference](https://stulawpico.github.io/pyPicoSDK_Playground)
-- [GitHub Repo (with examples)](https://github.com/StuLawPico/pyPicoSDK_Playground)
+- [Documentation & Reference](https://jamespicotech.github.io/pyPicoSDK/)
+- [GitHub Repo (with examples)](https://github.com/JamesPicoTech/pyPicoSDK)
 - [pypi (src repo)](https://pypi.org/project/pypicosdk/)
 - [pypi-nightly (dev repo)](https://pypi.org/project/pypicosdk-nightly/)
-- [PicoScope Support (Compatibility)](https://stulawpico.github.io/pyPicoSDK_Playground/dev/current)
+- [PicoScope Support (Compatibility)](https://jamespicotech.github.io/pyPicoSDK/dev/current)
 
 ## Version Control
 pyPicoSDK: 0.2.30
