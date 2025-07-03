@@ -3,6 +3,8 @@ Example to figure out the correct timebase value for a specific interval.
 """
 from pypicosdk import ps6000a, CHANNEL, RANGE, SAMPLE_RATE, TIME_UNIT
 
+# Pico examples use inline argument values for clarity
+
 # Variables
 interval_s = 10E-9 # 10 us
 
