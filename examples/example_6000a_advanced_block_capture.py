@@ -17,6 +17,9 @@ scope = psdk.ps6000a()
 scope.open_unit()
 print(scope.get_unit_serial())
 
+# Set siggen
+scope.set_siggen(frequency=1_000, pk2pk=0.8, wave_type=psdk.WAVEFORM.SINE)
+
 # Setup channels and trigger (inline arguments)
 scope.set_channel(channel=psdk.CHANNEL.A, range=psdk.RANGE.V1)
 scope.set_simple_trigger(channel=psdk.CHANNEL.A, threshold_mv=0)
@@ -32,6 +35,7 @@ scope.run_block_capture(timebase=TIMEBASE, samples=SAMPLES)
 scope.get_values(SAMPLES)
 
 # No ADC to mV conversion, add it here
+channels_buffer = scope.channels_buffer_adc_to_mv(channels_buffer)
 
 # Finish with PicoScope
 scope.close_unit()
