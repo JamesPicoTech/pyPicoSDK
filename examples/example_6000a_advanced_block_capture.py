@@ -36,22 +36,17 @@ scope.get_values(SAMPLES)
 
 # No ADC to mV conversion, add it here
 channels_buffer = scope.channels_buffer_adc_to_mv(channels_buffer)
+time_axis = scope.get_time_axis(TIMEBASE, SAMPLES)
 
 # Finish with PicoScope
 scope.close_unit()
 
-# Create a figure with 2 subplots: one for the histogram, one for the line plot
-fig, axs = plt.subplots(2, 1, figsize=(10, 6))  # 2 rows, 1 column
-
-# Histogram subplot
-axs[0].hist(channels_buffer[psdk.CHANNEL.A])
-axs[0].set_title('Histogram of Channel A')
-
-# Line plot subplot
-axs[1].plot(channels_buffer[psdk.CHANNEL.A])
-axs[1].set_title('Time Series of Channel A')
-
-# Adjust layout to prevent overlap
+# Create a single plot for the time series
+plt.figure(figsize=(10, 4))
+plt.plot(time_axis, channels_buffer[psdk.CHANNEL.A])
+plt.title('Time Series of Channel A')
+plt.xlabel('Time (ns)')
+plt.ylabel('Voltage (V)')
 plt.tight_layout()
 plt.show()
 
