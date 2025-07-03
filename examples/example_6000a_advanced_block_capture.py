@@ -36,12 +36,18 @@ scope.get_values(SAMPLES)
 # Finish with PicoScope
 scope.close_unit()
 
-# Build a Histogram of data
-plt.figure(0)
-plt.hist(channels_buffer[psdk.CHANNEL.A])
-plt.savefig('histogram_6000a.png')
+# Create a figure with 2 subplots: one for the histogram, one for the line plot
+fig, axs = plt.subplots(2, 1, figsize=(10, 6))  # 2 rows, 1 column
 
-# Plot a graph of data
-plt.figure(1)
-plt.plot(channels_buffer[psdk.CHANNEL.A])
-plt.savefig('graph_6000a.png')
+# Histogram subplot
+axs[0].hist(channels_buffer[psdk.CHANNEL.A])
+axs[0].set_title('Histogram of Channel A')
+
+# Line plot subplot
+axs[1].plot(channels_buffer[psdk.CHANNEL.A])
+axs[1].set_title('Time Series of Channel A')
+
+# Adjust layout to prevent overlap
+plt.tight_layout()
+plt.show()
+
