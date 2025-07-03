@@ -42,7 +42,6 @@ time_axis = scope.get_time_axis(TIMEBASE, SAMPLES)
 scope.close_unit()
 
 # Create a single plot for the time series
-plt.figure(figsize=(10, 4))
 plt.plot(time_axis, channels_buffer[psdk.CHANNEL.A])
 plt.title('Time Series of Channel A')
 plt.xlabel('Time (ns)')
