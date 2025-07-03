@@ -67,6 +67,6 @@ exact names shown in the API when accessing these values; for example
 - [PicoScope Support (Compatibility)](https://stulawpico.github.io/pyPicoSDK_Playground/dev/current)
 
 ## Version Control
-pyPicoSDK: 0.3.0
+pyPicoSDK: 0.2.30
 
-Docs: 0.1.7
+Docs: 0.1.6
