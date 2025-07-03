@@ -28,9 +28,9 @@ scope.open_unit()
 # Configure channels before calculating the timebase. The SDK requires at least
 # one channel to be enabled for ``sample_rate_to_timebase`` to succeed.
 scope.set_channel(channel=psdk.CHANNEL.A, range=psdk.RANGE.V1, probe_scale=10, offset=-0.3)
-scope.set_channel(channel=psdk.CHANNEL.B, enabled=0, range=psdk.RANGE.V1)
-scope.set_channel(channel=psdk.CHANNEL.C, enabled=0, range=psdk.RANGE.V1)
-scope.set_channel(channel=psdk.CHANNEL.D, enabled=0, range=psdk.RANGE.V1)
+scope.set_channel(channel=psdk.CHANNEL.B)
+scope.set_channel(channel=psdk.CHANNEL.C)
+scope.set_channel(channel=psdk.CHANNEL.D)
 
 # Convert the desired sample rate into a driver-specific timebase value.
 TIMEBASE = scope.sample_rate_to_timebase(SAMPLE_RATE_MSPS, psdk.SAMPLE_RATE.MSPS)

@@ -11,9 +11,9 @@ scope.open_unit(resolution=psdk.RESOLUTION._12BIT)
 
 # Configure channels
 scope.set_channel(channel=psdk.CHANNEL.A, coupling=psdk.COUPLING.DC, range=psdk.RANGE.V1)
-scope.set_channel(channel=psdk.CHANNEL.B, enabled=0, coupling=psdk.COUPLING.DC, range=psdk.RANGE.mV500)
-scope.set_channel(channel=psdk.CHANNEL.C, enabled=0, coupling=psdk.COUPLING.DC, range=psdk.RANGE.mV500)
-scope.set_channel(channel=psdk.CHANNEL.D, enabled=0, coupling=psdk.COUPLING.DC, range=psdk.RANGE.mV500)
+scope.set_channel(channel=psdk.CHANNEL.B, enabled=0)
+scope.set_channel(channel=psdk.CHANNEL.C, enabled=0)
+scope.set_channel(channel=psdk.CHANNEL.D, enabled=0)
 
 # Configure an advanced trigger on Channel A at 200 mV
 threshold_adc = scope.mv_to_adc(200, psdk.RANGE.V1)

@@ -1336,7 +1336,7 @@ class ps6000a(PicoScopeBase):
     def set_channel(
         self,
         channel: CHANNEL,
-        range: RANGE,
+        range: RANGE = RANGE.V1,
         enabled: bool = True,
         coupling: COUPLING = COUPLING.DC,
         offset: float = 0.0,
