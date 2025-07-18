@@ -1,0 +1,3915 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>PicoScope 6000 (A) Specific Functions - pyPicoSDK</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "PicoScope 6000 (A) Specific Functions";
+        var mkdocs_page_input_path = "ref/ps6000a.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> pyPicoSDK
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">PicoScope 6000 (A) Specific Functions</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#initializing-ps6000a">Initializing ps6000a</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.channel_combinations_stateless">channel_combinations_stateless</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.check_for_update">check_for_update</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.close_unit">close_unit</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_accessory_info">get_accessory_info</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_analogue_offset_limits">get_analogue_offset_limits</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_channel_combinations">get_channel_combinations</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_device_resolution">get_device_resolution</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_enumerated_units">get_enumerated_units</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_maximum_available_memory">get_maximum_available_memory</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_minimum_timebase_stateless">get_minimum_timebase_stateless</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_nearest_sampling_interval">get_nearest_sampling_interval</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_no_of_captures">get_no_of_captures</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_no_of_processed_captures">get_no_of_processed_captures</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_scaling_values">get_scaling_values</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_time_axis">get_time_axis</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_timebase">get_timebase</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_trigger_info">get_trigger_info</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_trigger_time_offset">get_trigger_time_offset</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_unit_info">get_unit_info</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_unit_serial">get_unit_serial</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_values">get_values</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_values_bulk">get_values_bulk</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_values_bulk_async">get_values_bulk_async</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_values_overlapped">get_values_overlapped</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.get_values_trigger_time_offset_bulk">get_values_trigger_time_offset_bulk</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.is_over_range">is_over_range</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.is_ready">is_ready</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.memory_segments">memory_segments</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.memory_segments_by_samples">memory_segments_by_samples</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.no_of_streaming_values">no_of_streaming_values</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.open_unit">open_unit</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.open_unit_async">open_unit_async</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.open_unit_progress">open_unit_progress</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.ping_unit">ping_unit</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.query_max_segments_by_samples">query_max_segments_by_samples</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.report_all_channels_overvoltage_trip_status">report_all_channels_overvoltage_trip_status</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.reset_channels_and_report_all_channels_overvoltage_trip_status">reset_channels_and_report_all_channels_overvoltage_trip_status</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.run_block_capture">run_block_capture</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.run_simple_block_capture">run_simple_block_capture</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.run_simple_rapid_block_capture">run_simple_rapid_block_capture</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.run_streaming">run_streaming</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.set_advanced_trigger">set_advanced_trigger</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.set_all_channels_off">set_all_channels_off</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.set_aux_io_mode">set_aux_io_mode</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.set_channel">set_channel</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.set_data_buffer">set_data_buffer</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.set_data_buffer_for_enabled_channels">set_data_buffer_for_enabled_channels</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.set_data_buffers">set_data_buffers</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.set_device_resolution">set_device_resolution</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.set_digital_port_off">set_digital_port_off</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.set_digital_port_on">set_digital_port_on</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.set_no_of_captures">set_no_of_captures</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.set_siggen">set_siggen</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.set_simple_trigger">set_simple_trigger</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.set_trigger_channel_conditions">set_trigger_channel_conditions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.set_trigger_channel_directions">set_trigger_channel_directions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.set_trigger_channel_properties">set_trigger_channel_properties</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.start_firmware_update">start_firmware_update</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.stop">stop</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.pypicosdk.ps6000a.stop_using_get_values_overlapped">stop_using_get_values_overlapped</a>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../conversions/">General Conversions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../constants/">General Constants</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Development</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/changelog/">Changelog</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/current/">Current Support</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/roadmap/">Upcoming Roadmap</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">pyPicoSDK</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Reference</li>
+      <li class="breadcrumb-item active">PicoScope 6000 (A) Specific Functions</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ps6000a-reference">ps6000a Reference</h1>
+<h2 id="initializing-ps6000a">Initializing ps6000a</h2>
+<pre><code>import pypicosdk as psdk
+
+scope = psdk.ps6000a()
+
+scope.open_unit()
+# Do something
+scope.close_unit()
+</code></pre>
+<h2 id="reference">Reference</h2>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="pypicosdk.base.PicoScopeBase">PicoScopeBase</span></code></p>
+
+
+        <p>PicoScope 6000 (A) API specific functions</p>
+
+
+
+
+
+
+
+
+
+
+<p><span class="doc-section-title">Methods:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="channel_combinations_stateless(resolution, timebase) (pypicosdk.pypicosdk.ps6000a.channel_combinations_stateless)" href="#pypicosdk.pypicosdk.ps6000a.channel_combinations_stateless">channel_combinations_stateless</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Return valid channel flag combinations for a configuration.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="check_for_update(n_infos=8) (pypicosdk.pypicosdk.ps6000a.check_for_update)" href="#pypicosdk.pypicosdk.ps6000a.check_for_update">check_for_update</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Query whether a firmware update is available for the device.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="close_unit() (pypicosdk.pypicosdk.ps6000a.close_unit)" href="#pypicosdk.pypicosdk.ps6000a.close_unit">close_unit</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Closes the PicoScope device and releases the hardware handle.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_accessory_info(channel, info) (pypicosdk.pypicosdk.ps6000a.get_accessory_info)" href="#pypicosdk.pypicosdk.ps6000a.get_accessory_info">get_accessory_info</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Retrieve information about an accessory connected to <code>channel</code>.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_analogue_offset_limits(range, coupling) (pypicosdk.pypicosdk.ps6000a.get_analogue_offset_limits)" href="#pypicosdk.pypicosdk.ps6000a.get_analogue_offset_limits">get_analogue_offset_limits</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Get the allowed analogue offset range for <code>range</code> and <code>coupling</code>.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_channel_combinations(timebase) (pypicosdk.pypicosdk.ps6000a.get_channel_combinations)" href="#pypicosdk.pypicosdk.ps6000a.get_channel_combinations">get_channel_combinations</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Return valid channel flag combinations for a proposed timebase.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_device_resolution() (pypicosdk.pypicosdk.ps6000a.get_device_resolution)" href="#pypicosdk.pypicosdk.ps6000a.get_device_resolution">get_device_resolution</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Return the currently configured resolution.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_enumerated_units() (pypicosdk.pypicosdk.ps6000a.get_enumerated_units)" href="#pypicosdk.pypicosdk.ps6000a.get_enumerated_units">get_enumerated_units</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Returns count, serials and serial string length of a specific PicoScope unit.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_maximum_available_memory() (pypicosdk.pypicosdk.ps6000a.get_maximum_available_memory)" href="#pypicosdk.pypicosdk.ps6000a.get_maximum_available_memory">get_maximum_available_memory</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Return the maximum sample depth for the current resolution.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_minimum_timebase_stateless() (pypicosdk.pypicosdk.ps6000a.get_minimum_timebase_stateless)" href="#pypicosdk.pypicosdk.ps6000a.get_minimum_timebase_stateless">get_minimum_timebase_stateless</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Return the fastest timebase available for the current setup.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_nearest_sampling_interval(interval_s) (pypicosdk.pypicosdk.ps6000a.get_nearest_sampling_interval)" href="#pypicosdk.pypicosdk.ps6000a.get_nearest_sampling_interval">get_nearest_sampling_interval</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>This function returns the nearest possible sample interval to the requested </p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_no_of_captures() (pypicosdk.pypicosdk.ps6000a.get_no_of_captures)" href="#pypicosdk.pypicosdk.ps6000a.get_no_of_captures">get_no_of_captures</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Return the number of captures configured for rapid block.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_no_of_processed_captures() (pypicosdk.pypicosdk.ps6000a.get_no_of_processed_captures)" href="#pypicosdk.pypicosdk.ps6000a.get_no_of_processed_captures">get_no_of_processed_captures</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Return the number of captures processed in rapid block mode.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_scaling_values(n_channels=8) (pypicosdk.pypicosdk.ps6000a.get_scaling_values)" href="#pypicosdk.pypicosdk.ps6000a.get_scaling_values">get_scaling_values</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Return probe scaling factors for each channel.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_time_axis(timebase, samples) (pypicosdk.pypicosdk.ps6000a.get_time_axis)" href="#pypicosdk.pypicosdk.ps6000a.get_time_axis">get_time_axis</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Return an array of time values based on the timebase and number</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_timebase(timebase, samples, segment=0) (pypicosdk.pypicosdk.ps6000a.get_timebase)" href="#pypicosdk.pypicosdk.ps6000a.get_timebase">get_timebase</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>This function calculates the sampling rate and maximum number of </p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_trigger_info(first_segment_index=0, segment_count=1) (pypicosdk.pypicosdk.ps6000a.get_trigger_info)" href="#pypicosdk.pypicosdk.ps6000a.get_trigger_info">get_trigger_info</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Retrieve trigger timing information for one or more segments.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_trigger_time_offset(time_unit, segment_index=0) (pypicosdk.pypicosdk.ps6000a.get_trigger_time_offset)" href="#pypicosdk.pypicosdk.ps6000a.get_trigger_time_offset">get_trigger_time_offset</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Get the trigger time offset for jitter correction in waveforms.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_unit_info(unit_info) (pypicosdk.pypicosdk.ps6000a.get_unit_info)" href="#pypicosdk.pypicosdk.ps6000a.get_unit_info">get_unit_info</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Get specified information from unit. Use UNIT_INFO.XXXX or integer.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_unit_serial() (pypicosdk.pypicosdk.ps6000a.get_unit_serial)" href="#pypicosdk.pypicosdk.ps6000a.get_unit_serial">get_unit_serial</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Get and return batch and serial of unit.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_values(samples, start_index=0, segment=0, ratio=0, ratio_mode=RATIO_MODE.RAW) (pypicosdk.pypicosdk.ps6000a.get_values)" href="#pypicosdk.pypicosdk.ps6000a.get_values">get_values</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Retrieves a block of captured samples from the device once it's ready.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_values_bulk(start_index, no_of_samples, from_segment_index, to_segment_index, down_sample_ratio, down_sample_ratio_mode, overflow) (pypicosdk.pypicosdk.ps6000a.get_values_bulk)" href="#pypicosdk.pypicosdk.ps6000a.get_values_bulk">get_values_bulk</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Retrieve data from multiple memory segments.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_values_bulk_async(start_index, no_of_samples, from_segment_index, to_segment_index, down_sample_ratio, down_sample_ratio_mode, lp_data_ready, p_parameter) (pypicosdk.pypicosdk.ps6000a.get_values_bulk_async)" href="#pypicosdk.pypicosdk.ps6000a.get_values_bulk_async">get_values_bulk_async</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Begin asynchronous retrieval of values from multiple segments.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_values_overlapped(start_index, no_of_samples, down_sample_ratio, down_sample_ratio_mode, from_segment_index, to_segment_index, overflow) (pypicosdk.pypicosdk.ps6000a.get_values_overlapped)" href="#pypicosdk.pypicosdk.ps6000a.get_values_overlapped">get_values_overlapped</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Retrieve overlapped data from multiple segments.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_values_trigger_time_offset_bulk(from_segment_index, to_segment_index) (pypicosdk.pypicosdk.ps6000a.get_values_trigger_time_offset_bulk)" href="#pypicosdk.pypicosdk.ps6000a.get_values_trigger_time_offset_bulk">get_values_trigger_time_offset_bulk</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Retrieve trigger time offsets for a range of segments.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="is_over_range() (pypicosdk.pypicosdk.ps6000a.is_over_range)" href="#pypicosdk.pypicosdk.ps6000a.is_over_range">is_over_range</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Logs and prints a warning if any channel has been over range.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="is_ready() (pypicosdk.pypicosdk.ps6000a.is_ready)" href="#pypicosdk.pypicosdk.ps6000a.is_ready">is_ready</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Blocks execution until the PicoScope device is ready.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="memory_segments(n_segments) (pypicosdk.pypicosdk.ps6000a.memory_segments)" href="#pypicosdk.pypicosdk.ps6000a.memory_segments">memory_segments</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Configure the number of memory segments.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="memory_segments_by_samples(n_samples) (pypicosdk.pypicosdk.ps6000a.memory_segments_by_samples)" href="#pypicosdk.pypicosdk.ps6000a.memory_segments_by_samples">memory_segments_by_samples</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Set the samples per memory segment.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="no_of_streaming_values() (pypicosdk.pypicosdk.ps6000a.no_of_streaming_values)" href="#pypicosdk.pypicosdk.ps6000a.no_of_streaming_values">no_of_streaming_values</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Return the number of values currently available while streaming.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="open_unit(serial_number=None, resolution=0) (pypicosdk.pypicosdk.ps6000a.open_unit)" href="#pypicosdk.pypicosdk.ps6000a.open_unit">open_unit</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Open PicoScope unit.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="open_unit_async(serial_number=None, resolution=0) (pypicosdk.pypicosdk.ps6000a.open_unit_async)" href="#pypicosdk.pypicosdk.ps6000a.open_unit_async">open_unit_async</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Open a unit without blocking the calling thread.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="open_unit_progress() (pypicosdk.pypicosdk.ps6000a.open_unit_progress)" href="#pypicosdk.pypicosdk.ps6000a.open_unit_progress">open_unit_progress</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Check the progress of :meth:<code>open_unit_async</code>.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="ping_unit() (pypicosdk.pypicosdk.ps6000a.ping_unit)" href="#pypicosdk.pypicosdk.ps6000a.ping_unit">ping_unit</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Check that the device is still connected.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="query_max_segments_by_samples(n_samples, n_channel_enabled) (pypicosdk.pypicosdk.ps6000a.query_max_segments_by_samples)" href="#pypicosdk.pypicosdk.ps6000a.query_max_segments_by_samples">query_max_segments_by_samples</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Return the maximum number of segments for a given sample count.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="report_all_channels_overvoltage_trip_status() (pypicosdk.pypicosdk.ps6000a.report_all_channels_overvoltage_trip_status)" href="#pypicosdk.pypicosdk.ps6000a.report_all_channels_overvoltage_trip_status">report_all_channels_overvoltage_trip_status</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Return the overvoltage trip status for each channel.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="reset_channels_and_report_all_channels_overvoltage_trip_status() (pypicosdk.pypicosdk.ps6000a.reset_channels_and_report_all_channels_overvoltage_trip_status)" href="#pypicosdk.pypicosdk.ps6000a.reset_channels_and_report_all_channels_overvoltage_trip_status">reset_channels_and_report_all_channels_overvoltage_trip_status</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Reset channels and return overvoltage trip status for each.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="run_block_capture(timebase, samples, pre_trig_percent=50, segment=0) (pypicosdk.pypicosdk.ps6000a.run_block_capture)" href="#pypicosdk.pypicosdk.ps6000a.run_block_capture">run_block_capture</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Runs a block capture using the specified timebase and number of samples.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="run_simple_block_capture(timebase, samples, segment=0, start_index=0, datatype=DATA_TYPE.INT16_T, ratio=0, ratio_mode=RATIO_MODE.RAW, pre_trig_percent=50) (pypicosdk.pypicosdk.ps6000a.run_simple_block_capture)" href="#pypicosdk.pypicosdk.ps6000a.run_simple_block_capture">run_simple_block_capture</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Perform a complete single block capture.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="run_simple_rapid_block_capture(timebase, samples, n_captures, start_index=0, datatype=DATA_TYPE.INT16_T, ratio=0, ratio_mode=RATIO_MODE.RAW, pre_trig_percent=50) (pypicosdk.pypicosdk.ps6000a.run_simple_rapid_block_capture)" href="#pypicosdk.pypicosdk.ps6000a.run_simple_rapid_block_capture">run_simple_rapid_block_capture</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Perform a basic rapid block capture.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="run_streaming(sample_interval, time_units, max_pre_trigger_samples, max_post_trigger_samples, auto_stop, ratio, ratio_mode) (pypicosdk.pypicosdk.ps6000a.run_streaming)" href="#pypicosdk.pypicosdk.ps6000a.run_streaming">run_streaming</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Begin a streaming capture.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_advanced_trigger(channel, state, direction, threshold_mode, threshold_upper_mv, threshold_lower_mv, hysteresis_upper_mv=0.0, hysteresis_lower_mv=0.0, aux_output_enable=0, auto_trigger_ms=0, action=ACTION.CLEAR_ALL | ACTION.ADD) (pypicosdk.pypicosdk.ps6000a.set_advanced_trigger)" href="#pypicosdk.pypicosdk.ps6000a.set_advanced_trigger">set_advanced_trigger</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Configure an advanced trigger in a single call.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_all_channels_off() (pypicosdk.pypicosdk.ps6000a.set_all_channels_off)" href="#pypicosdk.pypicosdk.ps6000a.set_all_channels_off">set_all_channels_off</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Turns all channels off, based on unit number of channels</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_aux_io_mode(mode) (pypicosdk.pypicosdk.ps6000a.set_aux_io_mode)" href="#pypicosdk.pypicosdk.ps6000a.set_aux_io_mode">set_aux_io_mode</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Configure the AUX IO connector using <code>ps6000aSetAuxIoMode</code>.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_channel(channel, range=RANGE.V1, enabled=True, coupling=COUPLING.DC, offset=0.0, bandwidth=BANDWIDTH_CH.FULL, probe_scale=1.0) (pypicosdk.pypicosdk.ps6000a.set_channel)" href="#pypicosdk.pypicosdk.ps6000a.set_channel">set_channel</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Enable/disable a channel and specify certain variables i.e. range, coupling, offset, etc.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_data_buffer(channel, samples, segment=0, datatype=DATA_TYPE.INT16_T, ratio_mode=RATIO_MODE.RAW, action=ACTION.CLEAR_ALL | ACTION.ADD) (pypicosdk.pypicosdk.ps6000a.set_data_buffer)" href="#pypicosdk.pypicosdk.ps6000a.set_data_buffer">set_data_buffer</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Tells the driver where to store the data that will be populated when get_values() is called.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_data_buffer_for_enabled_channels(samples, segment=0, datatype=DATA_TYPE.INT16_T, ratio_mode=RATIO_MODE.RAW, clear_buffer=True) (pypicosdk.pypicosdk.ps6000a.set_data_buffer_for_enabled_channels)" href="#pypicosdk.pypicosdk.ps6000a.set_data_buffer_for_enabled_channels">set_data_buffer_for_enabled_channels</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Sets data buffers for enabled channels set by picosdk.set_channel()</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_data_buffers(channel, samples, segment=0, datatype=DATA_TYPE.INT16_T, ratio_mode=RATIO_MODE.AGGREGATE, action=ACTION.CLEAR_ALL | ACTION.ADD) (pypicosdk.pypicosdk.ps6000a.set_data_buffers)" href="#pypicosdk.pypicosdk.ps6000a.set_data_buffers">set_data_buffers</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Configure both maximum and minimum data buffers for a channel.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_device_resolution(resolution) (pypicosdk.pypicosdk.ps6000a.set_device_resolution)" href="#pypicosdk.pypicosdk.ps6000a.set_device_resolution">set_device_resolution</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Configure the ADC resolution using <code>ps6000aSetDeviceResolution</code>.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_digital_port_off(port) (pypicosdk.pypicosdk.ps6000a.set_digital_port_off)" href="#pypicosdk.pypicosdk.ps6000a.set_digital_port_off">set_digital_port_off</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Disable a digital port using <code>ps6000aSetDigitalPortOff</code>.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_digital_port_on(port, logic_threshold_level, hysteresis) (pypicosdk.pypicosdk.ps6000a.set_digital_port_on)" href="#pypicosdk.pypicosdk.ps6000a.set_digital_port_on">set_digital_port_on</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Enable a digital port using <code>ps6000aSetDigitalPortOn</code>.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_no_of_captures(n_captures) (pypicosdk.pypicosdk.ps6000a.set_no_of_captures)" href="#pypicosdk.pypicosdk.ps6000a.set_no_of_captures">set_no_of_captures</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Configure the number of captures for rapid block mode.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_siggen(frequency, pk2pk, wave_type, offset=0.0, duty=50) (pypicosdk.pypicosdk.ps6000a.set_siggen)" href="#pypicosdk.pypicosdk.ps6000a.set_siggen">set_siggen</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Configures and applies the signal generator settings.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_simple_trigger(channel, threshold_mv=0, enable=True, direction=TRIGGER_DIR.RISING, delay=0, auto_trigger_ms=5000) (pypicosdk.pypicosdk.ps6000a.set_simple_trigger)" href="#pypicosdk.pypicosdk.ps6000a.set_simple_trigger">set_simple_trigger</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Sets up a simple trigger from a specified channel and threshold in mV.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_trigger_channel_conditions(source, state, action=ACTION.CLEAR_ALL | ACTION.ADD) (pypicosdk.pypicosdk.ps6000a.set_trigger_channel_conditions)" href="#pypicosdk.pypicosdk.ps6000a.set_trigger_channel_conditions">set_trigger_channel_conditions</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Configure a trigger condition using <code>ps6000aSetTriggerChannelConditions</code>.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_trigger_channel_directions(channel, direction, threshold_mode) (pypicosdk.pypicosdk.ps6000a.set_trigger_channel_directions)" href="#pypicosdk.pypicosdk.ps6000a.set_trigger_channel_directions">set_trigger_channel_directions</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Configure channel directions using <code>ps6000aSetTriggerChannelDirections</code>.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="set_trigger_channel_properties(threshold_upper, hysteresis_upper, threshold_lower, hysteresis_lower, channel, aux_output_enable=0, auto_trigger_us=0) (pypicosdk.pypicosdk.ps6000a.set_trigger_channel_properties)" href="#pypicosdk.pypicosdk.ps6000a.set_trigger_channel_properties">set_trigger_channel_properties</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Configure channel thresholds using <code>ps6000aSetTriggerChannelProperties</code>.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="start_firmware_update(progress=None) (pypicosdk.pypicosdk.ps6000a.start_firmware_update)" href="#pypicosdk.pypicosdk.ps6000a.start_firmware_update">start_firmware_update</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Begin installing any available firmware update.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="stop() (pypicosdk.pypicosdk.ps6000a.stop)" href="#pypicosdk.pypicosdk.ps6000a.stop">stop</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>This function stops the scope device from sampling data</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="stop_using_get_values_overlapped() (pypicosdk.pypicosdk.ps6000a.stop_using_get_values_overlapped)" href="#pypicosdk.pypicosdk.ps6000a.stop_using_get_values_overlapped">stop_using_get_values_overlapped</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Terminate overlapped capture mode.</p>
+                </div>
+              </td>
+            </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.channel_combinations_stateless" class="doc doc-heading">
+            <code class="highlight language-python">channel_combinations_stateless(resolution, timebase)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return valid channel flag combinations for a configuration.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.check_for_update" class="doc doc-heading">
+            <code class="highlight language-python">check_for_update(n_infos=8)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Query whether a firmware update is available for the device.
+Args:
+    n_infos: Size of the firmware information buffer.
+Returns:
+    tuple[list, bool]: <code>(firmware_info, updates_required)</code> where
+        <code>firmware_info</code> is a list of :class:<code>PICO_FIRMWARE_INFO</code>
+        structures and <code>updates_required</code> indicates whether any
+        firmware components require updating.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.close_unit" class="doc doc-heading">
+            <code class="highlight language-python">close_unit()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Closes the PicoScope device and releases the hardware handle.</p>
+<p>This calls the PicoSDK <code>CloseUnit</code> function to properly disconnect from the device.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code>None</code>
+              –
+              <div class="doc-md-description">
+                <p>None</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_accessory_info" class="doc doc-heading">
+            <code class="highlight language-python">get_accessory_info(channel, info)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Retrieve information about an accessory connected to <code>channel</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_analogue_offset_limits" class="doc doc-heading">
+            <code class="highlight language-python">get_analogue_offset_limits(range, coupling)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the allowed analogue offset range for <code>range</code> and <code>coupling</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_channel_combinations" class="doc doc-heading">
+            <code class="highlight language-python">get_channel_combinations(timebase)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return valid channel flag combinations for a proposed timebase.
+This wraps <code>ps6000aChannelCombinationsStateless</code> and requires the
+device to be opened first.
+Args:
+    timebase: Proposed timebase value to test.
+Returns:
+    list[int]: Sequence of bit masks using :class:<code>PICO_CHANNEL_FLAGS</code>.
+Raises:
+    PicoSDKException: If the device has not been opened.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_device_resolution" class="doc doc-heading">
+            <code class="highlight language-python">get_device_resolution()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the currently configured resolution.
+Returns:
+    :class:<code>RESOLUTION</code>: Device resolution.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_enumerated_units" class="doc doc-heading">
+            <code class="highlight language-python">get_enumerated_units()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns count, serials and serial string length of a specific PicoScope unit.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="int">int</span></code>
+              –
+              <div class="doc-md-description">
+                <p>Number of devices of this type</p>
+              </div>
+            </li>
+            <li>
+                  <code><span title="str">str</span></code>
+              –
+              <div class="doc-md-description">
+                <p>Comma separated string of all serials</p>
+              </div>
+            </li>
+            <li>
+                  <code><span title="int">int</span></code>
+              –
+              <div class="doc-md-description">
+                <p>Length of string</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_maximum_available_memory" class="doc doc-heading">
+            <code class="highlight language-python">get_maximum_available_memory()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the maximum sample depth for the current resolution.
+Wraps <code>ps6000aGetMaximumAvailableMemory</code> to query how many samples
+can be captured at <code>self.resolution</code>.
+Returns:
+    int: Maximum number of samples supported.
+Raises:
+    PicoSDKException: If the device has not been opened.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_minimum_timebase_stateless" class="doc doc-heading">
+            <code class="highlight language-python">get_minimum_timebase_stateless()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the fastest timebase available for the current setup.
+Queries <code>ps6000aGetMinimumTimebaseStateless</code> using the enabled
+channels and current device resolution.
+Returns:
+    dict: <code>{"timebase": int, "time_interval": float}</code> where
+    <code>time_interval</code> is the sample period in seconds.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_nearest_sampling_interval" class="doc doc-heading">
+            <code class="highlight language-python">get_nearest_sampling_interval(interval_s)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>This function returns the nearest possible sample interval to the requested 
+sample interval. It does not change the configuration of the oscilloscope.</p>
+<p>Channels need to be setup first before calculating as more channels may 
+increase sample interval.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>interval_s</code></b>
+                  (<code><span title="float">float</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Time value in seconds (s) you would like to obtain.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>dict</code></b>(                  <code><span title="dict">dict</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Dictionary of suggested timebase and actual sample interval in seconds (s).</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_no_of_captures" class="doc doc-heading">
+            <code class="highlight language-python">get_no_of_captures()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the number of captures configured for rapid block.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_no_of_processed_captures" class="doc doc-heading">
+            <code class="highlight language-python">get_no_of_processed_captures()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the number of captures processed in rapid block mode.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_scaling_values" class="doc doc-heading">
+            <code class="highlight language-python">get_scaling_values(n_channels=8)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return probe scaling factors for each channel.
+Args:
+    n_channels: Number of channel entries to retrieve.
+Returns:
+    list[PICO_SCALING_FACTORS_VALUES]: Scaling factors for <code>n_channels</code> channels.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_time_axis" class="doc doc-heading">
+            <code class="highlight language-python">get_time_axis(timebase, samples)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return an array of time values based on the timebase and number
+of samples</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>timebase</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>PicoScope timebase </p>
+              </div>
+            </li>
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Number of samples captured</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>list</code></b>(                  <code><span title="list">list</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>List of time values in nano-seconds</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_timebase" class="doc doc-heading">
+            <code class="highlight language-python">get_timebase(timebase, samples, segment=0)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>This function calculates the sampling rate and maximum number of 
+samples for a given timebase under the specified conditions.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>timebase</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Selected timebase multiplier (refer to programmer's guide).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Number of samples.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>segment</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The index of the memory segment to use.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>dict</code></b>(                  <code>None</code>
+)              –
+              <div class="doc-md-description">
+                <p>Returns interval (ns) and max samples as a dictionary.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_trigger_info" class="doc doc-heading">
+            <code class="highlight language-python">get_trigger_info(first_segment_index=0, segment_count=1)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Retrieve trigger timing information for one or more segments.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>first_segment_index</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Index of the first memory segment to query.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>segment_count</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>1</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Number of consecutive segments starting at
+<code>first_segment_index</code>.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="list">list</span>[<span title="dict">dict</span>]</code>
+              –
+              <div class="doc-md-description">
+                <p>List of dictionaries for each trigger event</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="pypicosdk.base.PicoSDKException">PicoSDKException</span></code>
+              –
+              <div class="doc-md-description">
+                <p>If the function call fails or preconditions are
+not met.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_trigger_time_offset" class="doc doc-heading">
+            <code class="highlight language-python">get_trigger_time_offset(time_unit, segment_index=0)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get the trigger time offset for jitter correction in waveforms.</p>
+<p>The driver interpolates between adjacent samples to estimate when the
+trigger actually occurred.  This means the value returned can have a
+very fine granularity—down to femtoseconds—even though the effective
+resolution is usually limited to roughly one-tenth of the sampling
+interval in real-world use.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>time_unit</code></b>
+                  (<code><span title="pypicosdk.constants.TIME_UNIT">TIME_UNIT</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Desired unit for the returned offset.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>segment_index</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The memory segment to query. Default
+is 0.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>int</code></b>(                  <code><span title="int">int</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Trigger time offset converted to <code>time_unit</code>.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="pypicosdk.base.PicoSDKException">PicoSDKException</span></code>
+              –
+              <div class="doc-md-description">
+                <p>If the function call fails or preconditions are
+not met.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_unit_info" class="doc doc-heading">
+            <code class="highlight language-python">get_unit_info(unit_info)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get specified information from unit. Use UNIT_INFO.XXXX or integer.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>unit_info</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="UNIT_INFO (pypicosdk.constants.UNIT_INFO)" href="../constants/#pypicosdk.constants.UNIT_INFO">UNIT_INFO</a></code>)
+              –
+              <div class="doc-md-description">
+                <p>Specify information from PicoScope unit i.e. UNIT_INFO.PICO_BATCH_AND_SERIAL.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>str</code></b>(                  <code><span title="str">str</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Returns data from device.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_unit_serial" class="doc doc-heading">
+            <code class="highlight language-python">get_unit_serial()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Get and return batch and serial of unit.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>str</code></b>(                  <code><span title="str">str</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Returns serial, e.g., "JR628/0017".</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_values" class="doc doc-heading">
+            <code class="highlight language-python">get_values(samples, start_index=0, segment=0, ratio=0, ratio_mode=RATIO_MODE.RAW)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Retrieves a block of captured samples from the device once it's ready.
+If a channel goes over-range a warning will appear.</p>
+<p>This function should be called after confirming the device is ready using <code>is_ready()</code>.
+It invokes the underlying PicoSDK <code>GetValues</code> function to read the data into memory.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Number of samples to retrieve.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>start_index</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Starting index in the buffer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>segment</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Memory segment index to retrieve data from.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>ratio</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Downsampling ratio.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>ratio_mode</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="RATIO_MODE (pypicosdk.constants.RATIO_MODE)" href="../constants/#pypicosdk.constants.RATIO_MODE">RATIO_MODE</a></code>, default:
+                      <code><span title="pypicosdk.constants.RATIO_MODE.RAW">RAW</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Ratio mode for downsampling. </p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>int</code></b>(                  <code><span title="int">int</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Actual number of samples retrieved.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_values_bulk" class="doc doc-heading">
+            <code class="highlight language-python">get_values_bulk(start_index, no_of_samples, from_segment_index, to_segment_index, down_sample_ratio, down_sample_ratio_mode, overflow)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Retrieve data from multiple memory segments.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_values_bulk_async" class="doc doc-heading">
+            <code class="highlight language-python">get_values_bulk_async(start_index, no_of_samples, from_segment_index, to_segment_index, down_sample_ratio, down_sample_ratio_mode, lp_data_ready, p_parameter)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Begin asynchronous retrieval of values from multiple segments.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_values_overlapped" class="doc doc-heading">
+            <code class="highlight language-python">get_values_overlapped(start_index, no_of_samples, down_sample_ratio, down_sample_ratio_mode, from_segment_index, to_segment_index, overflow)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Retrieve overlapped data from multiple segments.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.get_values_trigger_time_offset_bulk" class="doc doc-heading">
+            <code class="highlight language-python">get_values_trigger_time_offset_bulk(from_segment_index, to_segment_index)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Retrieve trigger time offsets for a range of segments.</p>
+<p>This method returns the trigger time offset and associated 
+time unit for each requested segment.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>from_segment_index</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Index of the first memory segment to query.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>to_segment_index</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Index of the last memory segment. If this value
+is less than <code>from_segment_index</code> the driver wraps around.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="list">list</span>[<span title="tuple">tuple</span>[<span title="int">int</span>, <span title="pypicosdk.constants.PICO_TIME_UNIT">PICO_TIME_UNIT</span>]]</code>
+              –
+              <div class="doc-md-description">
+                <p>list[tuple[int, PICO_TIME_UNIT]]: <code>[(offset, unit), ...]</code> for each</p>
+              </div>
+            </li>
+            <li>
+                  <code><span title="list">list</span>[<span title="tuple">tuple</span>[<span title="int">int</span>, <span title="pypicosdk.constants.PICO_TIME_UNIT">PICO_TIME_UNIT</span>]]</code>
+              –
+              <div class="doc-md-description">
+                <p>segment beginning with <code>from_segment_index</code>.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.is_over_range" class="doc doc-heading">
+            <code class="highlight language-python">is_over_range()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Logs and prints a warning if any channel has been over range.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>list</code></b>(                  <code><span title="list">list</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>List of channels that have been over range</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.is_ready" class="doc doc-heading">
+            <code class="highlight language-python">is_ready()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Blocks execution until the PicoScope device is ready.</p>
+<p>Continuously calls the PicoSDK <code>IsReady</code> function in a loop, checking if
+the device is prepared to proceed with data acquisition.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code>None</code>
+              –
+              <div class="doc-md-description">
+                <p>None</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.memory_segments" class="doc doc-heading">
+            <code class="highlight language-python">memory_segments(n_segments)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Configure the number of memory segments.</p>
+<p>This wraps the <code>ps6000aMemorySegments</code> API call.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>n_segments</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Desired number of memory segments.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>int</code></b>(                  <code><span title="int">int</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Number of samples available in each segment.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.memory_segments_by_samples" class="doc doc-heading">
+            <code class="highlight language-python">memory_segments_by_samples(n_samples)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Set the samples per memory segment.</p>
+<p>This wraps <code>ps6000aMemorySegmentsBySamples</code> which divides the
+capture memory so that each segment holds <code>n_samples</code> samples.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>n_samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Number of samples per segment.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>int</code></b>(                  <code><span title="int">int</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Number of segments the memory was divided into.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.no_of_streaming_values" class="doc doc-heading">
+            <code class="highlight language-python">no_of_streaming_values()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the number of values currently available while streaming.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.open_unit" class="doc doc-heading">
+            <code class="highlight language-python">open_unit(serial_number=None, resolution=0)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Open PicoScope unit.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>serial_number</code></b>
+                  (<code><span title="str">str</span></code>, default:
+                      <code>None</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Serial number of device.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>resolution</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="RESOLUTION (pypicosdk.constants.RESOLUTION)" href="../constants/#pypicosdk.constants.RESOLUTION">RESOLUTION</a></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Resolution of device.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.open_unit_async" class="doc doc-heading">
+            <code class="highlight language-python">open_unit_async(serial_number=None, resolution=0)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Open a unit without blocking the calling thread.
+Wraps <code>ps6000aOpenUnitAsync</code> which begins the open operation and
+returns immediately.
+Args:
+    serial_number: Serial number of the device to open.
+    resolution: Requested resolution for the device.
+Returns:
+    int: Status flag from the driver (<code>0</code> if the request was not
+        started, <code>1</code> if the operation began successfully).</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.open_unit_progress" class="doc doc-heading">
+            <code class="highlight language-python">open_unit_progress()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Check the progress of :meth:<code>open_unit_async</code>.
+This wraps <code>ps6000aOpenUnitProgress</code> and should be called repeatedly
+until <code>complete</code> is non-zero.
+Returns:
+    tuple[int, int, int]: <code>(handle, progress_percent, complete)</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.ping_unit" class="doc doc-heading">
+            <code class="highlight language-python">ping_unit()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Check that the device is still connected.
+This wraps <code>ps6000aPingUnit</code> which verifies communication with
+the PicoScope. If the call succeeds the method returns <code>True</code>.
+Returns:
+    bool: <code>True</code> if the unit responded.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.query_max_segments_by_samples" class="doc doc-heading">
+            <code class="highlight language-python">query_max_segments_by_samples(n_samples, n_channel_enabled)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the maximum number of segments for a given sample count.</p>
+<p>Wraps <code>ps6000aQueryMaxSegmentsBySamples</code> to query how many memory
+segments can be configured when each segment stores <code>n_samples</code>
+samples.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>n_samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Number of samples per segment.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>n_channel_enabled</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Number of enabled channels.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>int</code></b>(                  <code><span title="int">int</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Maximum number of segments available.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Raises:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="pypicosdk.base.PicoSDKException">PicoSDKException</span></code>
+              –
+              <div class="doc-md-description">
+                <p>If the device has not been opened.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.report_all_channels_overvoltage_trip_status" class="doc doc-heading">
+            <code class="highlight language-python">report_all_channels_overvoltage_trip_status()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the overvoltage trip status for each channel.
+This wraps <code>ps6000aReportAllChannelsOvervoltageTripStatus</code> to
+query whether any channel's 50 Ω input protection has tripped.
+Returns:
+    list[PICO_CHANNEL_OVERVOLTAGE_TRIPPED]: Trip status for all
+    channels.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.reset_channels_and_report_all_channels_overvoltage_trip_status" class="doc doc-heading">
+            <code class="highlight language-python">reset_channels_and_report_all_channels_overvoltage_trip_status()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Reset channels and return overvoltage trip status for each.
+Wraps <code>ps6000aResetChannelsAndReportAllChannelsOvervoltageTripStatus</code>.
+Returns:
+    list[PICO_CHANNEL_OVERVOLTAGE_TRIPPED]: Trip status for all channels.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.run_block_capture" class="doc doc-heading">
+            <code class="highlight language-python">run_block_capture(timebase, samples, pre_trig_percent=50, segment=0)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Runs a block capture using the specified timebase and number of samples.</p>
+<p>This sets up the PicoScope to begin collecting a block of data, divided into
+pre-trigger and post-trigger samples. It uses the PicoSDK <code>RunBlock</code> function.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>timebase</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Timebase value determining sample interval (refer to PicoSDK guide).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Total number of samples to capture.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>pre_trig_percent</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>50</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Percentage of samples to capture before the trigger. </p>
+              </div>
+            </li>
+            <li>
+              <b><code>segment</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Memory segment index to use.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>int</code></b>(                  <code><span title="int">int</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Estimated time (in milliseconds) the device will be busy capturing data.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.run_simple_block_capture" class="doc doc-heading">
+            <code class="highlight language-python">run_simple_block_capture(timebase, samples, segment=0, start_index=0, datatype=DATA_TYPE.INT16_T, ratio=0, ratio_mode=RATIO_MODE.RAW, pre_trig_percent=50)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Perform a complete single block capture.</p>
+<p>When using <code>RATIO_MODE.TRIGGER</code>, this function allocates an
+additional buffer internally and reads the trigger data.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>timebase</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>PicoScope timebase value.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Number of samples to capture.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>segment</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Memory segment index to use.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>start_index</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Starting index in the buffer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>datatype</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="DATA_TYPE (pypicosdk.constants.DATA_TYPE)" href="../constants/#pypicosdk.constants.DATA_TYPE">DATA_TYPE</a></code>, default:
+                      <code><span title="pypicosdk.constants.DATA_TYPE.INT16_T">INT16_T</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Data type to use for the capture buffer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>ratio</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Downsampling ratio.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>ratio_mode</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="RATIO_MODE (pypicosdk.constants.RATIO_MODE)" href="../constants/#pypicosdk.constants.RATIO_MODE">RATIO_MODE</a></code>, default:
+                      <code><span title="pypicosdk.constants.RATIO_MODE.RAW">RAW</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Downsampling mode. If <code>RATIO_MODE.TRIGGER</code> is
+specified, <code>ratio</code> is forced to <code>1</code> for the trigger-data
+retrieval call.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>pre_trig_percent</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>50</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Percentage of samples to capture before the
+trigger.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="dict">dict</span></code>
+              –
+              <div class="doc-md-description">
+                <p>tuple[dict, list]: Dictionary of channel buffers (in mV) and the time</p>
+              </div>
+            </li>
+            <li>
+                  <code><span title="list">list</span></code>
+              –
+              <div class="doc-md-description">
+                <p>axis in seconds.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <pre class="highlight"><code class="language-pycon">&gt;&gt;&gt; scope.set_channel(CHANNEL.A, RANGE.V1)
+&gt;&gt;&gt; scope.set_simple_trigger(CHANNEL.A, threshold_mv=500)
+&gt;&gt;&gt; buffers = scope.run_simple_block_capture(timebase=3, samples=1000)</code></pre>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.run_simple_rapid_block_capture" class="doc doc-heading">
+            <code class="highlight language-python">run_simple_rapid_block_capture(timebase, samples, n_captures, start_index=0, datatype=DATA_TYPE.INT16_T, ratio=0, ratio_mode=RATIO_MODE.RAW, pre_trig_percent=50)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Perform a basic rapid block capture.</p>
+<p>If <code>ratio_mode</code> is <code>RATIO_MODE.TRIGGER</code> an additional set of data
+buffers is used internally to retrieve the trigger samples. The returned
+waveform data always uses <code>RATIO_MODE.RAW</code>. <code>ratio</code> is forced to
+<code>1</code> for the trigger-data retrieval call when required.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.run_streaming" class="doc doc-heading">
+            <code class="highlight language-python">run_streaming(sample_interval, time_units, max_pre_trigger_samples, max_post_trigger_samples, auto_stop, ratio, ratio_mode)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Begin a streaming capture.
+This wraps the <code>RunStreaming</code> driver call and configures the
+acquisition according to the provided arguments.
+Args:
+    sample_interval: Requested interval between samples.
+    time_units: Unit for <code>sample_interval</code>.
+    max_pre_trigger_samples: Number of pre-trigger samples to collect.
+    max_post_trigger_samples: Number of post-trigger samples to collect.
+    auto_stop: Whether the driver should stop when the buffer is full.
+    ratio: Down sampling ratio.
+    ratio_mode: Down sampling mode.
+Returns:
+    float: The actual sample interval configured by the driver.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.set_advanced_trigger" class="doc doc-heading">
+            <code class="highlight language-python">set_advanced_trigger(channel, state, direction, threshold_mode, threshold_upper_mv, threshold_lower_mv, hysteresis_upper_mv=0.0, hysteresis_lower_mv=0.0, aux_output_enable=0, auto_trigger_ms=0, action=ACTION.CLEAR_ALL | ACTION.ADD)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Configure an advanced trigger in a single call.</p>
+<p>This helper sets up the trigger condition, direction and properties
+required for non-simple triggers.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>channel</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Channel to monitor for the trigger condition.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>state</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Trigger state used with <code>set_trigger_channel_conditions</code>.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>direction</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Trigger direction from
+:class:<code>PICO_THRESHOLD_DIRECTION</code>.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>threshold_mode</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Threshold mode from :class:<code>PICO_THRESHOLD_MODE</code>.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>threshold_upper_mv</code></b>
+                  (<code><span title="float">float</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Upper trigger threshold in millivolts.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>threshold_lower_mv</code></b>
+                  (<code><span title="float">float</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Lower trigger threshold in millivolts.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>hysteresis_upper_mv</code></b>
+                  (<code><span title="float">float</span></code>, default:
+                      <code>0.0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Optional hysteresis for <code>threshold_upper_mv</code>
+in millivolts.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>hysteresis_lower_mv</code></b>
+                  (<code><span title="float">float</span></code>, default:
+                      <code>0.0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Optional hysteresis for <code>threshold_lower_mv</code>
+in millivolts.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>aux_output_enable</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Optional auxiliary output flag.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>auto_trigger_ms</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Auto-trigger timeout in milliseconds. <code>0</code> waits
+indefinitely.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>action</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code><span title="pypicosdk.constants.ACTION.CLEAR_ALL">CLEAR_ALL</span> | <span title="pypicosdk.constants.ACTION.ADD">ADD</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Action flag for <code>set_trigger_channel_conditions</code>.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.set_all_channels_off" class="doc doc-heading">
+            <code class="highlight language-python">set_all_channels_off()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Turns all channels off, based on unit number of channels</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.set_aux_io_mode" class="doc doc-heading">
+            <code class="highlight language-python">set_aux_io_mode(mode)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Configure the AUX IO connector using <code>ps6000aSetAuxIoMode</code>.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>mode</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="AUXIO_MODE (pypicosdk.constants.AUXIO_MODE)" href="../constants/#pypicosdk.constants.AUXIO_MODE">AUXIO_MODE</a></code>)
+              –
+              <div class="doc-md-description">
+                <p>Requested AUXIO mode from :class:<code>~pypicosdk.constants.AUXIO_MODE</code>.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.set_channel" class="doc doc-heading">
+            <code class="highlight language-python">set_channel(channel, range=RANGE.V1, enabled=True, coupling=COUPLING.DC, offset=0.0, bandwidth=BANDWIDTH_CH.FULL, probe_scale=1.0)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Enable/disable a channel and specify certain variables i.e. range, coupling, offset, etc.</p>
+<p>For the ps6000a drivers, this combines _set_channel_on/off to a single function. 
+Set channel on/off by adding enabled=True/False</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>channel</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="CHANNEL (pypicosdk.constants.CHANNEL)" href="../constants/#pypicosdk.constants.CHANNEL">CHANNEL</a></code>)
+              –
+              <div class="doc-md-description">
+                <p>Channel to setup.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>range</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="RANGE (pypicosdk.constants.RANGE)" href="../constants/#pypicosdk.constants.RANGE">RANGE</a></code>, default:
+                      <code><span title="pypicosdk.constants.RANGE.V1">V1</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Voltage range of channel.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>enabled</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>True</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Enable or disable channel.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>coupling</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="COUPLING (pypicosdk.constants.COUPLING)" href="../constants/#pypicosdk.constants.COUPLING">COUPLING</a></code>, default:
+                      <code><span title="pypicosdk.constants.COUPLING.DC">DC</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>AC/DC/DC 50 Ohm coupling of selected channel.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>offset</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0.0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Analog offset in volts (V) of selected channel.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>bandwidth</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="BANDWIDTH_CH (pypicosdk.constants.BANDWIDTH_CH)" href="../constants/#pypicosdk.constants.BANDWIDTH_CH">BANDWIDTH_CH</a></code>, default:
+                      <code><span title="pypicosdk.constants.BANDWIDTH_CH.FULL">FULL</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Bandwidth of channel (selected models).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>probe_scale</code></b>
+                  (<code><span title="float">float</span></code>, default:
+                      <code>1.0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Probe attenuation factor such as 1 or 10.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.set_data_buffer" class="doc doc-heading">
+            <code class="highlight language-python">set_data_buffer(channel, samples, segment=0, datatype=DATA_TYPE.INT16_T, ratio_mode=RATIO_MODE.RAW, action=ACTION.CLEAR_ALL | ACTION.ADD)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Tells the driver where to store the data that will be populated when get_values() is called.
+This function works on a single buffer. For aggregation mode, call set_data_buffers instead.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>channel</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="CHANNEL (pypicosdk.constants.CHANNEL)" href="../constants/#pypicosdk.constants.CHANNEL">CHANNEL</a></code>)
+              –
+              <div class="doc-md-description">
+                <p>Channel you want to use with the buffer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Number of samples/length of the buffer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>segment</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Location of the buffer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>datatype</code></b>
+                  (<code><span title="DATATYPE">DATATYPE</span></code>, default:
+                      <code><span title="pypicosdk.constants.DATA_TYPE.INT16_T">INT16_T</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>C datatype of the data.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>ratio_mode</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="RATIO_MODE (pypicosdk.constants.RATIO_MODE)" href="../constants/#pypicosdk.constants.RATIO_MODE">RATIO_MODE</a></code>, default:
+                      <code><span title="pypicosdk.constants.RATIO_MODE.RAW">RAW</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Down-sampling mode.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>action</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="ACTION (pypicosdk.constants.ACTION)" href="../constants/#pypicosdk.constants.ACTION">ACTION</a></code>, default:
+                      <code><span title="pypicosdk.constants.ACTION.CLEAR_ALL">CLEAR_ALL</span> | <span title="pypicosdk.constants.ACTION.ADD">ADD</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Method to use when creating a buffer.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="ctypes.Array">Array</span></code>
+              –
+              <div class="doc-md-description">
+                <p>ctypes.Array: Array that will be populated when get_values() is called.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.set_data_buffer_for_enabled_channels" class="doc doc-heading">
+            <code class="highlight language-python">set_data_buffer_for_enabled_channels(samples, segment=0, datatype=DATA_TYPE.INT16_T, ratio_mode=RATIO_MODE.RAW, clear_buffer=True)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Sets data buffers for enabled channels set by picosdk.set_channel()</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The sample buffer or size to allocate.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>segment</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The memory segment index.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>datatype</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="DATA_TYPE (pypicosdk.constants.DATA_TYPE)" href="../constants/#pypicosdk.constants.DATA_TYPE">DATA_TYPE</a></code>, default:
+                      <code><span title="pypicosdk.constants.DATA_TYPE.INT16_T">INT16_T</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The data type used for the buffer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>ratio_mode</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="RATIO_MODE (pypicosdk.constants.RATIO_MODE)" href="../constants/#pypicosdk.constants.RATIO_MODE">RATIO_MODE</a></code>, default:
+                      <code><span title="pypicosdk.constants.RATIO_MODE.RAW">RAW</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>The ratio mode (e.g., RAW, AVERAGE).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>clear_buffer</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>True</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>If True, clear the buffer first</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>dict</code></b>(                  <code><span title="dict">dict</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>A dictionary mapping each channel to its associated data buffer.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.set_data_buffers" class="doc doc-heading">
+            <code class="highlight language-python">set_data_buffers(channel, samples, segment=0, datatype=DATA_TYPE.INT16_T, ratio_mode=RATIO_MODE.AGGREGATE, action=ACTION.CLEAR_ALL | ACTION.ADD)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Configure both maximum and minimum data buffers for a channel.</p>
+<p>Use this when downsampling in aggregation mode or requesting
+post-capture aggregated values. It allocates two buffers - one to hold
+the maximum values and another for the minimum values - and registers
+them with <code>ps6000aSetDataBuffers</code>.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>channel</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="CHANNEL (pypicosdk.constants.CHANNEL)" href="../constants/#pypicosdk.constants.CHANNEL">CHANNEL</a></code>)
+              –
+              <div class="doc-md-description">
+                <p>Channel you want to use with the buffers.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Number of samples/length of each buffer.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>segment</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Memory segment index for the buffers.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>datatype</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="DATA_TYPE (pypicosdk.constants.DATA_TYPE)" href="../constants/#pypicosdk.constants.DATA_TYPE">DATA_TYPE</a></code>, default:
+                      <code><span title="pypicosdk.constants.DATA_TYPE.INT16_T">INT16_T</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>C datatype of the data stored in the
+buffers.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>ratio_mode</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="RATIO_MODE (pypicosdk.constants.RATIO_MODE)" href="../constants/#pypicosdk.constants.RATIO_MODE">RATIO_MODE</a></code>, default:
+                      <code><span title="pypicosdk.constants.RATIO_MODE.AGGREGATE">AGGREGATE</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Downsampling mode. Typically
+<code>RATIO_MODE.AGGREGATE</code> when both buffers are required.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>action</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="ACTION (pypicosdk.constants.ACTION)" href="../constants/#pypicosdk.constants.ACTION">ACTION</a></code>, default:
+                      <code><span title="pypicosdk.constants.ACTION.CLEAR_ALL">CLEAR_ALL</span> | <span title="pypicosdk.constants.ACTION.ADD">ADD</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Method used when creating or updating the
+buffers.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code><span title="ctypes.Array">Array</span></code>
+              –
+              <div class="doc-md-description">
+                <p>tuple[ctypes.Array, ctypes.Array]: <code>(buffer_max, buffer_min)</code> that</p>
+              </div>
+            </li>
+            <li>
+                  <code><span title="ctypes.Array">Array</span></code>
+              –
+              <div class="doc-md-description">
+                <p>will be populated when :meth:<code>get_values</code> is called.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.set_device_resolution" class="doc doc-heading">
+            <code class="highlight language-python">set_device_resolution(resolution)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Configure the ADC resolution using <code>ps6000aSetDeviceResolution</code>.
+Args:
+    resolution: Desired resolution as a :class:<code>RESOLUTION</code> value.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.set_digital_port_off" class="doc doc-heading">
+            <code class="highlight language-python">set_digital_port_off(port)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Disable a digital port using <code>ps6000aSetDigitalPortOff</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.set_digital_port_on" class="doc doc-heading">
+            <code class="highlight language-python">set_digital_port_on(port, logic_threshold_level, hysteresis)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Enable a digital port using <code>ps6000aSetDigitalPortOn</code>.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>port</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="DIGITAL_PORT (pypicosdk.constants.DIGITAL_PORT)" href="../constants/#pypicosdk.constants.DIGITAL_PORT">DIGITAL_PORT</a></code>)
+              –
+              <div class="doc-md-description">
+                <p>Digital port to enable.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>logic_threshold_level</code></b>
+                  (<code><span title="list">list</span>[<span title="int">int</span>]</code>)
+              –
+              <div class="doc-md-description">
+                <p>Threshold level for each pin in millivolts.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>hysteresis</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="DIGITAL_PORT_HYSTERESIS (pypicosdk.constants.DIGITAL_PORT_HYSTERESIS)" href="../constants/#pypicosdk.constants.DIGITAL_PORT_HYSTERESIS">DIGITAL_PORT_HYSTERESIS</a></code>)
+              –
+              <div class="doc-md-description">
+                <p>Hysteresis level applied to all pins.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.set_no_of_captures" class="doc doc-heading">
+            <code class="highlight language-python">set_no_of_captures(n_captures)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Configure the number of captures for rapid block mode.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.set_siggen" class="doc doc-heading">
+            <code class="highlight language-python">set_siggen(frequency, pk2pk, wave_type, offset=0.0, duty=50)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Configures and applies the signal generator settings.</p>
+<p>Sets up the signal generator with the specified waveform type, frequency,
+amplitude (peak-to-peak), offset, and duty cycle.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>frequency</code></b>
+                  (<code><span title="float">float</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Signal frequency in hertz (Hz).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>pk2pk</code></b>
+                  (<code><span title="float">float</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Peak-to-peak voltage in volts (V).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>wave_type</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="WAVEFORM (pypicosdk.constants.WAVEFORM)" href="../constants/#pypicosdk.constants.WAVEFORM">WAVEFORM</a></code>)
+              –
+              <div class="doc-md-description">
+                <p>Waveform type (e.g., WAVEFORM.SINE, WAVEFORM.SQUARE).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>offset</code></b>
+                  (<code><span title="float">float</span></code>, default:
+                      <code>0.0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Voltage offset in volts (V).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>duty</code></b>
+                  (<code><span title="int">int</span> or <span title="float">float</span></code>, default:
+                      <code>50</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Duty cycle as a percentage (0–100).</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+<b><code>dict</code></b>(                  <code><span title="dict">dict</span></code>
+)              –
+              <div class="doc-md-description">
+                <p>Returns dictionary of the actual achieved values.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.set_simple_trigger" class="doc doc-heading">
+            <code class="highlight language-python">set_simple_trigger(channel, threshold_mv=0, enable=True, direction=TRIGGER_DIR.RISING, delay=0, auto_trigger_ms=5000)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Sets up a simple trigger from a specified channel and threshold in mV.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>channel</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The input channel to apply the trigger to.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>threshold_mv</code></b>
+                  (<code><span title="float">float</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Trigger threshold level in millivolts.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>enable</code></b>
+                  (<code><span title="bool">bool</span></code>, default:
+                      <code>True</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Enables or disables the trigger. </p>
+              </div>
+            </li>
+            <li>
+              <b><code>direction</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="TRIGGER_DIR (pypicosdk.constants.TRIGGER_DIR)" href="../constants/#pypicosdk.constants.TRIGGER_DIR">TRIGGER_DIR</a></code>, default:
+                      <code><span title="pypicosdk.constants.TRIGGER_DIR.RISING">RISING</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Trigger direction (e.g., TRIGGER_DIR.RISING, TRIGGER_DIR.FALLING). </p>
+              </div>
+            </li>
+            <li>
+              <b><code>delay</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Delay in samples after the trigger condition is met before starting capture. </p>
+              </div>
+            </li>
+            <li>
+              <b><code>auto_trigger_ms</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>5000</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Timeout in milliseconds after which data capture proceeds even if no trigger occurs. </p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><span class="doc-section-title">Examples:</span></p>
+    <p>When using TRIGGER_AUX, threshold is fixed to 1.25 V</p>
+    <pre class="highlight"><code class="language-pycon">&gt;&gt;&gt; scope.set_simple_trigger(channel=psdk.CHANNEL.TRIGGER_AUX)</code></pre>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.set_trigger_channel_conditions" class="doc doc-heading">
+            <code class="highlight language-python">set_trigger_channel_conditions(source, state, action=ACTION.CLEAR_ALL | ACTION.ADD)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Configure a trigger condition using <code>ps6000aSetTriggerChannelConditions</code>.</p>
+<p>This method mirrors :meth:<code>PicoScopeBase.set_trigger_channel_conditions</code> while
+documenting the underlying API call specific to the 6000A series.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>source</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Input source for the condition as a :class:<code>CHANNEL</code> value.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>state</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Desired trigger state from :class:<code>PICO_TRIGGER_STATE</code>.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>action</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code><span title="pypicosdk.constants.ACTION.CLEAR_ALL">CLEAR_ALL</span> | <span title="pypicosdk.constants.ACTION.ADD">ADD</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>How to combine the condition with any existing configuration.
+Defaults to <code>ACTION.CLEAR_ALL | ACTION.ADD</code>.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.set_trigger_channel_directions" class="doc doc-heading">
+            <code class="highlight language-python">set_trigger_channel_directions(channel, direction, threshold_mode)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Configure channel directions using <code>ps6000aSetTriggerChannelDirections</code>.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.set_trigger_channel_properties" class="doc doc-heading">
+            <code class="highlight language-python">set_trigger_channel_properties(threshold_upper, hysteresis_upper, threshold_lower, hysteresis_lower, channel, aux_output_enable=0, auto_trigger_us=0)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Configure channel thresholds using <code>ps6000aSetTriggerChannelProperties</code>.</p>
+<p>This method mirrors :meth:<code>PicoScopeBase.set_trigger_channel_properties</code> while
+documenting the underlying 6000A API call.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>threshold_upper</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>ADC value for the upper trigger level.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>hysteresis_upper</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Hysteresis for <code>threshold_upper</code> in ADC counts.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>threshold_lower</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>ADC value for the lower trigger level.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>hysteresis_lower</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Hysteresis for <code>threshold_lower</code> in ADC counts.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>channel</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Channel these settings apply to.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>aux_output_enable</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Optional auxiliary output flag.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>auto_trigger_us</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Auto-trigger timeout in microseconds.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.start_firmware_update" class="doc doc-heading">
+            <code class="highlight language-python">start_firmware_update(progress=None)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Begin installing any available firmware update.
+Args:
+    progress: Optional callback <code>(handle, percent)</code> that receives
+        progress updates as the firmware is written.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.stop" class="doc doc-heading">
+            <code class="highlight language-python">stop()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>This function stops the scope device from sampling data</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.pypicosdk.ps6000a.stop_using_get_values_overlapped" class="doc doc-heading">
+            <code class="highlight language-python">stop_using_get_values_overlapped()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Terminate overlapped capture mode.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../introduction/" class="btn btn-neutral float-left" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../conversions/" class="btn btn-neutral float-right" title="General Conversions">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../introduction/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../conversions/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
