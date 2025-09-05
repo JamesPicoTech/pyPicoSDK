@@ -1,6 +1,6 @@
 <p align="center">
-  <img src="docs/docs/img/pypicosdk-dark-400x400.png#gh-dark-mode-only" alt="Fancy logo">
-  <img src="docs/docs/img/pypicosdk-light-400x400.png#gh-light-mode-only" alt="Fancy logo">
+  <img src="https://raw.githubusercontent.com/JamesPicoTech/pyPicoSDK/refs/heads/gh-light-dark/docs/docs/img/pypicosdk-dark-400x400.png#gh-dark-mode-only" alt="Fancy logo">
+  <img src="https://raw.githubusercontent.com/JamesPicoTech/pyPicoSDK/refs/heads/gh-light-dark/docs/docs/img/pypicosdk-light-400x400.png#gh-light-mode-only" alt="Fancy logo">
 </p>
 
 <!-- start here -->
