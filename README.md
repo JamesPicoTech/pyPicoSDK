@@ -2,6 +2,9 @@
 <img src="https://raw.githubusercontent.com/JamesPicoTech/pyPicoSDK/refs/heads/main/docs/docs/img/pypicosdk-image-400x400.png" alt="Centered Image" />
 </div>
 
+![Fancy logo](docs/docs/img/pypicosdk-dark-400x400.png#gh-dark-mode-only)
+![Fancy logo](docs/docs/img/pypicosdk-light-400x400.png#gh-light-mode-only)
+
 # Welcome to pyPicoSDK Documentation
 ## Installation
 ### Prerequisites 
