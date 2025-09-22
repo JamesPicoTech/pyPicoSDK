@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../../img/favicon.ico" />
+    <title>Streaming - pyPicoSDK</title>
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+        <link href="../../assets/_mkdocstrings.css" rel="stylesheet" />
+        <link href="../../css/mkdocstrings.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Streaming";
+        var mkdocs_page_input_path = "ref/streaming.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="../.." class="icon icon-home"> pyPicoSDK
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Reference</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../introduction/">Introduction</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >PicoScope 6000E (A) Specific Functions</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../ps6000a/init/">Init</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ps6000a/setup/">Setup</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ps6000a/firmware/">Firmware</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ps6000a/channel/">Channel</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ps6000a/digital/">Digital</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ps6000a/trigger/">Trigger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ps6000a/siggen/">Siggen</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ps6000a/buffers/">Buffers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ps6000a/conversions/">Conversions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ps6000a/captures/">Captures</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ps6000a/run/">Run</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../ps6000a/retrieval/">Retrieval</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" >PicoScope 3000E (psospa) Specific Functions</a>
+    <ul>
+                <li class="toctree-l2"><a class="reference internal" href="../psospa/init/">Init</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../psospa/setup/">Setup</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../psospa/firmware/">Firmware</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../psospa/channel/">Channel</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../psospa/digital/">Digital</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../psospa/trigger/">Trigger</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../psospa/siggen/">Siggen</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../psospa/buffers/">Buffers</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../psospa/conversions/">Conversions</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../psospa/captures/">Captures</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../psospa/run/">Run</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../psospa/retrieval/">Retrieval</a>
+                </li>
+                <li class="toctree-l2"><a class="reference internal" href="../psospa/led/">Led</a>
+                </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../general/">General</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../constants/">General Constants</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Streaming</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#using-streaming-in-pypicosdk">Using Streaming in pyPicoSDK</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#methods-functions">Methods &amp; Functions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.streaming.StreamingScope">StreamingScope</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.streaming.StreamingScope.config_streaming">config_streaming</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.streaming.StreamingScope.get_streaming_values">get_streaming_values</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.streaming.StreamingScope.run_streaming">run_streaming</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.streaming.StreamingScope.start_streaming_while">start_streaming_while</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pypicosdk.streaming.StreamingScope.stop">stop</a>
+    </li>
+    </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Development</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/changelog/">Changelog</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/current/">Current Support</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../../dev/roadmap/">Upcoming Roadmap</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../..">pyPicoSDK</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../.." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Reference</li>
+      <li class="breadcrumb-item active">Streaming</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <!-- Copyright (C) 2025-2025 Pico Technology Ltd. See LICENSE file for terms. -->
+<h1 id="streaming">Streaming</h1>
+<p>Streaming in a PicoScope is a great tool for monitoring a waveform for a long period of time
+without the delay between block captures. Though this method of capture is fairly limited in
+sample rate and usability in comparison to a <code>block capture</code> and especially <code>rapid block capture</code>.</p>
+<h2 id="using-streaming-in-pypicosdk">Using Streaming in pyPicoSDK</h2>
+<p>Streaming is implemented in this package as a class to take advantage of the benefits offered by an object-oriented approach.
+For a quick start-up use the <a href="https://github.com/JamesPicoTech/pyPicoSDK/blob/main/examples/streaming">example code</a> and alter it to your application.</p>
+<h2 id="methods-functions">Methods &amp; Functions</h2>
+<p>Below are the included public methods for streaming:
+</p>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<a id="pypicosdk.streaming.StreamingScope"></a>
+    <div class="doc doc-contents first">
+
+
+        <p>Streaming Scope class</p>
+
+
+
+
+
+
+
+
+
+
+
+
+<p><span class="doc-section-title">Methods:</span></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="config_streaming(channel, samples, interval, time_units, pre_trig_samples=0, post_trig_samples=250, ratio=0, ratio_mode=RATIO_MODE.RAW, data_type=DATA_TYPE.INT16_T) (pypicosdk.streaming.StreamingScope.config_streaming)" href="#pypicosdk.streaming.StreamingScope.config_streaming">config_streaming</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Configures the streaming settings for data acquisition. This method</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="get_streaming_values() (pypicosdk.streaming.StreamingScope.get_streaming_values)" href="#pypicosdk.streaming.StreamingScope.get_streaming_values">get_streaming_values</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Main loop for handling streaming data acquisition.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="run_streaming() (pypicosdk.streaming.StreamingScope.run_streaming)" href="#pypicosdk.streaming.StreamingScope.run_streaming">run_streaming</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Initiates the data streaming process.</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="start_streaming_while() (pypicosdk.streaming.StreamingScope.start_streaming_while)" href="#pypicosdk.streaming.StreamingScope.start_streaming_while">start_streaming_while</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Starts and continuously runs the streaming acquisition loop until</p>
+                </div>
+              </td>
+            </tr>
+            <tr class="doc-section-item">
+              <td><code><a class="autorefs autorefs-internal" title="stop() (pypicosdk.streaming.StreamingScope.stop)" href="#pypicosdk.streaming.StreamingScope.stop">stop</a></code></td>
+              <td>
+                <div class="doc-md-description">
+                  <p>Signals the streaming loop to stop.</p>
+                </div>
+              </td>
+            </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.streaming.StreamingScope.config_streaming" class="doc doc-heading">
+            <code class="highlight language-python">config_streaming(channel, samples, interval, time_units, pre_trig_samples=0, post_trig_samples=250, ratio=0, ratio_mode=RATIO_MODE.RAW, data_type=DATA_TYPE.INT16_T)</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Configures the streaming settings for data acquisition. This method
+sets up the channel, sample counts, timing intervals, and buffer
+management for streaming data from the device.</p>
+
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Parameters:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+              <b><code>channel</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="CHANNEL (pypicosdk.constants.CHANNEL)" href="../constants/#pypicosdk.constants.CHANNEL">CHANNEL</a></code>)
+              –
+              <div class="doc-md-description">
+                <p>The channel to stream data from.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>samples</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The number of samples to acquire in each streaming segment.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>interval</code></b>
+                  (<code><span title="int">int</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>The time interval between samples.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>time_units</code></b>
+                  (<code><span title="str">str</span> | <span title="pypicosdk.constants.TIME_UNIT">TIME_UNIT</span></code>)
+              –
+              <div class="doc-md-description">
+                <p>Units for the sample interval
+(e.g., 'ms' or TIME_UNIT.MS).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>pre_trig_samples</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Number of samples to capture
+before a trigger event. Defaults to 0.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>post_trig_samples</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>250</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Number of samples to capture
+after a trigger event. Defaults to 250.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>ratio</code></b>
+                  (<code><span title="int">int</span></code>, default:
+                      <code>0</code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Downsampling ratio to apply to the captured
+data. Defaults to 0 (no downsampling).</p>
+              </div>
+            </li>
+            <li>
+              <b><code>ratio_mode</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="RATIO_MODE (pypicosdk.constants.RATIO_MODE)" href="../constants/#pypicosdk.constants.RATIO_MODE">RATIO_MODE</a></code>, default:
+                      <code><span title="pypicosdk.constants.RATIO_MODE.RAW">RAW</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Mode used for applying the
+downsampling ratio. Defaults to RATIO_MODE.RAW.</p>
+              </div>
+            </li>
+            <li>
+              <b><code>data_type</code></b>
+                  (<code><a class="autorefs autorefs-internal" title="DATA_TYPE (pypicosdk.constants.DATA_TYPE)" href="../constants/#pypicosdk.constants.DATA_TYPE">DATA_TYPE</a></code>, default:
+                      <code><span title="pypicosdk.constants.DATA_TYPE.INT16_T">INT16_T</span></code>
+)
+              –
+              <div class="doc-md-description">
+                <p>Data type for the samples in the
+buffer. Defaults to DATA_TYPE.INT16_T.</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="field-list">
+  <colgroup>
+    <col class="field-name" />
+    <col class="field-body" />
+  </colgroup>
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">Returns:</th>
+      <td class="field-body">
+        <ul class="first simple">
+            <li>
+                  <code>None</code>
+              –
+              <div class="doc-md-description">
+                <p>None</p>
+              </div>
+            </li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.streaming.StreamingScope.get_streaming_values" class="doc doc-heading">
+            <code class="highlight language-python">get_streaming_values()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Main loop for handling streaming data acquisition.</p>
+<p>This method retrieves the latest streaming data from the device,
+appends new samples to the internal buffer array, and manages buffer
+rollover when the hardware buffer becomes full.</p>
+<p>The method ensures that the internal buffer (<code>self.buffer_array</code>)
+always contains the most recent samples up to <code>max_buffer_size</code>. It
+also handles alternating between buffer segments when a buffer
+overflow condition is detected.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.streaming.StreamingScope.run_streaming" class="doc doc-heading">
+            <code class="highlight language-python">run_streaming()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Initiates the data streaming process.</p>
+<p>This method prepares the device for streaming by clearing existing
+data buffers, setting up a new data buffer for the selected channel,
+and starting the streaming process with the configured parameters such
+as sample interval, trigger settings, and downsampling options.</p>
+<p>The method resets internal buffer indices and flags to prepare for
+incoming data.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.streaming.StreamingScope.start_streaming_while" class="doc doc-heading">
+            <code class="highlight language-python">start_streaming_while()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Starts and continuously runs the streaming acquisition loop until
+StreamingScope.stop() is called.</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pypicosdk.streaming.StreamingScope.stop" class="doc doc-heading">
+            <code class="highlight language-python">stop()</code>
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Signals the streaming loop to stop.</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../constants/" class="btn btn-neutral float-left" title="General Constants"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../../dev/changelog/" class="btn btn-neutral float-right" title="Changelog">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../constants/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../../dev/changelog/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "../..";</script>
+    <script src="../../js/theme_extra.js"></script>
+    <script src="../../js/theme.js"></script>
+      <script src="../../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
